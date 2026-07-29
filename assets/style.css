@@ -1,0 +1,279 @@
+/* Shared stylesheet — Interview Prep Guides */
+:root{
+  --bg: #fbfaf8;
+  --panel: #14131f;
+  --panel-soft: #1d1c2c;
+  --ink: #201f2b;
+  --ink-soft: #55536b;
+  --rule: #e6e2da;
+  --accent: #6c4fd6;
+  --accent-soft: #efe9ff;
+  --accent-deep: #4b34a8;
+  --code-bg: #14131f;
+  --code-ink: #d9d6ee;
+  --code-key: #b79bff;
+  --code-str: #8fd48a;
+  --code-com: #767293;
+  --tag: #f2ede0;
+  --tag-ink: #7a6a2e;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter', system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.65;
+}
+.shell{ display:flex; min-height:100vh; }
+
+nav.toc{
+  width:290px; flex-shrink:0;
+  background:var(--panel);
+  color:#cfcbe6;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  padding:32px 22px 40px;
+  transition:width .25s ease, padding .25s ease, opacity .2s ease;
+}
+nav.toc.collapsed{
+  width:0;
+  padding:0;
+  opacity:0;
+  overflow:hidden;
+}
+nav.toc .brand{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:1.28rem;
+  color:#fff;
+  letter-spacing:.2px;
+  margin-bottom:4px;
+}
+nav.toc .brand span{ color: var(--code-key); }
+nav.toc .sub{
+  font-size:.78rem;
+  color:#8b87ab;
+  margin-bottom:28px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+nav.toc a{
+  display:block;
+  color:#b8b4d6;
+  text-decoration:none;
+  font-size:.89rem;
+  padding:7px 10px;
+  border-radius:7px;
+  margin-bottom:1px;
+  transition:background .15s, color .15s;
+  border-right:2px solid transparent;
+}
+nav.toc a.sub-link{
+  font-size:.8rem;
+  color:#8b87ab;
+  padding:5px 10px 5px 20px;
+  position:relative;
+}
+nav.toc a.sub-link::before{
+  content:"";
+  position:absolute;
+  left:9px; top:50%;
+  width:5px; height:1px;
+  background:#5a5780;
+}
+nav.toc a:hover{ background:var(--panel-soft); color:#fff; }
+nav.toc a.active{ background:var(--panel-soft); color:#fff; border-right:2px solid var(--code-key); }
+nav.toc .count{
+  display:inline-block; margin-top:26px; padding-top:18px;
+  border-top:1px solid #2a2940;
+  font-size:.75rem; color:#75729a;
+}
+nav.toc .back{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:.78rem; color:#8b87ab;
+  text-decoration:none;
+  margin-bottom:22px;
+  padding:6px 10px 6px 0;
+}
+nav.toc .back:hover{ color:#fff; }
+
+main{
+  flex:1;
+  max-width:860px;
+  padding:56px 64px 120px;
+}
+header.hero{ margin-bottom:56px; }
+header.hero .eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.8rem;
+  color:var(--accent-deep);
+  background:var(--accent-soft);
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:5px;
+  margin-bottom:18px;
+}
+header.hero h1{
+  font-family:'Fraunces', serif;
+  font-weight:700;
+  font-size:2.7rem;
+  line-height:1.08;
+  margin:0 0 14px;
+  color:var(--ink);
+}
+header.hero p{
+  color:var(--ink-soft);
+  font-size:1.05rem;
+  max-width:60ch;
+  margin:0;
+}
+
+section.topic{
+  margin-bottom:56px;
+  scroll-margin-top:24px;
+}
+section.topic h2{
+  font-family:'Fraunces', serif;
+  font-size:1.6rem;
+  font-weight:700;
+  color:var(--ink);
+  margin:0 0 6px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--rule);
+  scroll-margin-top:24px;
+}
+section.topic h3{
+  font-family:'Fraunces', serif;
+  font-size:1.15rem;
+  font-weight:600;
+  color:var(--accent-deep);
+  margin:32px 0 10px;
+  scroll-margin-top:24px;
+}
+section.topic h4{
+  font-family:'Inter', sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  color:var(--ink);
+  margin:20px 0 8px;
+  scroll-margin-top:24px;
+}
+section.topic p{ margin:0 0 14px; color:var(--ink); }
+section.topic ul, section.topic ol{ margin:0 0 16px; padding-left:22px; }
+section.topic li{ margin-bottom:8px; }
+section.topic li p{ margin:0 0 6px; }
+section.topic strong{ color:var(--ink); }
+section.topic blockquote{
+  margin:0 0 14px; padding:2px 0 2px 16px;
+  border-left:2px solid var(--rule);
+  color:var(--ink-soft);
+}
+section.topic a{ color:var(--accent-deep); }
+
+.answer{
+  background:var(--accent-soft);
+  border-left:3px solid var(--accent);
+  padding:14px 18px;
+  border-radius:0 8px 8px 0;
+  margin:0 0 18px;
+}
+.answer .lbl{
+  font-family:'JetBrains Mono', monospace;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--accent-deep);
+  display:block;
+  margin-bottom:6px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 22px;
+  font-size:.93rem;
+  background:#fff;
+  border:1px solid var(--rule);
+  border-radius:8px;
+  overflow:hidden;
+}
+table th{
+  background:var(--panel);
+  color:#e7e4f7;
+  text-align:left;
+  padding:10px 14px;
+  font-weight:600;
+  font-size:.82rem;
+  letter-spacing:.02em;
+}
+table td{
+  padding:10px 14px;
+  border-top:1px solid var(--rule);
+  vertical-align:top;
+}
+table tr:nth-child(even) td{ background:#faf9f6; }
+
+pre{
+  background:var(--code-bg);
+  color:var(--code-ink);
+  padding:16px 18px;
+  border-radius:10px;
+  overflow-x:auto;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.84rem;
+  line-height:1.55;
+  margin:0 0 18px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+code{
+  font-family:'JetBrains Mono', monospace;
+  background:var(--tag);
+  color:var(--tag-ink);
+  padding:1px 6px;
+  border-radius:4px;
+  font-size:.88em;
+}
+pre code{ background:none; padding:0; color:inherit; font-size:1em; }
+
+.divider{
+  height:1px;
+  background:linear-gradient(to right, var(--accent), transparent);
+  margin:40px 0;
+}
+
+footer{
+  color:var(--ink-soft);
+  font-size:.85rem;
+  padding-top:20px;
+  border-top:1px solid var(--rule);
+}
+
+@media (max-width: 900px){
+  nav.toc{ display:none; }
+  .nav-toggle{ display:none; }
+  main{ padding:36px 22px 100px; }
+  header.hero h1{ font-size:2.1rem; }
+}
+
+.nav-toggle{
+  position:fixed;
+  top:24px;
+  right:314px;
+  z-index:100;
+  width:40px; height:40px;
+  border-radius:10px;
+  background:var(--panel);
+  color:#e7e4f7;
+  border:none;
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.15rem;
+  line-height:1;
+  box-shadow:0 4px 14px rgba(20,19,31,.22);
+  transition:right .25s ease, background .15s ease;
+}
+.nav-toggle:hover{ background:var(--panel-soft); }
+body.nav-collapsed .nav-toggle{ right:24px; }

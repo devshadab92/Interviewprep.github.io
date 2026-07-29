@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microservices Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #d97a34;
+    --accent-deep: #a85923;
+    --accent-soft: #fcedde;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Distributed Systems</span>
+      <h1>Microservices Interview Questions</h1>
+      <p>Service communication, API gateways, message brokers, and resiliency patterns.</p>
+    </header>
+
+    <section class="topic" id="what-is-microservice">
+      <h2>What Is Microservice</h2>
+<p>Microservices Architecture is a design approach that breaks down an application into a set of small, independent services, each responsible for a specific business function. These services communicate with each other via lightweight protocols such as HTTP/REST or message queues. Unlike monolithic applications, where all components are tightly coupled and deployed together, microservices allow each service to be developed, deployed, and scaled independently.</p>
+<h3 id="benifits">Benifits</h3>
+<p>This approach enables easier maintenance, quicker updates, and faster release cycles. Each microservice is typically small enough to be managed by a small team,</p>
+<p>offering greater flexibility in terms of technology stacks and deployment strategies.</p>
+    </section>
+
+    <section class="topic" id="monolithic-microservices">
+      <h2>Monolithic & Microservices</h2>
+<p>Monolithic architecture builds an application as a single, unified unit, making it simple to start but harder to scale and update, while microservices break the application into small, independent services that communicate via APIs, offering greater flexibility, independent scaling, and tech diversity, but with higher initial complexity and management overhead, ideal for large, complex systems. Think of a monolith as one big building (easy to enter, hard to change one room), and microservices as many small, connected pods (harder to set up, but easy to expand or modify one pod without affecting others). </p>
+<p><strong>Monolithic Architecture</strong></p>
+<ul>
+<li><p><strong>Structure:</strong> Single, unified codebase and deployment unit.</p></li>
+<li><p><strong>Development:</strong> Simpler initial development, but complexity grows with the application.</p></li>
+<li><p><strong>Deployment:</strong> Deploy the entire application as one piece.</p></li>
+<li><p><strong>Scaling:</strong> Scale the whole application, even for a single feature's need.</p></li>
+<li><p><strong>Tech Stack:</strong> Often uses a single technology stack.</p></li>
+<li><p><strong>Best For:</strong> Small projects, MVPs, or when speed to market is key. </p></li>
+</ul>
+<p><a href="https://www.google.com/search?q=Microservices+Architecture&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifMzoJD__nJ1peUUuN7_GNimU5luVQ%3A1765965990595&amp;ei=poBCabeNJMmeseMP8JnouQc&amp;oq=di&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiAmRpKgIIAjIKECMYgAQYJxiKBTIKECMYgAQYJxiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgoQABiABBhDGIoFMgoQABiABBhDGIoFMgoQABiABBhDGIoFMgoQABiABBhDGIoFMgoQABiABBhDGIoFMgoQABiABBhDGIoFSK5CUJISWLwlcAJ4AJABBJgBggSgAYUOqgEJMC42LjEuNS0xuAEByAEA-AEBmAIEoAKYA6gCEMICChAAGLADGNYEGEfCAgcQIxgnGOoCwgINEC4Y0QMYxwEYJxjqAsICFxAAGIAEGJECGLQCGOcGGIoFGOoC2AEBwgIQEC4YgAQY0QMYxwEYJxiKBZgDDPEFWzqM2Wu-bKGIBgGQBgi6BgYIARABGAGSBwUyLjEuMaAHg0eyBwUwLjEuMbgHgAPCBwUyLTIuMsgHGoAIAA&amp;sclient=gws-wiz-serp&amp;mstk=AUtExfB0LWkl5MhxGNcJKcnrsz54Bb0I9FeV70NNAWiiD3uUWHdqSpXOlYT8RCReIwOSF4ey_lInj4oXKvSy2LOvtDf4bH1gVbEE5dDNgsFyly5atCTll5RBuqg2SWY9kQ263VDppgvR2cf74NbvDQQty345AbCgmhuEkpnGUjP4ky2bJdrceN9cIgmb9OODvFatqqAUECfCyGf0M1-MX_Pmf61ljbnE9lzK0a37GHaHzQ8dg5-7WxUDV9LtRchnKilroTYWUKJNpXq7edbgXI-LH2-J&amp;csui=3&amp;ved=2ahUKEwi5geWgsMSRAxVRVmwGHTpMNWEQgK4QegYIAQgAEB0"><strong><u>Microservices Architecture</u></strong></a></p>
+<ul>
+<li><p><strong>Structure:</strong> Collection of small, independent, loosely coupled services.</p></li>
+<li><p><strong>Development:</strong> More complex upfront planning, but easier to manage specific services.</p></li>
+<li><p><strong>Deployment:</strong> Each service deployed independently.</p></li>
+<li><p><strong>Scaling:</strong> Scale individual services as needed (independent scaling).</p></li>
+<li><p><strong>Tech Stack:</strong> Can use different languages/tools for different services (polyglot).</p></li>
+<li><p><strong>Best For:</strong> Large, complex, rapidly evolving applications needing high agility and scalability. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="microservices-communicate-with-each-other">
+      <h2>Microservices communicate with each other</h2>
+<p>Microservices communicate using <strong>Synchronous (request/response)</strong> methods like <strong>HTTP/REST</strong> or <strong>gRPC</strong> for immediate needs, and <strong>Asynchronous (event-driven)</strong> methods via <strong>Message Brokers</strong> (RabbitMQ, Kafka) for loose coupling and background tasks, often involving <a href="https://www.google.com/search?q=APIs+%28REST%2FgRPC%29&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEAY"><strong><u>APIs (REST/gRPC)</u></strong></a>, <strong>Message Queues/Streams</strong>, and sometimes <a href="https://www.google.com/search?q=Service+Meshes&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEAc"><strong><u>Service Meshes</u></strong></a> (Istio) for advanced features like discovery, security, and load balancing. The choice depends on whether an immediate response is needed, balancing simplicity with resilience and scalability. </p>
+<p><strong>Synchronous Communication (Direct Request/Response)</strong></p>
+<ul>
+<li><p><strong>HTTP/REST:</strong> Most common, using standard HTTP methods (GET, POST) to call APIs exposed by other services, ideal for simple request-response patterns but can be chatty and tightly coupled.</p></li>
+<li><p><strong>gRPC (<a href="https://www.google.com/search?q=Google+Remote+Procedure+Call&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEA4"><u>Google Remote Procedure Call</u></a>):</strong> High-performance RPC framework using Protocol Buffers and HTTP/2 for efficient, language-agnostic communication, often preferred for internal service calls. </p></li>
+</ul>
+<p><strong>Asynchronous Communication (Event-Driven)</strong></p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Message+Queues&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEBQ"><u>Message Queues</u></a> (RabbitMQ, SQS):</strong> A service sends a message to a queue, and another service consumes it later, decoupling them and preventing blocking.</p></li>
+<li><p><strong>Event Streaming (<a href="https://www.google.com/search?q=Apache+Kafka&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEBY"><u>Apache Kafka</u></a>):</strong> Services publish events to streams (topics), and multiple services can subscribe and react, perfect for data pipelines and real-time analytics.</p></li>
+<li><p><strong>Publish/Subscribe (Pub/Sub):</strong> A variant where publishers send messages to topics, and multiple subscribers interested in that topic receive the message, enabling broad broadcasting. </p></li>
+</ul>
+<p><strong>Advanced Communication &amp; Management</strong></p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Service+Mesh&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEB0"><u>Service Mesh</u></a> (Istio, Linkerd):</strong> A dedicated infrastructure layer that handles service-to-service communication, providing automatic <a href="https://www.google.com/search?q=service+discovery&amp;sca_esv=753f6fb70912fb72&amp;sxsrf=AE3TifNxHkEpdcVFow-ihSkpVA3y4jtiPQ%3A1765966271448&amp;source=hp&amp;ei=v4FCafCaGfu4seMP9JjE0A0&amp;iflsig=AOw8s4IAAAAAaUKPz3SwI3tbBGvJAT-9nKukXbq46D3H&amp;oq=how+micro&amp;gs_lp=Egdnd3Mtd2l6Iglob3cgbWljcm8qAggAMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgsQABiABBiRAhiKBTIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjGKFAAWLcUcAB4AJABAJgBxgGgAcAMqgEDMC45uAEByAEA-AEBmAIJoALrDMICChAjGIAEGCcYigXCAgQQIxgnwgIKEAAYgAQYQxiKBcICCxAAGIAEGLEDGIMBwgIIEAAYgAQYsQPCAggQLhiABBixA5gDAJIHBTAuOC4xoAeBTLIHBTAuOC4xuAfrDMIHBTAuNi4zyAcbgAgA&amp;sclient=gws-wiz&amp;ved=2ahUKEwiKg_qFscSRAxUZRmwGHYnaIsYQgK4QegYIAQgAEB4"><u>service discovery</u></a>, load balancing, encryption (mTLS), and observability.</p></li>
+<li><p><strong>API Gateway:</strong> A single entry point for external requests, routing them to appropriate microservices and handling cross-cutting concerns like security and rate limiting. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="how-to-validate-token-it-is-coming-from-correct-user">
+      <h2>How to validate token it is coming from correct user</h2>
+<ol type="1">
+<li><p><strong><br/>
+Signature Verification</strong>: Ensures the token has not been tampered with by using the issuer's public key (or a shared symmetric key) to verify the signature.</p></li>
+<li><p><strong>Issuer Validation (iss)</strong>: Confirms the token was issued by the expected authority (your authorization server).</p></li>
+<li><p><strong>Audience Validation (aud)</strong>: Verifies that the token is intended for your specific API/application.</p></li>
+<li><p><strong>Lifetime Validation (exp, nbf)</strong>: Checks that the token has not expired and is not being used before its "not before" time. </p></li>
+</ol>
+<p><strong>Configuration (in Program.cs):</strong></p>
+<p>To configure the JwtBearer middleware, you need to add and configure authentication services, specifying parameters like ValidateIssuer, ValidateAudience, ValidateLifetime, ValidateIssuerSigningKey, ValidIssuer, ValidAudience, and IssuerSigningKey. You also need to add authorization services and enable both authentication and authorization middleware in your application's request pipeline. The provided code snippet demonstrates how to set these options, including using configuration values for the issuer, audience, and key</p>
+    </section>
+
+    <section class="topic" id="how-does-micro-services-communicate">
+      <h2>How does micro-services communicate</h2>
+<p>Microservices communicate using <strong>synchronous</strong> (direct request/response via HTTP/REST, gRPC) or <strong>asynchronous</strong> (event-driven via message brokers like Kafka/RabbitMQ) methods, often combined, to exchange data and trigger actions, enabling loosely coupled, independent service operation through APIs or message queues. </p>
+<p><strong>Synchronous Communication (Request/Response)</strong></p>
+<ul>
+<li><p><strong>What it is</strong>: One service sends a request to another and waits for an immediate response before continuing.</p></li>
+<li><p><strong>How it works</strong>:</p>
+<ul>
+<li><p><a href="https://www.google.com/search?q=REST+%28HTTP%2FJSON%29&amp;oq=how+does+microservices+communicate+with+each+other&amp;gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIICAQQABgWGB4yCAgFEAAYFhgeMggIBhAAGBYYHjIICAcQABgWGB4yCAgIEAAYFhgeMggICRAAGBYYHtIBCTE0ODY2ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8&amp;ved=2ahUKEwjqvannuYaSAxVrzjgGHfbAAtkQgK4QegYIAQgAEAo"><strong>REST (HTTP/JSON)</strong></a>: Services expose APIs (endpoints) and use HTTP methods (GET, POST) with JSON for data exchange; widely adopted and easy to use.</p></li>
+<li><p><a href="https://www.google.com/search?q=gRPC+%28Protobuf%29&amp;oq=how+does+microservices+communicate+with+each+other&amp;gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIICAQQABgWGB4yCAgFEAAYFhgeMggIBhAAGBYYHjIICAcQABgWGB4yCAgIEAAYFhgeMggICRAAGBYYHtIBCTE0ODY2ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8&amp;ved=2ahUKEwjqvannuYaSAxVrzjgGHfbAAtkQgK4QegYIAQgBEAE"><strong>gRPC (Protobuf)</strong></a>: High-performance, uses HTTP/2 and binary serialization (Protocol Buffers) for faster, smaller messages, good for low-latency needs.</p></li>
+</ul></li>
+<li><p><strong>Use Case</strong>: When an immediate result is needed to complete a business process (e.g., checking inventory before checkout). </p></li>
+</ul>
+<p><strong>Asynchronous Communication (Event-Driven)</strong></p>
+<ul>
+<li><p><strong>What it is</strong>: Services send messages or events without waiting for a response, promoting decoupling.</p></li>
+<li><p><strong>How it works</strong>:</p>
+<ul>
+<li><p><a href="https://www.google.com/search?q=Message+Brokers&amp;oq=how+does+microservices+communicate+with+each+other&amp;gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIICAQQABgWGB4yCAgFEAAYFhgeMggIBhAAGBYYHjIICAcQABgWGB4yCAgIEAAYFhgeMggICRAAGBYYHtIBCTE0ODY2ajBqN6gCALACAA&amp;sourceid=chrome&amp;ie=UTF-8&amp;ved=2ahUKEwjqvannuYaSAxVrzjgGHfbAAtkQgK4QegYIAQgEEAM"><strong>Message Brokers</strong></a>: Services publish events (e.g., "Order Placed") to a broker (Kafka, RabbitMQ), and other interested services subscribe to and consume these messages later.</p></li>
+</ul></li>
+</ul>
+    </section>
+
+    <section class="topic" id="api-gateway.">
+      <h2>API Gateway.</h2>
+<p>An API Gateway is a server that acts as an entry point for all client requests in a microservices architecture. Instead of clients directly interacting with each microservice, the API Gateway handles all incoming requests and routes them to the appropriate microservice. It also provides additional functionalities like load balancing, authentication, rate limiting, and response aggregation. API Gateways are especially useful in microservices environments where there are many small, independently deployable services. They simplify the client-side logic, as clients only need to interact with the API Gateway, rather than managing multiple endpoints for each service.</p>
+    </section>
+
+    <section class="topic" id="microservices-communication">
+      <h2>Microservices Communication</h2>
+<p>Microservices communicate with each other using various methods depending on the use case and system requirements. The most common method is HTTP/REST, where microservices expose their functionality via RESTful APIs. This is a simple and widely used method, as it allows for easy integration using standard HTTP methods (GET, POST, PUT, DELETE). Another popular method is message queues, like RabbitMQ or Kafka, which are used for asynchronous communication. This is especially useful for decoupling services and improving scalability. gRPC, a high-performance, language-neutral, and platform-neutral remote procedure call (RPC) framework, is another option often used for synchronous communication between microservices. Each of these methods has its own strengths and is chosen based on factors like latency, performance, and the need for asynchronous processing.</p>
+    </section>
+
+    <section class="topic" id="message-broker-failiure.">
+      <h2>Message Broker Failiure.</h2>
+<p>When a service sends a message to a queue while the receiving (consumer) service is down, the system remains resilient because the message queue acts as a temporary storage buffer. Instead of the request failing immediately, the messages are held by the broker until the consumer service is back online to process them. </p>
+<p><strong>Key Behaviors</strong></p>
+<ul>
+<li><p><strong>Message Persistence:</strong> If the queue is configured for durability (saving to disk), messages will survive even if the message broker itself restarts.</p></li>
+<li><p><strong>Asynchronous Processing:</strong> The sending service can continue its work without waiting for the receiver to respond, preventing a single service failure from crashing the entire system.</p></li>
+<li><p><strong>Automatic Recovery:</strong> Once the consumer service recovers, it automatically pulls the pending messages from the queue and begins processing them from where it left off.</p></li>
+<li><p><strong>Load Management:</strong> If there are multiple instances of the consumer service, the queue can redistribute the work to the healthy instances so the system keeps moving. </p></li>
+</ul>
+<p><strong>Specific Broker Examples</strong></p>
+<p>The exact behavior can vary slightly depending on the tool you use:</p>
+<ul>
+<li><p><a href="https://www.rabbitmq.com/docs/consumers">RabbitMQ</a><strong>:</strong> It holds messages in its queue until a consumer connects and acknowledges them. If a consumer crashes while processing, RabbitMQ will "re-queue" that specific message for another consumer.</p></li>
+<li><p><a href="https://medium.com/@gaddamnaveen192/what-happens-when-a-kafka-consumer-is-down-fbacbe62f4d5">Apache Kafka</a><strong>:</strong> It keeps messages in an append-only log. When a consumer goes down, Kafka keeps track of its "offset" (its last read position). When the service returns, it resumes exactly from that bookmark. </p></li>
+</ul>
+<p><strong>Potential Risks</strong></p>
+<ul>
+<li><p><strong>Queue Overflow:</strong> If the consumer stays down for too long, the queue might run out of memory or disk space.</p></li>
+<li><p><strong>Data Staleness:</strong> By the time the service comes back up, some messages (like a limited-time offer) might be too old to be useful.</p></li>
+<li><p><strong>Dead Letter Queues (DLQ):</strong> If a message fails to process multiple times after the service recovers, it may be moved to a <a href="https://getstream.io/glossary/message-queuing/">Dead Letter Queue</a> for manual inspection</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="kafka-vs-mq">
+      <h2>Kafka Vs MQ</h2>
+<table>
+<colgroup>
+<col style="width: 18%"/>
+<col style="width: 38%"/>
+<col style="width: 43%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Feature</strong></th>
+<th><strong>Apache Kafka</strong></th>
+<th><strong>Traditional MQ (RabbitMQ, IBM MQ)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Primary Paradigm</strong></td>
+<td>Distributed Event Streaming</td>
+<td>Asynchronous Messaging &amp; Task Queues</td>
+</tr>
+<tr class="even">
+<td><strong>Data Lifecycle</strong></td>
+<td>Log-persisted; retained after consumption</td>
+<td>Transient; deleted immediately after ACK</td>
+</tr>
+<tr class="odd">
+<td><strong>Scaling Strategy</strong></td>
+<td>Horizontal (via topic partitioning)</td>
+<td>Vertical (or complex, non-native clustering)</td>
+</tr>
+<tr class="even">
+<td><strong>Consumer Model</strong></td>
+<td>Pull-based (smart consumer, dumb broker)</td>
+<td>Push-based (dumb consumer, smart broker)</td>
+</tr>
+<tr class="odd">
+<td><strong>Routing Ability</strong></td>
+<td>Simple (by topic/partition key)</td>
+<td>Highly complex (exchanges, headers, wildcards)</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">Microservices Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#what-is-microservice">What Is Microservice</a>
+    <a href="#benifits" class="sub-link">Benifits</a>
+    <a href="#monolithic-microservices">Monolithic & Microservices</a>
+    <a href="#microservices-communicate-with-each-other">Microservices communicate with each other</a>
+    <a href="#how-to-validate-token-it-is-coming-from-correct-user">How to validate token it is coming from correct user</a>
+    <a href="#how-does-micro-services-communicate">How does micro-services communicate</a>
+    <a href="#api-gateway.">API Gateway.</a>
+    <a href="#microservices-communication">Microservices Communication</a>
+    <a href="#message-broker-failiure.">Message Broker Failiure.</a>
+    <a href="#kafka-vs-mq">Kafka Vs MQ</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

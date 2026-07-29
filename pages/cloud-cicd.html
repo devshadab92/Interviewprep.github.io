@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud & CI/CD Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #2f8fd1;
+    --accent-deep: #1f6aa8;
+    --accent-soft: #e8f3fc;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// DevOps & Azure</span>
+      <h1>Cloud & CI/CD Interview Questions</h1>
+      <p>Pipelines, deployments, Azure Service Bus, Azure Functions, and Azure AD.</p>
+    </header>
+
+    <section class="topic" id="how-you-worked-on-cicd-pipline">
+      <h2>How you worked on CI/CD Pipline</h2>
+
+    </section>
+
+    <section class="topic" id="how-you-have-deployed-the-application">
+      <h2>How you have deployed the application</h2>
+
+    </section>
+
+    <section class="topic" id="zero-sprint-in-agile">
+      <h2>Zero sprint in Agile</h2>
+<p>What will happen when a service is down and any message comes to que will it be saved.</p>
+    </section>
+
+    <section class="topic" id="what-is-azure-service-bus">
+      <h2>What Is Azure Service Bus</h2>
+<p>Azure service bus is fully managed message broker (Message Queue and pub/sub) which store the messages from one services and other services are listening to that topic.</p>
+<p>For example a customer placed an order on portal and order service will pass message to the Service bus and other service will be listening to the service bus topic so that inventory service will check the and manage the quantity and payment service process the payment and shipping service place the order and give the confirmation.</p>
+<p>It enables asynchronous messaging between application and services.</p>
+    </section>
+
+    <section class="topic" id="can-azure-service-bus-message-be-empty">
+      <h2>Can Azure Service Bus Message be empty</h2>
+<p>Messages carry a payload and <em>metadata</em>. The metadata is in the form of key-value pair properties and describes the payload, and gives handling instructions to Service Bus and applications. Occasionally, that <em>metadata alone is sufficient to carry the information that the sender wants to communicate to receivers</em>, and the payload remains empty.</p>
+    </section>
+
+    <section class="topic" id="azure-storage-queues-vs-azure-service-bus">
+      <h2>Azure Storage Queues Vs Azure Service Bus</h2>
+<p>Choose <strong>Storage Queues</strong> if:</p>
+<ul>
+<li><p>You need a simple (REST-based GET/PUT/PEEK interface) queue with no particular additional requirements (point-to-point communication).</p></li>
+<li><p>You need an audit trail of all messages that pass through the queue.</p></li>
+<li><p>You expect the queue to exceed 80 GB in size.</p></li>
+<li><p>You want to track progress for processing a message inside of the queue.</p></li>
+</ul>
+<p>Choose <strong>Service Bus Queues</strong> if:</p>
+<ul>
+<li><p>You need <em>duplicate</em> detection.</p></li>
+<li><p>You need an <em>at-most-once</em> delivery guarantee.</p></li>
+<li><p>You need a FIFO/ordering guarantee (using <em>sessions</em>).</p></li>
+<li><p>You need to group messages into <em>transactions</em>.</p></li>
+<li><p>You want to receive messages <em>without polling</em> the queue.</p></li>
+<li><p>You need to provide <em>role-based access</em> to the queues.</p></li>
+<li><p>You need to handle messages larger than 64 KB but smaller than 256 KB.</p></li>
+<li><p>Your queue size will <em>not</em> grow larger than 80 GB.</p></li>
+<li><p>You need to have <em>dead-lettering</em>.</p></li>
+<li><p>You would like to be able to publish and consume <em>batches</em> of messages.</p></li>
+<li><p>You want to use a publish-subscribe messaging pattern (using <em>topics</em> and <em>subscribtions</em>).</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="receive-peek-in-service-bus">
+      <h2>Receive & Peek in Service Bus</h2>
+<ul>
+<li><p><strong>Peek</strong>: This method enables you to view messages without locking or receiving them.</p></li>
+<li><p><strong>Receive</strong>: Can work in 2 modes:</p>
+<ul>
+<li><p>PeekLock (receives the message but keeps it peek-locked until the receiver abandons the message. The maximum timeout is 5 minutes before message expiration) and</p></li>
+<li><p>ReceiveAndDelete (deletes the message after it is received).</p></li>
+</ul></li>
+</ul>
+<p>So this means you'll use the Peek when your goal is to look at the messages without actually consuming them (maybe you're building a "Queue browser", ... or your process needs to decided if it wants/can consume the message). And you'll use Receive when you're really planning to consume the message and do whatever you need to do with it.</p>
+    </section>
+
+    <section class="topic" id="why-we-use-scheduled-messages-in-service-bus">
+      <h2>Why we use Scheduled Messages in Service Bus</h2>
+<p><strong>Message scheduling</strong> is helpful when you want to postpone non-critical yet essential workloads to a later point in time. Then consumers can pick them up after peak hours. Scheduled messages can be canceled before the enqueue time. To cancel a message, you need its sequence number.</p>
+<p>For example, you can delay email-sending tasks until midnight to save the computational capacity of consumers.</p>
+<p>Another case is a consumer writing to an <em>eventually consistent</em> database. Adding a delay will help the message processor <em>catch up</em> with database writes made by upstream components.</p>
+    </section>
+
+    <section class="topic" id="azure-ad">
+      <h2>Azure AD</h2>
+<p><a href="https://www.google.com/search?q=Microsoft+Entra+ID&amp;oq=Azure+ac&amp;gs_lcrp=EgZjaHJvbWUqCggCEAAYsQMYgAQyBggAEEUYOTINCAEQABiDARixAxiABDIKCAIQABixAxiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCTE0OTU3ajBqN6gCCLACAfEFvShQLdz5n_bxBb0oUC3c-Z_2&amp;sourceid=chrome&amp;ie=UTF-8&amp;ved=2ahUKEwi4nJO5s7-SAxUuT2cHHZciEi4QgK4QegYIAQgAEAM">Microsoft Entra ID</a> (formerly Azure Active Directory/Azure AD) is a cloud-based identity and access management (IAM) service that provides centralized authentication, authorization, and security for applications and resources, including Office 365, Azure, and SaaS tools. It enables secure, single sign-on (SSO) and multifactor authentication (MFA) for internal employees and external users (partners/customers)</p>
+<ol type="1">
+<li><p><strong>Install NuGet packages</strong>: In your project, install the Microsoft.Identity.Web and Microsoft.Identity.Web.UI packages via the NuGet Package Manager Console:</p></li>
+</ol>
+<p>bash</p>
+<p>dotnet add package Microsoft.Identity.Web</p>
+<p>dotnet add package Microsoft.Identity.Web.UI</p>
+<ol start="2" type="1">
+<li><p><strong>Update appsettings.json</strong>: Add the following configuration section to your appsettings.json file, replacing the placeholders with the values you copied from the Azure portal:</p></li>
+</ol>
+<p>json</p>
+<p>"AzureAd": {</p>
+<p>"Instance": "https://login.microsoftonline.com/",</p>
+<p>"Domain": "&lt;your-tenant-domain&gt;.onmicrosoft.com",</p>
+<p>"TenantId": "Enter_the_Tenant_Id_Here",</p>
+<p>"ClientId": "Enter_the_Application_Id_Here",</p>
+<p>"CallbackPath": "/signin-oidc"</p>
+<p>},</p>
+<ol start="3" type="1">
+<li><p><strong>Configure Program.cs</strong> (for .NET 6+):</p></li>
+</ol>
+<pre><code>using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;</code></pre>
+<ol type="1">
+<li><p>Add authentication services to the WebApplicationBuilder:</p></li>
+</ol>
+<pre><code>var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+.AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
+builder.Services.AddControllersWithViews(options =&gt;
+{
+var policy = new AuthorizationPolicyBuilder()
+.RequireAuthenticatedUser()
+.Build();
+options.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddRazorPages().AddMicrosoftIdentityUI();</code></pre>
+<ol start="2" type="1">
+<li><p>Add authentication and authorization middleware to the pipeline before MapControllers() or MapRazorPages():</p></li>
+</ol>
+<p>csharp</p>
+<pre><code>var app = builder.Build();
+// ... other middleware ...
+app.UseAuthentication();
+app.UseAuthorization();
+// ... other middleware ...
+app.MapControllers();
+app.MapRazorPages(); // Needed for the default Identity UI
+app.Run();</code></pre>
+<p> </p>
+<p>Step 3: Secure your application </p>
+<p>Add the [Authorize] attribute to the controllers or actions you want to protect. When a user tries to access a protected resource, they will be redirected to the Azure AD login page. </p>
+<p>csharp</p>
+<p>[Authorize]</p>
+<pre><code>public class HomeController : Controller
+{
+// Actions here will require authentication
+}</code></pre>
+    </section>
+
+    <section class="topic" id="trigger-azure-function">
+      <h2>Trigger Azure Function</h2>
+<p>Common Azure Function trigger types include:</p>
+<ul>
+<li><p><strong>HTTP Trigger</strong>: Executes a function when an HTTP request is made to a specific endpoint. This is commonly used for building APIs and webhooks.</p></li>
+<li><p><strong>Timer Trigger</strong>: Runs the function on a predefined schedule (e.g., every night at 2 AM, every hour), useful for periodic and time-based tasks.</p></li>
+<li><p><strong>Blob Storage Trigger</strong>: Initiates a function when a new blob is created or updated within a specified container in Azure Blob Storage. This is ideal for image processing or data file handling when a new file is uploaded.</p></li>
+<li><p><strong>Queue Storage Trigger</strong>: Triggers the function when a new message is added to an Azure Queue Storage queue.</p></li>
+<li><p><strong>Event Hub Trigger</strong>: Responds to events from Azure Event Hubs, used in scenarios involving high-volume data streaming, such as IoT device messaging.</p></li>
+<li><p><strong>Event Grid Trigger</strong>: Fires the function in response to events from Azure Event Grid, which can be custom events or events from other Azure services like Blob Storage (e.g., a file is deleted).</p></li>
+<li><p><strong>Cosmos DB Trigger</strong>: Automatically executes a function when a new document is created, updated, or deleted in an Azure Cosmos DB database collection.</p></li>
+<li><p><strong>Service Bus Trigger</strong>: Triggers the function in response to messages in Azure Service Bus queues or topics.</p></li>
+<li><p><strong>Durable Functions Orchestration/Activity Triggers</strong>: Used within the Durable Functions framework to manage long-running, multi-step, and stateful workflows.</p></li>
+<li><p><strong>IoT Hub Trigger</strong>: Processes events and messages from Azure IoT Hub, enabling backend processing for connected devices</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="azure-function">
+      <h2>Azure Function</h2>
+<p>Azure Functions is a serverless concept of cloud-native design that allows a piece of code to be deployed and executed without needing server infrastructure, web server, or any configurations. In addition, azure functions can be written in multiple languages such as C#, Java, JavaScript, TypeScript, and Python.</p>
+<ol type="1">
+<li><blockquote>
+<p>Azure functions are lightweight and serverless.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions are easier to write and deploy.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions are fast to execute because there is no large application, startup time, initialization, and other events fired before the code is executed.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions' execution is triggered when an event is fired.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions are compute-on-demand, and that is scalable. When the demand for the execution increases, more resources are allocated automatically to the service, and when requests fall, all extra resources and application instances drop off automatically.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions support programming languages, including ding C#, F#, Java, JavaScript, TypeScript, and Python. You choose your choice of language.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions do not need any infrastructure and have 0 maintenance.</p>
+</blockquote></li>
+<li><blockquote>
+<p>The azure function can be built, tested, and deployed in the Azure portal using a browser.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions are easy to upgrade and don't affect other parts of the website.</p>
+</blockquote></li>
+</ol>
+<ol type="1">
+<li><blockquote>
+<p><strong>Azure functions are language independent.</strong> Azure functions is a piece of code that is written to do a specific tasks. Azure functions is platform and language agnostic. You can write an Azure functions in one of the popular programming languages including C#, Java, JavaScript, TypeScript, and Python. You can deploy and execute Azure functions on any platform that can run .NET Core. </p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>Azure functions are scalable. </strong>Azure functions uses compute-on-demand, which is scalable by design. When demand of execution increases, more resources are allocated automatically to the service and when requests fall, all extra resources and application instances drop off automatically. </p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>Azure functions are lightweight and serverless</strong>. An Azure functions app is designed to a specific task and hence it is lightweight by design. Azure functions are serverless and do not require any Web servers or virtual machines to deploy and run.</p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>Azure functions are platform agnostic</strong> and run in their own process and environment. You can deploy Azure functions in any kind of configurations including Linux, Windows, or containers but Azure functions are available and can be consumed from any applications as long as they have access to the function.</p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>Azure functions are easier to write and deploy</strong>. Because of the nature of the Azure functions, they are easy to code, test, debug, and deploy. You don’t need a large team of developers to do that. A single developer can do everything.</p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>Azure functions are fast to execute</strong> because there is no large application, startup time, initialization, and other events fired before the code is executed. </p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions’ execution is triggered when an event is fired. Azure functions setup provides dozens of triggers that can be configured when an azure functions is executed. </p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure function can be built, tested, and deployed in Azure portal using a browser.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions are independent. Azure functions are easy to upgrade and doesn’t affect other parts of a website or other applications.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions use industry standard and can communicate with other APIs, databases, and libraries. This makes Azure functions more accessible in cloud native applications. </p>
+</blockquote></li>
+<li><blockquote>
+<p>Azure functions can be cost effective because if their nature of running on demand.</p>
+</blockquote></li>
+</ol>
+<h3 id="when-to-use-azure-functions">When to use Azure Functions?</h3>
+<p> </p>
+<p>Azure functions service is a lightweight and serverless compute service that has its own use. You can’t replace a large website with Azure functions.</p>
+<p> </p>
+<p>Here are some of the use cases of Azure functions: </p>
+<ul>
+<li><blockquote>
+<p>Scheduled Tasks</p>
+</blockquote></li>
+<li><blockquote>
+<p>Reminders and Notifications</p>
+</blockquote></li>
+<li><blockquote>
+<p>Lightweight Web API</p>
+</blockquote></li>
+<li><blockquote>
+<p>Sending background emails</p>
+</blockquote></li>
+<li><blockquote>
+<p>Running background backup tasks</p>
+</blockquote></li>
+<li><blockquote>
+<p>Doing backend calculations</p>
+</blockquote></li>
+</ul>
+    </section>
+
+    <section class="topic" id="azure-ad-types">
+      <h2>Azure AD Types</h2>
+<p><strong>Key Types of Azure AD (Entra ID) Licensing &amp; Functionality</strong></p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Free+Edition&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAB"><u>Free Edition</u></a>:</strong> Included with subscriptions for Azure, Dynamics 365, and Intune. Provides basic features like user management, self-service password change, and single sign-on (SSO).</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Microsoft+365+Apps+Edition&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAD"><u>Microsoft 365 Apps Edition</u></a>:</strong> Includes Free features plus advanced features like Enterprise Mobility + Security (EMS) and advanced group access management.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Premium+P1&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAF"><u>Premium P1</u></a>:</strong> Adds hybrid users (syncing on-premise AD to Azure), advanced delegation, conditional access, and identity governance.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Premium+P2&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAH"><u>Premium P2</u></a>:</strong> Includes all P1 features plus Identity Protection, Privileged Identity Management (PIM), and risk-based conditional access.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+B2B+%28Business-to-Business%29&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAJ"><u>Azure AD B2B (Business-to-Business)</u></a>:</strong> Designed for guest access, allowing external users to use their own credentials to access corporate applications.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+B2C+%28Business-to-Consumer%29&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAL"><u>Azure AD B2C (Business-to-Consumer)</u></a>:</strong> A customer identity management solution that supports millions of users and social identity providers (Facebook, Google).</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+Domain+Services+%28AD+DS%29&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIAxAN"><u>Azure AD Domain Services (AD DS)</u></a>:</strong> Provides managed domain services (domain join, LDAP, Kerberos) without needing to manage domain controllers. </p></li>
+</ul>
+<p><a href="https://www.google.com/search?q=Azure+AD+Device+Identities&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIBBAB"><strong><u>Azure AD Device Identities</u></strong></a></p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+Registered&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIBRAB"><u>Azure AD Registered</u></a>:</strong> Devices (BYOD) registered for management, often used for SSO.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+Joined&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIBRAD"><u>Azure AD Joined</u></a>:</strong> Cloud-only devices managed directly by Azure AD.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Hybrid+Azure+AD+Joined&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIBRAF"><u>Hybrid Azure AD Joined</u></a>:</strong> Devices that are both joined to an on-premises Active Directory and registered with Azure AD. </p></li>
+</ul>
+<p><strong>Other Components</strong></p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+Connect&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;mstk=AUtExfCXYjO394Vdk8h-RMpjvXCjroo2uigBOTEIkIHOYTEEHaKPRhRnGj2X6wYyR6HenumhuC4EJ48w8XMKZkHtzAoWS5iGJwJi3ZOI5ov3aihwNJ33LU6YX5ynn9dcBm2F-riMPoJ8fVgc8rLe6kD91i3NjdzUnOGL-X-II4HpTYH3UJcZP69eoY-nd-7AqWX0OJt5q0KIS7XutZQSJwG96mLgdYknaedRDQAvQZgNSmaorBfyvAtIIH89rkaoOhFHozL9TY7-xGsh8cCgaWJb2FXI&amp;csui=3&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIBxAB"><u>Azure AD Connect</u></a>:</strong> The tool used to synchronize on-premises Active Directory with Azure AD.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+AD+Groups&amp;sca_esv=13dc0417b6064a80&amp;sxsrf=ANbL-n6q7UFBBHKqwhlxAwfUS-Ibh_5xwg%3A1770315101579&amp;source=hp&amp;ei=Xd2Eaev7IPbv4-EPmIbW-QI&amp;iflsig=AFdpzrgAAAAAaYTrbZ8A-grryJgfdmexSL9NrcW-9QAD&amp;oq=type+of+azure+a&amp;gs_lp=Egdnd3Mtd2l6Ig90eXBlIG9mIGF6dXJlIGEqAggDMgcQABiABBgNMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGA0YHjIGEAAYDRgeMgYQABgNGB4yBhAAGBYYHjIGEAAYFhgeSPJ2UABYz0NwAHgAkAEAmAGQAqABqBmqAQUwLjcuOLgBA8gBAPgBAZgCD6AC6RnCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQABiABMICChAAGIAEGEMYigXCAg0QABiABBixAxhDGIoFwgIKEAAYgAQYFBiHAsICCRAAGIAEGAoYC5gDAJIHBTAuNi45oAeUa7IHBTAuNi45uAfpGcIHBjAuMTIuM8gHKYAIAA&amp;sclient=gws-wiz&amp;mstk=AUtExfCXYjO394Vdk8h-RMpjvXCjroo2uigBOTEIkIHOYTEEHaKPRhRnGj2X6wYyR6HenumhuC4EJ48w8XMKZkHtzAoWS5iGJwJi3ZOI5ov3aihwNJ33LU6YX5ynn9dcBm2F-riMPoJ8fVgc8rLe6kD91i3NjdzUnOGL-X-II4HpTYH3UJcZP69eoY-nd-7AqWX0OJt5q0KIS7XutZQSJwG96mLgdYknaedRDQAvQZgNSmaorBfyvAtIIH89rkaoOhFHozL9TY7-xGsh8cCgaWJb2FXI&amp;csui=3&amp;ved=2ahUKEwjL9f_e-cKSAxXiR2wGHdFXPGAQgK4QegQIBxAD"><u>Azure AD Groups</u></a>:</strong> Includes security groups and Microsoft 365 groups, which can have assigned or dynamic membership. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="type-of-services">
+      <h2>Type of Services</h2>
+<p><strong>By Service Model (Responsibility &amp; Control)</strong></p>
+<ul>
+<li><p><strong>Infrastructure as a Service (IaaS):</strong> </p></li>
+</ul>
+<p>Provides fundamental computing resources like VMs, storage, and networks, giving users maximum control (e.g., Azure Virtual Machines, Azure Storage).</p>
+<ul>
+<li><p><strong>Platform as a Service (PaaS):</strong> </p></li>
+</ul>
+<p>Offers a platform for building, running, and managing applications without managing infrastructure (e.g., Azure App Service, Azure Functions, Azure SQL Database).</p>
+<ul>
+<li><p><strong>Software as a Service (SaaS):</strong> </p></li>
+</ul>
+<p>Fully managed applications delivered over the internet (e.g., Microsoft 365, Dynamics 365, Azure AD).</p>
+    </section>
+
+    <section class="topic" id="azure-storage">
+      <h2>Azure Storage</h2>
+<p>Azure Storage provides highly available, secure, and scalable cloud storage via services including Blob (unstructured data), File (SMB/NFS shares), Queue (messaging), Table (NoSQL key-value), and Disk (VM storage). These, along with specialized solutions like Data Lake Storage Gen2, are accessed through storage accounts using tiers optimized for access frequency (Hot, Cool, Cold, Archive). </p>
+<p><strong>Key Azure Storage Services</strong></p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+Blob+Storage&amp;sca_esv=13dc0417b6064a80&amp;biw=1920&amp;bih=945&amp;sxsrf=ANbL-n5ftiFgAe_vizLvmU6dn0sjvqFEwQ%3A1770315229018&amp;ei=3d2EacNtocbj4Q-46ciZAQ&amp;oq=types+of+azure+&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiD3R5cGVzIG9mIGF6dXJlICoCCAMyChAjGIAEGCcYigUyBBAjGCcyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjbUlD8AliSFnABeAGQAQCYAZACoAGkDKoBBTAuNy4xuAEDyAEA-AEBmAIEoAKcBcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIGEAAYFhgemAMAiAYBkAYJkgcFMS4xLjKgB9FFsgcFMC4xLjK4B5cFwgcDMi00yAcQgAgA&amp;sclient=gws-wiz-serp&amp;ved=2ahUKEwjqhNrP-sKSAxXJzDgGHRhqDHoQgK4QegYIAQgAEAg"><u>Azure Blob Storage</u></a>:</strong> Object storage for massive amounts of unstructured data (images, videos, logs). It includes block blobs (general), append blobs (logging), and page blobs (VHDs).</p></li>
+<li><p><a href="https://www.google.com/search?q=Azure+Files&amp;sca_esv=13dc0417b6064a80&amp;biw=1920&amp;bih=945&amp;sxsrf=ANbL-n5ftiFgAe_vizLvmU6dn0sjvqFEwQ%3A1770315229018&amp;ei=3d2EacNtocbj4Q-46ciZAQ&amp;oq=types+of+azure+&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiD3R5cGVzIG9mIGF6dXJlICoCCAMyChAjGIAEGCcYigUyBBAjGCcyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjbUlD8AliSFnABeAGQAQCYAZACoAGkDKoBBTAuNy4xuAEDyAEA-AEBmAIEoAKcBcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIGEAAYFhgemAMAiAYBkAYJkgcFMS4xLjKgB9FFsgcFMC4xLjK4B5cFwgcDMi00yAcQgAgA&amp;sclient=gws-wiz-serp&amp;ved=2ahUKEwjqhNrP-sKSAxXJzDgGHRhqDHoQgK4QegYIAQgAEAo"><strong><u>Azure Files</u></strong></a></p></li>
+</ul>
+<p><strong>:</strong></p>
+<p>Managed file shares for cloud or on-premises deployments, supporting SMB and NFS protocols</p>
+<p>.</p>
+<ul>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+Disk+Storage&amp;sca_esv=13dc0417b6064a80&amp;biw=1920&amp;bih=945&amp;sxsrf=ANbL-n5ftiFgAe_vizLvmU6dn0sjvqFEwQ%3A1770315229018&amp;ei=3d2EacNtocbj4Q-46ciZAQ&amp;oq=types+of+azure+&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiD3R5cGVzIG9mIGF6dXJlICoCCAMyChAjGIAEGCcYigUyBBAjGCcyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjbUlD8AliSFnABeAGQAQCYAZACoAGkDKoBBTAuNy4xuAEDyAEA-AEBmAIEoAKcBcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIGEAAYFhgemAMAiAYBkAYJkgcFMS4xLjKgB9FFsgcFMC4xLjK4B5cFwgcDMi00yAcQgAgA&amp;sclient=gws-wiz-serp&amp;ved=2ahUKEwjqhNrP-sKSAxXJzDgGHRhqDHoQgK4QegYIAQgBEAE"><u>Azure Disk Storage</u></a>:</strong> Block-level storage volumes (managed disks) for Azure virtual machines.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+Queue+Storage&amp;sca_esv=13dc0417b6064a80&amp;biw=1920&amp;bih=945&amp;sxsrf=ANbL-n5ftiFgAe_vizLvmU6dn0sjvqFEwQ%3A1770315229018&amp;ei=3d2EacNtocbj4Q-46ciZAQ&amp;oq=types+of+azure+&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiD3R5cGVzIG9mIGF6dXJlICoCCAMyChAjGIAEGCcYigUyBBAjGCcyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjbUlD8AliSFnABeAGQAQCYAZACoAGkDKoBBTAuNy4xuAEDyAEA-AEBmAIEoAKcBcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIGEAAYFhgemAMAiAYBkAYJkgcFMS4xLjKgB9FFsgcFMC4xLjK4B5cFwgcDMi00yAcQgAgA&amp;sclient=gws-wiz-serp&amp;ved=2ahUKEwjqhNrP-sKSAxXJzDgGHRhqDHoQgK4QegYIAQgCEAE"><u>Azure Queue Storage</u></a>:</strong> A messaging service for reliable, asynchronous communication between application components.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+Table+Storage&amp;sca_esv=13dc0417b6064a80&amp;biw=1920&amp;bih=945&amp;sxsrf=ANbL-n5ftiFgAe_vizLvmU6dn0sjvqFEwQ%3A1770315229018&amp;ei=3d2EacNtocbj4Q-46ciZAQ&amp;oq=types+of+azure+&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiD3R5cGVzIG9mIGF6dXJlICoCCAMyChAjGIAEGCcYigUyBBAjGCcyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjbUlD8AliSFnABeAGQAQCYAZACoAGkDKoBBTAuNy4xuAEDyAEA-AEBmAIEoAKcBcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIGEAAYFhgemAMAiAYBkAYJkgcFMS4xLjKgB9FFsgcFMC4xLjK4B5cFwgcDMi00yAcQgAgA&amp;sclient=gws-wiz-serp&amp;ved=2ahUKEwjqhNrP-sKSAxXJzDgGHRhqDHoQgK4QegYIAQgDEAE"><u>Azure Table Storage</u></a>:</strong> A NoSQL key-attribute store for storing, fast, structured, non-relational data.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Azure+Data+Lake+Storage+Gen2&amp;sca_esv=13dc0417b6064a80&amp;biw=1920&amp;bih=945&amp;sxsrf=ANbL-n5ftiFgAe_vizLvmU6dn0sjvqFEwQ%3A1770315229018&amp;ei=3d2EacNtocbj4Q-46ciZAQ&amp;oq=types+of+azure+&amp;gs_lp=Egxnd3Mtd2l6LXNlcnAiD3R5cGVzIG9mIGF6dXJlICoCCAMyChAjGIAEGCcYigUyBBAjGCcyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjbUlD8AliSFnABeAGQAQCYAZACoAGkDKoBBTAuNy4xuAEDyAEA-AEBmAIEoAKcBcICChAAGLADGNYEGEfCAg0QABiABBiwAxhDGIoFwgIGEAAYFhgemAMAiAYBkAYJkgcFMS4xLjKgB9FFsgcFMC4xLjK4B5cFwgcDMi00yAcQgAgA&amp;sclient=gws-wiz-serp&amp;ved=2ahUKEwjqhNrP-sKSAxXJzDgGHRhqDHoQgK4QegYIAQgEEAE"><u>Azure Data Lake Storage Gen2</u></a>:</strong> A specialized, hierarchical file system for big data analytics built on top of Blob storage. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="azure-service-bus">
+      <h2>Azure Service Bus</h2>
+<ul>
+<li><p><strong>What is a Service Bus Namespace?</strong><br/>
+A namespace is a <strong>logical container</strong> for all your Service Bus components, such as queues and topics. It provides a scoping container and can hold multiple entities. [<a href="https://www.youtube.com/watch?v=1l744A-psG4&amp;t=90">1</a>, <a href="https://www.tech-findings.com/2023/02/Interview-questions-answers-Azure-Service-Bus.html">2</a>, <a href="https://intellipaat.com/blog/tutorial/microsoft-azure-tutorial/azure-service-bus/">3</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-faq">4</a>, <a href="https://turbo360.com/guide/azure-service-bus">5</a>]</p></li>
+<li><p><strong>Explain the difference between Queues and Topics.</strong></p>
+<ul>
+<li><p><strong>Queues</strong>: Support a <strong>one-to-one</strong> communication pattern where a message is sent by a producer and received by exactly one consumer.</p></li>
+<li><p><strong>Topics</strong>: Support a <strong>one-to-many</strong> (publish/subscribe) pattern where a single message can be received by multiple subscribers based on filter rules. [<a href="https://medium.com/awesome-azure/azure-difference-between-azure-service-bus-queues-and-topics-4cc97770b65">1</a>, <a href="https://www.youtube.com/watch?v=1l744A-psG4&amp;t=90">2</a>, <a href="https://dev.to/willvelida/working-with-queues-and-topics-in-azure-service-bus-279i">3</a>, <a href="https://thecloudhub.com/2019/03/13/whats-the-difference-between-an-azure-service-bus-queue-and-topic/">4</a>, <a href="https://medium.com/awesome-azure/azure-difference-between-azure-service-bus-queues-and-topics-4cc97770b65">5</a>]</p></li>
+</ul></li>
+<li><p><strong>What is the primary protocol used by Azure Service Bus?</strong><br/>
+The primary protocol is <strong>AMQP 1.0 (Advanced Message Queuing Protocol)</strong>, which is an open-standard wire protocol for messaging. [<a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview">1</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview">2</a>]</p></li>
+</ul>
+<p><strong>Advanced Features &amp; Best Practices</strong></p>
+<ul>
+<li><p><strong>What are Message Sessions?</strong><br/>
+Sessions enable <strong>ordered processing</strong> (FIFO) of related messages. They allow you to group messages and ensure they are processed in the exact sequence they were sent. [<a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions">1</a>, <a href="https://www.naukri.com/code360/library/azure-service-bus">2</a>]</p></li>
+<li><p><strong>What is a Dead-Letter Queue (DLQ)?</strong><br/>
+A DLQ is a sub-queue used to hold messages that cannot be delivered or processed successfully (e.g., due to expired time-to-live or maximum delivery attempts). [<a href="https://www.youtube.com/watch?v=1l744A-psG4&amp;t=90">1</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview">2</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues">3</a>, <a href="https://www.claria.com/technologies/microsoft-azure/azure-service-bus">4</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/jms-developer-guide">5</a>]</p></li>
+<li><p><strong>How do you handle duplicate messages?</strong><br/>
+Service Bus has a <strong>Duplicate Detection</strong> feature. When enabled, the service keeps a history of all messages sent to the queue or topic for a specific time window and automatically drops any message with a duplicate MessageId. [<a href="https://www.youtube.com/watch?v=1l744A-psG4&amp;t=90">1</a>, <a href="https://www.scaler.com/topics/azure-service-bus/">2</a>, <a href="https://azureintegrations.com/2020/03/01/azure-servce-bus-best-practises/">3</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/duplicate-detection">4</a>, <a href="https://oneuptime.com/blog/post/2026-02-16-how-to-enable-duplicate-detection-in-azure-service-bus-topics/view">5</a>]</p></li>
+<li><p><strong>Explain Peek-Lock vs. Receive-and-Delete modes.</strong></p>
+<ul>
+<li><p><strong>Peek-Lock</strong>: The receiver locks the message, processes it, and then deletes it. If processing fails, the lock expires and the message becomes available again.</p></li>
+<li><p><strong>Receive-and-Delete</strong>: The message is marked as consumed and deleted immediately upon being handed off to the receiver, risking data loss if the receiver crashes. [<a href="https://vigowebs.medium.com/frequently-asked-azure-interview-questions-and-answers-c5196c22be95">1</a>, <a href="https://www.youtube.com/watch?v=1l744A-psG4&amp;t=90">2</a>, <a href="https://www.codemag.com/Article/2505041/Get-on-the-Bus%E2%80%94The-Azure-Service-Bus">3</a>, <a href="https://intellipaat.com/blog/tutorial/microsoft-azure-tutorial/azure-service-bus/">4</a>, <a href="https://help.boomi.com/docs/Atomsphere/Integration/Connectors/r-atm-Microsoft_Azure_Service_Bus_operation_499c678d-644a-4a15-a0e3-3f4590f8c369">5</a>]</p></li>
+</ul></li>
+</ul>
+<p><strong>Comparisons &amp; Limits</strong></p>
+<ul>
+<li><p><strong>What is the difference between Service Bus Queues and Azure Storage Queues?</strong></p>
+<ul>
+<li><p><strong>Service Bus Queues</strong>: Support advanced features like <strong>FIFO sessions</strong>, transactions, dead-lettering, and larger message sizes (up to 100MB in Premium).</p></li>
+<li><p><strong>Storage Queues</strong>: Simpler, limited to 64KB per message, but can store up to 500TB of data total. [<a href="https://vigowebs.medium.com/frequently-asked-azure-interview-questions-and-answers-c5196c22be95">1</a>, <a href="https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas">2</a>, <a href="https://turbo360.com/blog/azure-storage-queue-vs-service-bus-queue">3</a>]</p></li>
+</ul></li>
+</ul>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">Cloud & CI/CD Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#how-you-worked-on-cicd-pipline">How you worked on CI/CD Pipline</a>
+    <a href="#how-you-have-deployed-the-application">How you have deployed the application</a>
+    <a href="#zero-sprint-in-agile">Zero sprint in Agile</a>
+    <a href="#what-is-azure-service-bus">What Is Azure Service Bus</a>
+    <a href="#can-azure-service-bus-message-be-empty">Can Azure Service Bus Message be empty</a>
+    <a href="#azure-storage-queues-vs-azure-service-bus">Azure Storage Queues Vs Azure Service Bus</a>
+    <a href="#receive-peek-in-service-bus">Receive & Peek in Service Bus</a>
+    <a href="#why-we-use-scheduled-messages-in-service-bus">Why we use Scheduled Messages in Service Bus</a>
+    <a href="#azure-ad">Azure AD</a>
+    <a href="#trigger-azure-function">Trigger Azure Function</a>
+    <a href="#azure-function">Azure Function</a>
+    <a href="#when-to-use-azure-functions" class="sub-link">When to use Azure Functions?</a>
+    <a href="#azure-ad-types">Azure AD Types</a>
+    <a href="#type-of-services">Type of Services</a>
+    <a href="#azure-storage">Azure Storage</a>
+    <a href="#azure-service-bus">Azure Service Bus</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

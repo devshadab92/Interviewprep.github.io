@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web API Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #2696a8;
+    --accent-deep: #1c7180;
+    --accent-soft: #e5f3f5;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// APIs</span>
+      <h1>Web API Interview Questions</h1>
+      <p>REST fundamentals, filters, CORS, security, and performance tuning.</p>
+    </header>
+
+    <section class="topic" id="web-api-and-why-we-use-it">
+      <h2>Web API and why we use it ?</h2>
+<p>Web API (Application Programming Interface), as the name suggests, is an API that can be accessed over the Web using the HTTP protocol. It is basically considered the best platform for revealing or uncovering data and services to various different services. It is a tool that can be used to push data to a server and can be accessed by server code. It can be built or developed using various technologies like java, ASP.NET, etc. </p>
+    </section>
+
+    <section class="topic" id="difference-between-web-api-and-wcf">
+      <h2>Difference between Web API and WCF?</h2>
+<p><strong>WCF </strong>(Windows Communication Foundation): It is a framework used for developing SOAP (Service-oriented applications). This framework is used for developing, configuring, and deploying, or implementing network-distributed services. <br/>
+<br/>
+<strong>Web API:</strong> It is an application programming interface for both web browsers and web servers. Browser API simply extends or increases the functionality of web browsers whereas Server API simply extends or increases the functionality of web server.</p>
+<table>
+<colgroup>
+<col style="width: 52%"/>
+<col style="width: 47%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Web API</strong></th>
+<th><strong>WCF</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>It is used to develop both SOAP-based services and RESTful services.</td>
+<td>It is used to deploy only SOAP-based services.</td>
+</tr>
+<tr class="even">
+<td>It supports various MVC features such as routing, model binding, etc.</td>
+<td>It does not support any MVC features.</td>
+</tr>
+<tr class="odd">
+<td>It only supports HTTP protocol.</td>
+<td>It supports various protocols such as HTTP, UDP, custom transport.</td>
+</tr>
+<tr class="even">
+<td>It is considered best for developing RESTFUL services.</td>
+<td>It supports only limited RESTFUL services.</td>
+</tr>
+<tr class="odd">
+<td>It is good when one wants to expose an expensive range of clients such as iPhones, browsers, mobile phones, tablets, etc.</td>
+<td>It is good for creating services that uses expedite transport channels such as TCP, UDP, Named pipes, etc.</td>
+</tr>
+<tr class="even">
+<td>It offers support for UTF-8 encoding format.</td>
+<td>It offers TEXT, Binary encoding support, MTOM (Message Transmission Optimization Mechanism), etc.</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="rest-api-and-restful-api">
+      <h2>REST API and RESTful API?</h2>
+<p><strong>REST</strong> (Representation State Transfer) <strong>API</strong>:  It is basically an architectural style that makes productive use of existing technology and protocols of the web. It is a set of rules that developers need to follow when they develop their API or services that are scalable. It is used with HTTP protocol using its verbs such as GET, DELETE, POST, PUT. <br/>
+<strong>RESTful API</strong>: It is simply referred to as web services executing such as architecture.</p>
+<table>
+<colgroup>
+<col style="width: 41%"/>
+<col style="width: 58%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>REST API</strong></th>
+<th><strong>RESTful API</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>REST is an architectural pattern used for creating web services.</td>
+<td>RESTful API is used to implement that pattern.</td>
+</tr>
+<tr class="even">
+<td>The data format of REST is based on HTTP.</td>
+<td>The data format of RESTful is based on JSON, HTTP, and Text.</td>
+</tr>
+<tr class="odd">
+<td>Working of URL is based on request and response.</td>
+<td>Working of RESTful is based on REST applications.</td>
+</tr>
+<tr class="even">
+<td>It is more user-friendly and highly adaptable to all business enterprises and IT.</td>
+<td>It is too flexible.</td>
+</tr>
+<tr class="odd">
+<td>It is required to develop APIs that allow interaction among clients and servers.</td>
+<td>It simply follows REST infrastructure that provides interoperability among different systems on the whole network.</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="what-is-web-api-2.0">
+      <h2>What is Web API 2.0?</h2>
+<p>It is basically an enhanced and modified feature of Web API. This new version supports various new features as given below:</p>
+<ul>
+<li><p>New Routing Attribute</p></li>
+<li><p>Secure ASP.NET Web API using OAuth 2.0</p></li>
+<li><p>Support for Cross-Origin requests using CORS</p></li>
+<li><p>IHttpActionResult return type</p></li>
+<li><p>Support for $expand, $select in OData Service</p></li>
+</ul>
+<p>Because of all the new features of Web API 2.0, it is considered an optimal choice and suitable development model that makes it easier to develop RESTful services interfaces to different clients running on various platforms. It also supports configuring routes in the Web API method or controller level</p>
+    </section>
+
+    <section class="topic" id="explain-media-type-formatters.">
+      <h2>Explain media type formatters.</h2>
+<p>In web API, media type formatters are classes that are responsible for serialization data. Here, serialization generally means a process of translating data into a format that can be transmitted and reconstructed later.  Because of serializing request/response data, Web API can understand request data format in a better way and send data in a format that the client expects. It simply specifies data that is being transferred among client and server in HTTP response or request. </p>
+<table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 28%"/>
+<col style="width: 38%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Media Type Formatter Class</strong></th>
+<th><strong>MIME Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>JsonMediaTypeFormatter</td>
+<td>application/json, text/json</td>
+<td>Handles JSON format</td>
+</tr>
+<tr class="even">
+<td>XmlMediaTypeFormatter</td>
+<td>application/xml, text/json</td>
+<td>Handles XML format</td>
+</tr>
+<tr class="odd">
+<td>FormUrlEncodedMediaTypeFormatter</td>
+<td>application/x-www-form-urlencoded</td>
+<td>Handles HTM form URL-encoded data</td>
+</tr>
+<tr class="even">
+<td>JQueryMvcFormUrlEncodedFormatter</td>
+<td>application/x-www-form-urlencoded</td>
+<td>Handles model-bound HTML form URL-encoded data</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="what-are-web-api-filters">
+      <h2>What are Web API filters?</h2>
+<p>Filters are basically used to add extra logic at different levels of Web API framework request processing.  Different types of Web API filters are available as given below:</p>
+<ul>
+<li><p><strong>Authentication Filter:</strong> It handles authentication and authenticates HTTP requests. It also helps to authenticate user detail. It checks the identity of the user.</p></li>
+<li><p><strong>Authorization Filter:</strong> It handles authorization. It runs before controller action. This filter is used to check whether or not a user is authenticated. If the user is not authenticated, then it returns an HTTP status code 401 without invoking the action.</p></li>
+<li><p><strong>AuthorizeAttribute</strong> is a built-in authorization filter provided by Web API.</p></li>
+<li><p><strong>Action Filter</strong>: It is attributing that one can apply to controller action or entire controller. It is used to add extra logic before or after controller action executes. It is simply a way to add extra functionality to Web API services.</p></li>
+<li><p><strong>Exception Filter</strong>: It is used to handle exceptions that are unhandled in Web API. It is used whenever controller actions throw an unhandled exception that is not HttpResponseException. It will implement an “IExceptionFilter” interface.</p></li>
+<li><p><strong>Override Filter</strong>: It is used to exclude specific action methods or controllers from the global filter or controller level filter. It is simply used to modify the behavior of other filters for individual action methods. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-is-cors-in-web-api">
+      <h2>What is CORS in Web API?</h2>
+<p>CORS (Cross-Origin Resource Sharing) is basically a mechanism that allows one to make requests from one website to another website in a browser that is normally not allowed by another policy called SOP (Same Origin Policy). It supports secure cross-origin requests and data transfers among clients or browsers and servers. Here, cross-origin request means requests coming from different origins. CORS simply resolves the same-origin restriction for JavaScript. One can enable CORS for web API using the respective web API package or OWIN middleware. </p>
+    </section>
+
+    <section class="topic" id="return-types-supported-in-web-api">
+      <h2>Return types supported in Web API?</h2>
+<p>A Web API controller action can return following values:</p>
+<ul>
+<li><p>Void – It will return empty content</p></li>
+<li><p>HttpResponseMessage – It will convert the response to an HTTP message.</p></li>
+<li><p>IHttpActionResult – internally calls ExecuteAsync to create an HttpResponseMessage</p></li>
+<li><p>Other types – You can write the serialized return value into the response body</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="which-.net-framework-supports-web-api">
+      <h2>Which .NET framework supports Web API?</h2>
+<ul>
+<li><p>NET 4.0 and above version supports web API.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="web-api-uses-which-of-the-following-open-source-library-for-json-serialization">
+      <h2>Web API uses which of the following open-source library for JSON serialization?</h2>
+<ul>
+<li><p>Web API uses Json.NET library for JSON serialization.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="exception-filter-globally">
+      <h2>Exception filter globally?</h2>
+<ul>
+<li><p>We can register exception filter globally using following code:</p></li>
+<li><p>GlobalConfiguration.Configuration.Filters.Add (new MyTestCustomerStore.NotImplExceptionFilterAttribute())</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="secure-web-api">
+      <h2>Secure Web API</h2>
+<p>Securing a web API in .NET Core involves a combination of <strong>authentication, authorization, and general security best practices</strong> such as using HTTPS, input validation, and rate limiting. The most common approach for APIs is using token-based authentication with JSON Web Tokens (JWTs). </p>
+<p><strong>Key Security Measures</strong></p>
+<ul>
+<li><p><strong>Authentication and Authorization:</strong> Authentication confirms identity, while authorization controls resource access. JWT Bearer authentication is standard for APIs, where a client receives a JWT upon login and includes it in subsequent requests to prove its identity and permissions. The [Authorize] attribute in .NET Core helps enforce these rules.</p></li>
+<li><p><strong>HTTPS:</strong> Encrypts data in transit to prevent attacks.</p></li>
+<li><p><strong>CORS:</strong> Controls which external domains can access your API.</p></li>
+<li><p><strong>Input Validation:</strong> Sanitize user input to prevent injection attacks.</p></li>
+<li><p><strong>Rate Limiting:</strong> Protects against DoS and brute-force attacks by limiting request frequency.</p></li>
+</ul>
+<p>1. Install the IpRateLimitMiddleware NuGet package:</p>
+<ul>
+<li><p>Install-Package IpRateLimit.Middleware -Version 1.2.0</p></li>
+</ul>
+<p>2. Add the following code to the Startup.cs file to configure the middleware:</p>
+<blockquote>
+<p>using IpRateLimit.Middleware;</p>
+<p>public void ConfigureServices(IServiceCollection services) {</p>
+<p>services.AddIpRateLimiting();</p>
+<p>}</p>
+<p>public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {</p>
+<p>app.UseIpRateLimiting();</p>
+<p>app.UseRouting();</p>
+<p>app.UseEndpoints(endpoints =&gt; {</p>
+<p>endpoints.MapControllers();</p>
+<p>});</p>
+<p>}</p>
+</blockquote>
+<p>3. Add the [Throttle] attribute to your API actions to specify the rate limit for each API endpoint:</p>
+<blockquote>
+<p>[Route("api/[controller]")]</p>
+<p>[ApiController]</p>
+<p>public class ValuesController: ControllerBase {</p>
+<p>[HttpGet]</p>
+<p>[Throttle(Name = "TestThrottle", Seconds = 5, Requests = 5)]</p>
+<p>public ActionResult &lt; IEnumerable &lt; string &gt;&gt; Get() {</p>
+<p>return new string[] {</p>
+<p>"value1",</p>
+<p>"value2"</p>
+<p>};</p>
+<p>}</p>
+<p>}</p>
+</blockquote>
+<p>The [Throttle] attribute sets a rate limit of 5 requests per 5 seconds for the Get method of the ValuesController. This means that if a client makes more than 5 requests within 5 seconds, subsequent requests will be blocked and a 429 (Too Many Requests) response will be returned.</p>
+<p>We can also configure the rate limits globally using the appsettings.json file:</p>
+<blockquote>
+<p>{</p>
+<p>"IpRateLimiting": {</p>
+<p>"GlobalRules": [{</p>
+<p>"Endpoint": "*",</p>
+<p>"Limit": 100,</p>
+<p>"Period": "5m"</p>
+<p>}],</p>
+<p>"ClientRules": [{</p>
+<p>"ClientId": "TestClient",</p>
+<p>"Limit": 50,</p>
+<p>"Period": "1h"</p>
+<p>}]</p>
+<p>}</p>
+<p>}</p>
+</blockquote>
+<p>The global rule sets a rate limit of 100 requests per 5 minutes for all endpoints, while the client rule sets a rate limit of 50 requests per hour for clients with the TestClient ID.</p>
+<ul>
+<li><p><strong>API Keys:</strong> Useful for identifying and controlling client <em>applications</em>, but not a replacement for user authentication</p></li>
+</ul>
+<p>How to implement rate limiting &amp; Throtling</p>
+<p>What are the code side performance check tools</p>
+<p>There is 5 async action method in one async main method how to call main method after all five method is done execution</p>
+    </section>
+
+    <section class="topic" id="manage-traffic-in-web-api">
+      <h2>Manage Traffic in Web API</h2>
+<p><strong>Rate Limiting and Throttling:</strong></p>
+<ul>
+<li><p><strong>Rate Limiting:</strong> </p></li>
+</ul>
+<p>Restricting the number of requests a client can make within a specific time period (e.g., 100 requests per minute per IP address). This prevents abuse and ensures fair usage.</p>
+<ul>
+<li><p><strong>Throttling:</strong> </p></li>
+</ul>
+<p>Limiting the overall concurrent requests the API can handle, preventing the server from becoming overloaded.</p>
+<ul>
+<li><p><strong>Implementation:</strong> </p></li>
+</ul>
+<p>Use libraries like AspNetCoreRateLimit in <a href="https://dotnet.microsoft.com/en-us/apps/aspnet"><u>ASP.NET</u></a> Core or implement custom middleware to enforce these limits based on IP address, API key, or user identity.</p>
+<p><strong>Asynchronous Programming:</strong></p>
+<ul>
+<li><p>Utilize async/await for I/O-bound operations (database calls, external API calls, file operations). This frees up threads to handle other requests while waiting for I/O operations to complete, improving responsiveness and scalability.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="handle-repeated-request-in-webapi">
+      <h2>Handle repeated request in WebAPI</h2>
+<p>Handling repeated requests in a C# Web API, particularly to prevent duplicate processing or ensure data consistency, often involves implementing idempotency. This ensures that sending the same request multiple times has the same effect as sending it once.</p>
+<p><strong>1. Idempotency Key:</strong></p>
+<ul>
+<li><p><strong>Client-Generated Unique ID:</strong> </p></li>
+</ul>
+<p>The client generates a unique identifier (e.g., a GUID) and includes it in a custom request header (e.g., "X-Idempotency-Key") for each request that should be idempotent.</p>
+<ul>
+<li><p><strong>Server-Side Tracking:</strong> </p></li>
+</ul>
+<p>The API uses this key to track whether a request with that specific ID has already been processed.</p>
+<p><strong>2. Implementing Idempotency in the API:</strong></p>
+<ul>
+<li><p><strong>Pipeline Behavior (e.g., with MediatR):</strong> </p></li>
+</ul>
+<p>A common approach is to implement a pipeline behavior or middleware that intercepts requests.</p>
+<ul>
+<li><p><strong>Check for Existing Request:</strong> Before processing the command, the behavior checks if a request with the provided idempotency key already exists in a persistent store (e.g., a database table).</p></li>
+<li><p><strong>Prevent Duplicate Processing:</strong> If the key exists, the behavior returns the previously stored result or a success response without re-executing the command.</p></li>
+<li><p><strong>Record New Request:</strong> If the key is new, the behavior records the key in the persistent store and then proceeds to execute the command.</p></li>
+</ul>
+<ul>
+<li><p><strong>Persistent Store:</strong> </p></li>
+</ul>
+<p>A dedicated table in your database can store the idempotency keys along with relevant information like the command name and creation timestamp. This allows for checking across multiple API instances in a horizontally scaled environment.</p>
+    </section>
+
+    <section class="topic" id="improve-performance">
+      <h2>Improve performance</h2>
+<p><strong>Key Strategies for API Performance Improvement</strong></p>
+<ul>
+<li><p><strong>Implement Caching:</strong> Store frequently accessed, static data in a cache (like Redis or in-memory cache) to reduce database load and speed up response times. Use HTTP caching headers (Cache-Control, ETag) to enable client-side and intermediary caching, preventing unnecessary server requests.</p></li>
+<li><p><strong>Optimize Database Operations:</strong></p>
+<ul>
+<li><p><strong>Efficient Queries:</strong> Write optimized database queries, use appropriate indexing, and avoid fetching more data than necessary.</p></li>
+<li><p><strong>Pagination:</strong> Use pagination or field selection to return large datasets in smaller, manageable chunks, reducing payload size and memory consumption.</p></li>
+<li><p><strong>Connection Pooling:</strong> Implement connection pooling to reuse existing database connections, minimizing the overhead of establishing new connections for every request.</p></li>
+</ul></li>
+</ul>
+<ul>
+<li><p><strong>Use Asynchronous Programming:</strong> Utilize async/await for I/O-bound operations (like database calls or external API calls) to free up server threads to handle other requests, thus improving throughput and scalability.</p></li>
+<li><p><strong>Minimize Payload Size:</strong></p>
+<ul>
+<li><p><strong>Compression:</strong> Enable HTTP compression (GZIP or Brotli) for API responses to reduce the amount of data transferred over the network.</p></li>
+<li><p><strong>Efficient Formats:</strong> Consider efficient data serialization formats like Protocol Buffers or MessagePack for high-throughput scenarios, though JSON remains standard.</p></li>
+</ul></li>
+</ul>
+    </section>
+
+    <section class="topic" id="http-verbs">
+      <h2>HTTP Verbs</h2>
+<p>The HTTP verbs comprise a major portion of our “uniform interface” constraint and provide us the action counterpart to the noun-based resource. The primary or most-commonly-used HTTP verbs (or methods, as they are properly called) are POST, GET, PUT, PATCH, and DELETE. These correspond to create, read, update, and delete (or CRUD) operations, respectively. There are a number of other verbs, too, but are utilized less frequently. Of those less-frequent methods, OPTIONS and HEAD are used more often than others.</p>
+<p>Below is a table summarizing recommended return values of the primary HTTP methods in combination with the resource URIs:</p>
+<table>
+<colgroup>
+<col style="width: 7%"/>
+<col style="width: 9%"/>
+<col style="width: 21%"/>
+<col style="width: 61%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>HTTP Verb</strong></th>
+<th><strong>CRUD</strong></th>
+<th><strong>Entire Collection (e.g. /customers)</strong></th>
+<th><strong>Specific Item (e.g. /customers/{id})</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>POST</td>
+<td>Create</td>
+<td>201 (Created), 'Location' header with link to /customers/{id} containing new ID.</td>
+<td>404 (Not Found), 409 (Conflict) if resource already exists..</td>
+</tr>
+<tr class="even">
+<td>GET</td>
+<td>Read</td>
+<td>200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.</td>
+<td>200 (OK), single customer. 404 (Not Found), if ID not found or invalid.</td>
+</tr>
+<tr class="odd">
+<td>PUT</td>
+<td>Update/Replace</td>
+<td>405 (Method Not Allowed), unless you want to update/replace every resource in the entire collection.</td>
+<td>200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.</td>
+</tr>
+<tr class="even">
+<td>PATCH</td>
+<td>Update/Modify</td>
+<td>405 (Method Not Allowed), unless you want to modify the collection itself.</td>
+<td>200 (OK) or 204 (No Content). 404 (Not Found), if ID not found or invalid.</td>
+</tr>
+<tr class="odd">
+<td>DELETE</td>
+<td>Delete</td>
+<td>405 (Method Not Allowed), unless you want to delete the whole collection—not often desirable.</td>
+<td>200 (OK). 404 (Not Found), if ID not found or invalid.</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="status-code">
+      <h2>Status Code</h2>
+<p>Here is a summary of common HTTP status codes used in ASP.NET Web API: </p>
+<ul>
+<li><p><strong>1xx Informational:</strong></p>
+<ul>
+<li><p><strong>100 Continue:</strong> Indicates the client should continue the request.</p></li>
+<li><p><strong>101 Switching Protocols:</strong> The server is changing protocols.</p></li>
+</ul></li>
+<li><p><strong>2xx Successful:</strong></p>
+<ul>
+<li><p><strong>200 OK:</strong> The request was successful.</p></li>
+<li><p><strong>201 Created:</strong> The request created a new resource (common for POST/PUT).</p></li>
+<li><p><strong>202 Accepted:</strong> The request has been accepted for processing.</p></li>
+<li><p><strong>204 No Content:</strong> The request was successful but no content is returned (common for DELETE/PUT).</p></li>
+</ul></li>
+<li><p><strong>3xx Redirection:</strong></p>
+<ul>
+<li><p><strong>301 Moved Permanently:</strong> The resource is permanently at a new URI.</p></li>
+<li><p><strong>302 Found:</strong> The resource is temporarily at another URI.</p></li>
+<li><p><strong>304 Not Modified:</strong> The resource hasn't changed since the last request.</p></li>
+</ul></li>
+<li><p><strong>4xx Client Error:</strong></p>
+<ul>
+<li><p><strong>400 Bad Request:</strong> The server cannot process the request due to a client error (e.g., bad syntax).</p></li>
+<li><p><strong>401 Unauthorized:</strong> The client needs to authenticate (means "unauthenticated").</p></li>
+<li><p><strong>403 Forbidden:</strong> The client's identity is known, but they don't have access rights.</p></li>
+<li><p><strong>404 Not Found:</strong> The server couldn't find the requested resource.</p></li>
+<li><p><strong>405 Method Not Allowed:</strong> The request method is not supported by the resource.</p></li>
+<li><p><strong>409 Conflict:</strong> The request conflicts with the resource's current state.</p></li>
+<li><p><strong>429 Too Many Requests:</strong> The client sent too many requests in a given time.</p></li>
+</ul></li>
+<li><p><strong>5xx Server Error:</strong></p>
+<ul>
+<li><p><strong>500 Internal Server Error:</strong> The server encountered an unexpected error.</p></li>
+<li><p><strong>501 Not Implemented:</strong> The server doesn't support the required functionality.</p></li>
+<li><p><strong>502 Bad Gateway:</strong> The server, acting as a proxy, got an invalid response from an upstream server.</p></li>
+<li><p><strong>503 Service Unavailable:</strong> The server is not ready to handle the request.</p></li>
+</ul></li>
+</ul>
+    </section>
+
+    <section class="topic" id="content-negotiation">
+      <h2>Content negotiation</h2>
+<p>Content negotiation in a web API is the process by which a client and a server agree on the best data format (representation) to exchange in an HTTP request/response cycle. This allows a single resource to be available in multiple formats (e.g., JSON, XML, HTML) </p>
+<p><strong>Key HTTP Headers</strong></p>
+<ul>
+<li><p><strong>Accept</strong>: This is the primary header clients use to specify the acceptable media type(s) for the response (e.g., application/json, application/xml). Clients can also specify a preference order using "quality factors" (q-factors), where a higher value (up to 1.0) indicates a greater preference.</p></li>
+<li><p><strong>Accept-Charset</strong>: Indicates the acceptable character encoding(s), such as utf-8.</p></li>
+<li><p><strong>Accept-Encoding</strong>: Specifies the preferred content compression (e.g., gzip, deflate).</p></li>
+<li><p><strong>Accept-Language</strong>: Communicates the preferred natural language(s) for the response (e.g., en-US, fr-CA).</p></li>
+<li><p><strong>Content-Type</strong>: Used by the server in the response to indicate the actual format of the data being sent back to the client. It is also used by the client in a POST or PUT request to inform the server about the format of the incoming data in the request body. </p></li>
+</ul>
+<p>GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(</p>
+<p>new QueryStringMapping("type", "json", new MediaTypeHeaderValue("application/json")));</p>
+<p>GlobalConfiguration.Configuration.Formatters.XmlFormatter.MediaTypeMappings.Add(</p>
+<p>new QueryStringMapping("type", "xml", new MediaTypeHeaderValue("application/xml")));</p>
+    </section>
+
+    <section class="topic" id="jwt-expired-token">
+      <h2>JWT Expired Token</h2>
+<p>Handling an expired JWT typically involves using a <strong>refresh token mechanism</strong> or prompting the user to <strong>log in again</strong>. The strategy depends on your application's security requirements and user experience goals. </p>
+<p><strong>Primary Strategy: Using a Refresh Token</strong></p>
+<p>The most common and user-friendly approach is to use a combination of a short-lived access token and a long-lived refresh token. </p>
+<ul>
+<li><p><strong>Access Token:</strong> Used for most API requests and expires quickly (e.g., 5-15 minutes) to limit the window of opportunity if compromised.</p></li>
+<li><p><strong>Refresh Token:</strong> A separate, longer-lived token (e.g., 7 days) that is securely stored and used <em>only</em> to request a new access token when the current one expires. </p></li>
+</ul>
+<p>Why we use Http verbes</p>
+<p>How to handle expired jWT token</p>
+<p>Why we use global level exception if we can handle using try block.</p>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">Web API Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#web-api-and-why-we-use-it">Web API and why we use it ?</a>
+    <a href="#difference-between-web-api-and-wcf">Difference between Web API and WCF?</a>
+    <a href="#rest-api-and-restful-api">REST API and RESTful API?</a>
+    <a href="#what-is-web-api-2.0">What is Web API 2.0?</a>
+    <a href="#explain-media-type-formatters.">Explain media type formatters.</a>
+    <a href="#what-are-web-api-filters">What are Web API filters?</a>
+    <a href="#what-is-cors-in-web-api">What is CORS in Web API?</a>
+    <a href="#return-types-supported-in-web-api">Return types supported in Web API?</a>
+    <a href="#which-.net-framework-supports-web-api">Which .NET framework supports Web API?</a>
+    <a href="#web-api-uses-which-of-the-following-open-source-library-for-json-serialization">Web API uses which of the following open-source library for JSON serialization?</a>
+    <a href="#exception-filter-globally">Exception filter globally?</a>
+    <a href="#secure-web-api">Secure Web API</a>
+    <a href="#manage-traffic-in-web-api">Manage Traffic in Web API</a>
+    <a href="#handle-repeated-request-in-webapi">Handle repeated request in WebAPI</a>
+    <a href="#improve-performance">Improve performance</a>
+    <a href="#http-verbs">HTTP Verbs</a>
+    <a href="#status-code">Status Code</a>
+    <a href="#content-negotiation">Content negotiation</a>
+    <a href="#jwt-expired-token">JWT Expired Token</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

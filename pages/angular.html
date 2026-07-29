@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angular Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #d1435a;
+    --accent-deep: #a52f42;
+    --accent-soft: #fbe9ec;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Frontend Framework</span>
+      <h1>Angular Interview Questions</h1>
+      <p>Components, pipes, services, forms, state management, and change detection essentials.</p>
+    </header>
+
+    <section class="topic" id="angular-20-features">
+      <h2>Angular 20 Features</h2>
+<p><strong>Core features and performance</strong></p>
+<ul>
+<li><p><strong>Stable Signals:</strong> Key signal-based APIs like effect, linkedSignal, and toSignal are now stable, offering a more powerful reactivity model.</p></li>
+<li><p><strong>Zoneless Change Detection:</strong> The experimental zoneless mode is now stable, allowing apps to run without Zone.js for improved performance and bundle size.</p></li>
+<li><p><strong><a href="https://www.google.com/search?q=Incremental+Hydration&amp;oq=angular&amp;gs_lcrp=EgZjaHJvbWUqDggAEEUYJxg7GIAEGIoFMg4IABBFGCcYOxiABBiKBTIMCAEQRRg5GLEDGIAEMgYIAhBFGEAyDAgDECMYJxiABBiKBTIKCAQQABixAxiABDIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDk5MDlqMGo3qAIAsAIA&amp;sourceid=chrome&amp;ie=UTF-8&amp;ved=2ahUKEwirpPWklbaRAxUWS3ADHXmTH5YQgK4QegYIAQgAEBM"><u>Incremental Hydration</u></a>:</strong> Stable incremental hydration for Server-Side Rendering (SSR) makes apps faster by hydrating only necessary parts of the page on demand, boosting Core Web Vitals and SEO.</p></li>
+<li><p><strong>Modern Control Flow:</strong> The new, more modern syntax using @if, @for, and @switch blocks is now stable, simplifying templates and reducing boilerplate compared to older directives like *ngIf and *ngFor. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="exception-handling">
+      <h2>Exception Handling</h2>
+<p><strong>1. Global Error Handling (ErrorHandler) </strong></p>
+<p>Angular provides a built-in ErrorHandler service that acts as a central catch-all for <strong>uncaught synchronous errors</strong> anywhere in the application. This is ideal for logging errors to an external service or displaying a generic error notification to the user. </p>
+<ul>
+<li><p><strong>How to use:</strong> Create a custom class that implements the ErrorHandler interface and override the handleError method. Then, provide this custom handler in your main application module or configuration. </p></li>
+</ul>
+<blockquote>
+<p>import { ErrorHandler, Injectable } from '@angular/core';</p>
+<p>@Injectable()</p>
+<p>export class GlobalErrorHandlerService implements ErrorHandler {</p>
+<p>handleError(error: any): void {</p>
+<p><em>// Custom logic for handling errors (e.g., logging to a server, showing a generic message)</em></p>
+<p>console.error('An unhandled error occurred:', error);</p>
+<p><em>// You can inject other services here (e.g., a logging service or a notification service)</em></p>
+<p>}</p>
+<p>}</p>
+</blockquote>
+<ul>
+<li><p><strong>Provide the service (in app.module.ts or app.config.ts for standalone apps):</strong></p></li>
+</ul>
+<p><em>// app.module.ts (or app.config.ts providers array)</em></p>
+<pre><code>import { ErrorHandler, Provider } from '@angular/core';
+import { GlobalErrorHandlerService } from './global-error-handler.service';
+// ... other imports
+export const providers: Provider[] = [
+// ... other providers
+{ provide: ErrorHandler, useClass: GlobalErrorHandlerService }
+];
+2. Handling HTTP Errors (HttpInterceptor)</code></pre>
+<p>For errors that occur during HTTP requests, such as 404 Not Found or 500 Internal Server errors, the best approach is to use an HttpInterceptor. Interceptors can globally catch and handle HTTP error responses. </p>
+<ul>
+<li><p><strong>How to use:</strong> Create an injectable class that implements HttpInterceptor and use the catchError RxJS operator. </p></li>
+</ul>
+<p>To provide the interceptor, include it in your module's providers array. You can find example code for creating and providing an HttpErrorInterceptor in the referenced documents. </p>
+<p><strong>3. Local Error Handling (RxJS catchError)</strong></p>
+<p>For handling errors from specific asynchronous operations like individual HTTP calls, where you need localized error handling, use the catchError RxJS operator within the service or component consuming the observable. This allows for displaying specific messages or retrying operations. Refer to the source documents for an example of using catchError in a data service. </p>
+<p><strong>4. Component-Level Error Handling (try-catch blocks)</strong></p>
+<p>Standard JavaScript try...catch blocks are suitable for handling <strong>synchronous code</strong> within components or services. See the original response or the referenced document for an example of implementing a try...catch block in a component method. </p>
+    </section>
+
+    <section class="topic" id="types-of-forms">
+      <h2>Types of Forms</h2>
+<p><strong>1. Reactive Forms (Model-Driven)</strong></p>
+<p>Reactive forms are a model-driven approach where the form logic and structure are defined primarily within the component class using programmatic means. This method offers greater control and is ideal for complex forms, dynamic scenarios, and forms requiring extensive testing</p>
+<p><strong>2. Template-Driven Forms (Template-First)</strong></p>
+<p>Template-driven forms are an easier, template-first approach where the form logic and controls are managed predominantly within the HTML template using directives. They are simpler to set up and are best for basic forms like login pages or contact forms with minimal validation.</p>
+    </section>
+
+    <section class="topic" id="pipes">
+      <h2>Pipes</h2>
+<ul>
+<li><p><strong>Built-in Pipes</strong>: Angular provides a variety of pre-built pipes for common data transformations. Examples include:</p>
+<ul>
+<li><p>DatePipe: Formats date values (e.g., {{ today | date }}).</p></li>
+<li><p>UpperCasePipe and LowerCasePipe: Convert text to uppercase or lowercase.</p></li>
+<li><p>CurrencyPipe and PercentPipe: Format numbers as currency or percentages based on locale rules.</p></li>
+<li><p>AsyncPipe: Automatically subscribes to a Promise or Observable and returns the latest value.</p></li>
+<li><p>JsonPipe: Converts a JavaScript object to a JSON formatted string, useful for debugging.</p></li>
+</ul></li>
+<li><p><strong>Custom Pipes</strong>: Developers can create their own pipes for specific, unique data transformations not covered by built-in pipes. Custom pipes are defined using the @Pipe decorator and implement the PipeTransform interface.</p></li>
+</ul>
+<h3 id="custom-pipe">Custom pipe?</h3>
+<blockquote>
+<p>Apart from built-in pipes, you can write your own custom pipe with the below key characteristics:</p>
+</blockquote>
+<ol type="i">
+<li><p>A pipe is a class decorated with pipe metadata @Pipe decorator, which you import from the core Angular library For example,</p></li>
+</ol>
+<blockquote>
+<p>@Pipe({name: 'myCustomPipe'})</p>
+</blockquote>
+<ol start="2" type="i">
+<li><p>The pipe class implements the <strong>PipeTransform</strong> interface's transform method that accepts an input value followed by optional parameters and returns the transformed value. The structure of PipeTransform would be as below,</p></li>
+<li><p>interface PipeTransform {</p></li>
+<li><p>transform(value: any, ...args: any[]): any</p></li>
+</ol>
+<blockquote>
+<p>}</p>
+</blockquote>
+<ol start="5" type="i">
+<li><p>The @Pipe decorator allows you to define the pipe name that you'll use within template expressions. It must be a valid JavaScript identifier.</p></li>
+</ol>
+<blockquote>
+<p>template: `{{someInputValue | myCustomPipe: someOtherValue}}` </p>
+</blockquote>
+    </section>
+
+    <section class="topic" id="interceptor">
+      <h2>Interceptor</h2>
+<p>In Angular, <strong>HTTP interceptors</strong> are a powerful middleware mechanism that allows you to inspect and transform HTTP requests and responses globally, from a central location. They act as a layer between your application's HttpClient service and the backend server. </p>
+<p><strong>Why Use Interceptors?</strong></p>
+<p>Interceptors help centralize logic for "cross-cutting concerns," avoiding repetitive code in every service or component that makes an HTTP call. Common use cases include: </p>
+<ul>
+<li><p><strong>Authentication:</strong> Automatically attach authentication tokens (e.g., JWT) to the headers of every outgoing request.</p></li>
+<li><p><strong>Error Handling:</strong> Catch and handle errors from HTTP responses globally (e.g., displaying a user-friendly notification for a 404 or 500 error).</p></li>
+<li><p><strong>Logging/Monitoring:</strong> Log request and response details (like URL, method, and response time) for debugging and performance monitoring.</p></li>
+<li><p><strong>Caching:</strong> Implement caching strategies to store responses and serve them for subsequent requests, improving performance.</p></li>
+<li><p><strong>Request/Response Transformation:</strong> Modify the structure of request bodies or response data (e.g., converting an API response format).</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-is-a-template">
+      <h2>What is a template?</h2>
+<p>A template is a HTML view where you can display data by binding controls to properties of an Angular component. You can store your component's template in one of two places. You can define it inline using the template property, or you can define the template in a separate HTML file and link to it in the component metadata using the @Component decorator's templateUrl property.</p>
+    </section>
+
+    <section class="topic" id="what-is-a-module">
+      <h2>What is a module?</h2>
+<p>Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application. Lets take an example of <strong>app.module.ts</strong> root module declared with <strong>@NgModule</strong> decorator.</p>
+<p>The NgModule decorator has five important (among all) options:</p>
+<ol type="i">
+<li><p>The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application.</p></li>
+<li><p>The declarations option is used to define components in the respective module.</p></li>
+<li><p>The bootstrap option tells Angular which Component to bootstrap in the application.</p></li>
+<li><p>The providers option is used to configure a set of injectable objects that are available in the injector of this module.</p></li>
+<li><p>The entryComponents option is a set of components dynamically loaded into the view.</p></li>
+</ol>
+    </section>
+
+    <section class="topic" id="component-in-angular">
+      <h2>Component in Angular</h2>
+<p>In Angular, components are the main building blocks of an application's user interface. Fundamentally, all Angular components share a core structure, but they can be categorized based on their relationship within the application's hierarchy and how they manage dependencies. </p>
+<p><strong>Core Component Structure</strong></p>
+<p>Every Angular component consists of three main parts: </p>
+<ul>
+<li><p><strong>A TypeScript class:</strong> This contains the component's logic, handles user input, and fetches data.</p></li>
+<li><p><strong>An HTML template:</strong> This defines the component's view or user interface.</p></li>
+<li><p><strong>A CSS selector:</strong> This is a custom HTML tag (e.g., &lt;app-root&gt;) that tells Angular where to insert the component's instance into the DOM.</p></li>
+<li><p><strong>Optionally, CSS styles:</strong> These styles are typically scoped only to the component's own template. </p></li>
+</ul>
+<p><strong>Types of Components by Application Hierarchy</strong></p>
+<p>Within an application, components primarily function in one of two roles in relation to one another: </p>
+<ul>
+<li><p><strong>Parent Components:</strong> These components contain and manage other components (child components). They often pass data to children using @Input() properties and listen for events from children using @Output() properties.</p></li>
+<li><p><strong>Child Components:</strong> These are nested within parent components and typically focus on a specific piece of UI or functionality. They communicate with their parent components to share data and events. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="lifecycle-hooks-available">
+      <h2>Lifecycle hooks available?</h2>
+<blockquote>
+<p>Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application. The representation of lifecycle in pictorial representation as follows,</p>
+<p><img alt="ScreenShot" src="media/image1.png" style="width:2.27986in;height:2.39792in"/></p>
+<p>The description of each lifecycle method is as below,</p>
+</blockquote>
+<ol type="i">
+<li><p><strong>ngOnChanges:</strong> When the value of a data bound property changes, then this method is called.</p></li>
+<li><p><strong>ngOnInit:</strong> This is called whenever the initialization of the directive/component after Angular first displays the data-bound properties happens.</p></li>
+<li><p><strong>ngDoCheck:</strong> This is for the detection and to act on changes that Angular can't or won't detect on its own.</p></li>
+<li><p><strong>ngAfterContentInit:</strong> This is called in response after Angular projects external content into the component's view.</p></li>
+<li><p><strong>ngAfterContentChecked:</strong> This is called in response after Angular checks the content projected into the component.</p></li>
+<li><p><strong>ngAfterViewInit:</strong> This is called in response after Angular initializes the component's views and child views.</p></li>
+<li><p><strong>ngAfterViewChecked:</strong> This is called in response after Angular checks the component's views and child views.</p></li>
+<li><p><strong>ngOnDestroy:</strong> This is the cleanup phase just before Angular destroys the directive/component.</p></li>
+</ol>
+    </section>
+
+    <section class="topic" id="what-is-a-data-binding">
+      <h2>What is a data binding?</h2>
+<blockquote>
+<p>Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data. There are four forms of data binding(divided as 3 categories) which differ in the way the data is flowing.</p>
+</blockquote>
+<ol type="i">
+<li><p><strong>From the Component to the DOM:</strong></p></li>
+</ol>
+<blockquote>
+<p><strong>Interpolation:</strong> {{ value }}: Adds the value of a property from the component</p>
+<p>&lt;li&gt;Name: {{ user.name }}&lt;/li&gt;</p>
+<p>&lt;li&gt;Address: {{ user.address }}&lt;/li&gt;</p>
+<p><strong>Property binding:</strong> [property]=”value”: The value is passed from the component to the specified property or simple HTML attribute</p>
+<p>&lt;input type="email" [value]="user.email"&gt;</p>
+</blockquote>
+<ol start="2" type="i">
+<li><p><strong>From the DOM to the Component:</strong> <strong>Event binding: (event)=”function”:</strong> When a specific DOM event happens (eg.: click, change, keyup), call the specified method in the component</p></li>
+</ol>
+<blockquote>
+<p>&lt;button (click)="logout()"&gt;&lt;/button&gt;</p>
+</blockquote>
+<ol start="3" type="i">
+<li><p><strong>Two-way binding:</strong> <strong>Two-way data binding:</strong> [(ngModel)]=”value”: Two-way data binding allows to have the data flow both ways. For example, in the below code snippet, both the email DOM input and component email property are in sync</p></li>
+</ol>
+<blockquote>
+<p>&lt;input type="email" [(ngModel)]="user.email"&gt;</p>
+</blockquote>
+    </section>
+
+    <section class="topic" id="what-is-a-service">
+      <h2>What is a service?</h2>
+<blockquote>
+<p>A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.</p>
+<p>Let's create a repoService which can be used across components,</p>
+<p>import { Injectable } from '@angular/core';</p>
+<p>import { Http } from '@angular/http';</p>
+<p>@Injectable({ // The Injectable decorator is required for dependency injection to work</p>
+<p>// providedIn option registers the service with a specific NgModule</p>
+<p>providedIn: 'root', // This declares the service with the root app (AppModule)</p>
+<p>})</p>
+<p>export class RepoService{</p>
+<p>constructor(private http: Http){</p>
+<p>}</p>
+<p>fetchAll(){</p>
+<p>return this.http.get('https://api.github.com/repositories');</p>
+<p>}</p>
+<p>}</p>
+<p>The above service uses Http service as a dependency.</p>
+</blockquote>
+    </section>
+
+    <section class="topic" id="lazy-loading">
+      <h2>Lazy loading?</h2>
+<p>Lazy loading is one of the most useful concepts of Angular Routing. It helps us to download the web pages in chunks instead of downloading everything in a big bundle. It is used for lazy loading by asynchronously loading the feature module for routing whenever required using the property loadChildren. Let's load both Customer and Order feature modules lazily as below,</p>
+<pre><code>const routes: Routes = [
+{
+path: 'customers',
+loadChildren: () =&gt; import('./customers/customers.module').then(module =&gt; module.CustomersModule)
+},
+{
+path: 'orders',
+loadChildren: () =&gt; import('./orders/orders.module').then(module =&gt; module.OrdersModule)
+},
+{
+path: '',
+redirectTo: '',
+pathMatch: 'full'
+}
+];</code></pre>
+    </section>
+
+    <section class="topic" id="state-management">
+      <h2>State management</h2>
+<p>State Management is a term that defines a way we can store data, modify it, and react to its changes. In our case, the libraries NGRX and NGXS are using a pattern called <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">CQRS (Command Query Responsibility Segregation)</a>.</p>
+<p>It states that every method should either be a command that performs an action, or a query that returns data to the caller, but not both.</p>
+<p>State Management acts as a single source of truth for your application.</p>
+<p>You can build an app without complex State Management. You can use only services, and you're good to go. Adding a State Management library (e.g NGRX/NGXS) to your application would add some complexity and boilerplate, but then you'll have the benefits of (quoted from <a href="https://stackoverflow.com/a/8820998/1860540">https://stackoverflow.com/a/8820998/1860540</a>):</p>
+<ol type="1">
+<li><blockquote>
+<p><strong>Large team</strong> - You can split development tasks between people easily if you have chosen CQRS architecture. Your top people can work on domain logic leaving regular stuff to less skilled developers. 2. <strong>Difficult business logic</strong> - CQRS forces you to avoid mixing domain logic and infrastructural operations. 3. <strong>Scalability matters</strong> - With CQRS you can achieve great read and write performance, command handling can be scaled out on multiple nodes and as queries are read-only operations they can be optimized to do fast read operations.</p>
+</blockquote></li>
+</ol>
+    </section>
+
+    <section class="topic" id="authguards">
+      <h2>AuthGuards</h2>
+<p>AuthGuards in Angular (including Angular 20) are functional, injectable services used to protect routes from unauthorized access by implementing canActivate or canMatch functions. They are essential for checking authentication status or user roles, often redirecting users to a login page if they are not authorized. In modern Angular, these are best implemented as functional guards using inject() for clean, reactive logic. </p>
+<p><strong>Key Concepts for AuthGuards in Angular 20</strong></p>
+<ul>
+<li><p><strong>Functional Approach:</strong> Modern Angular (v17+) prefers functional guards (CanActivateFn) over class-based guards for simplicity and tree-shaking efficiency.</p></li>
+<li><p><strong>canActivate:</strong> Determines if a route can be activated.</p></li>
+<li><p><strong>canMatch:</strong> Determines if a route can be matched at all, useful for lazy loading.</p></li>
+<li><p><strong>Signals &amp; httpResource():</strong> Angular 20 increasingly leverages Signals for reactive UI updates and httpResource() for managing asynchronous authentication state. </p></li>
+</ul>
+<p><strong>Implementation Steps</strong></p>
+<ol type="1">
+<li><p><strong>Generate a Guard:</strong> Use the Angular CLI to generate a new functional guard:</p></li>
+</ol>
+<p>bash</p>
+<p>ng generate guard auth</p>
+    </section>
+
+    <section class="topic" id="share-data-between-component">
+      <h2>Share Data Between Component</h2>
+<p><strong>Child to Parent Communication</strong></p>
+<p>Use the @Output() decorator with an EventEmitter in the child component to emit events (with data) that the parent component listens to. </p>
+<ul>
+<li><p><strong>In the child component (child.component.ts):</strong></p></li>
+</ul>
+<p>typescript</p>
+<pre><code>import { Component, Output, EventEmitter } from '@angular/core';
+@Component({
+selector: 'app-child',
+template: `&lt;button (click)="addNewItem(value)"&gt;Add Item&lt;/button&gt;`
+})
+export class ChildComponent {
+@Output() newItemEvent = new EventEmitter&lt;string&gt;();
+addNewItem(value: string) {
+this.newItemEvent.emit(value); // Emit the data as an event
+}
+}</code></pre>
+<ul>
+<li><p><strong>In the parent component's template (parent.component.html):</strong></p></li>
+</ul>
+<p>html</p>
+<pre><code>&lt;app-child (newItemEvent)="addItem($event)"&gt;&lt;/app-child&gt;
+&lt;ul&gt;
+&lt;li *ngFor="let item of items"&gt;{{ item }}&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<ul>
+<li><p><strong>In the parent component (parent.component.ts):</strong></p></li>
+</ul>
+<p>typescript</p>
+<pre><code>import { Component } from '@angular/core';
+@Component({ ... })
+export class ParentComponent {
+items = ['item1', 'item2'];
+addItem(newItem: string) {
+this.items.push(newItem); // Method to handle the event data
+}
+}</code></pre>
+<p> </p>
+<p><strong>3. Communication Between Unrelated Components (Siblings, Grandchildren, etc.)</strong></p>
+<p>A <strong>shared service</strong> using RxJS Subject or BehaviorSubject is the standard and most robust method for components without a direct hierarchical relationship. </p>
+<ul>
+<li><p><strong>Create a shared service (data.service.ts):</strong></p></li>
+</ul>
+<p>typescript</p>
+<pre><code>import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+@Injectable({
+providedIn: 'root' // Makes the service a singleton
+})
+export class DataService {
+private dataSubject = new BehaviorSubject&lt;string&gt;('Default Data');
+currentData$: Observable&lt;string&gt; = this.dataSubject.asObservable();
+changeData(data: string) {
+this.dataSubject.next(data); // Update the data value
+}
+}</code></pre>
+<ul>
+<li><p><strong>In any component that needs to send data:</strong><br/>
+Inject the service and call changeData().</p></li>
+</ul>
+<p>typescript</p>
+<p><em>// sender.component.ts</em></p>
+<pre><code>import { Component } from '@angular/core';
+import { DataService } from './data.service';
+@Component({ ... })
+export class SenderComponent {
+constructor(private dataService: DataService) {}
+sendData() {
+this.dataService.changeData('New Data Value');
+}
+}</code></pre>
+<ul>
+<li><p><strong>In any component that needs to receive data:</strong><br/>
+Inject the service and subscribe to the observable.</p></li>
+</ul>
+<p>typescript</p>
+<p><em>// receiver.component.ts</em></p>
+<pre><code>import { Component, OnInit } from '@angular/core';
+import { DataService } from './data.service';
+@Component({ ... })
+export class ReceiverComponent implements OnInit {
+receivedData: string;
+constructor(private dataService: DataService) {}
+ngOnInit() {
+this.dataService.currentData$.subscribe(data =&gt; {
+this.receivedData = data; // Update local property when data changes
+});
+}
+}
+How we can secure the component
+How to pass the data between component to component without child parent relationship
+Data Anotation.</code></pre>
+    </section>
+
+    <section class="topic" id="c-to-c-data-sharing">
+      <h2>C to C data sharing</h2>
+<p>The standard and most effective way to share data between unrelated components in Angular is by using a <strong>shared service with RxJS subjects</strong>. Other methods include using route parameters or web storage APIs, depending on the use case.</p>
+<p><strong>Steps:</strong></p>
+<ol type="1">
+<li><p><strong>Create a Service</strong>: Generate a service using the Angular CLI command: ng generate service shared-data.</p></li>
+<li><p><strong>Define the Data in the Service</strong>: In the service, use a BehaviorSubject to hold the data and expose it as an Observable for components to subscribe to.</p></li>
+<li><p>import { Injectable } from '@angular/core';</p></li>
+<li><p>import { BehaviorSubject, Observable } from 'rxjs';</p></li>
+<li></li>
+<li><p>@Injectable({</p></li>
+<li><p>providedIn: 'root' <em>// Ensures a single instance is shared across the application</em></p></li>
+<li><p>})</p></li>
+<li><p>export class SharedDataService {</p></li>
+<li><p>private dataSource = new BehaviorSubject&lt;string&gt;('Initial Data');</p></li>
+<li><p>currentData$ = this.dataSource.asObservable(); <em>// Expose as Observable</em></p></li>
+<li></li>
+<li><p>updateData(newData: string) {</p></li>
+<li><p>this.dataSource.next(newData); <em>// Method to update the data</em></p></li>
+<li><p>}</p></li>
+<li><p>}</p></li>
+<li><p>import { Component } from '@angular/core';</p></li>
+</ol>
+<p>Sender</p>
+<blockquote>
+<p>import { SharedDataService } from '../shared-data.service';</p>
+</blockquote>
+<ol start="18" type="1">
+<li></li>
+<li><p>@Component({ ... })</p></li>
+<li><p>export class SenderComponent {</p></li>
+<li><p>constructor(private sharedDataService: SharedDataService) {}</p></li>
+<li></li>
+<li><p>sendData(data: string) {</p></li>
+<li><p>this.sharedDataService.updateData(data);</p></li>
+<li><p>}</p></li>
+<li><p>}</p></li>
+</ol>
+<p>Reciever</p>
+<ol start="27" type="1">
+<li><p>@Component({ ... })</p></li>
+<li><p>export class ReceiverComponent implements OnInit, OnDestroy {</p></li>
+<li><p>receivedData = '';</p></li>
+<li><p>private dataSubscription: Subscription;</p></li>
+<li></li>
+<li><p>constructor(private sharedDataService: SharedDataService) {}</p></li>
+<li></li>
+<li><p>ngOnInit() {</p></li>
+<li><p>this.dataSubscription = this.sharedDataService.currentData$.subscribe(data =&gt; {</p></li>
+<li><p>this.receivedData = data;</p></li>
+<li><p>});</p></li>
+<li><p>}</p></li>
+<li></li>
+<li><p>ngOnDestroy() {</p></li>
+<li><p>this.dataSubscription.unsubscribe(); <em>// Avoid memory leaks</em></p></li>
+<li><p>}</p></li>
+<li><p>}</p></li>
+</ol>
+<h3 id="other">Other</h3>
+<p><strong>Route Parameters</strong>: For passing small amounts of data during navigation (e.g., an item ID). The data is part of the URL.</p>
+<p>this.router.navigate(['/details', { id: 123 }]);</p>
+<p><em>// Receiving (in the target component)</em></p>
+<p>this.route.params.subscribe(params =&gt; {</p>
+<p>console.log(params['id']);</p>
+<p>});</p>
+<ul>
+<li><p><strong>Local or Session Storage</strong>: For persistent data across page refreshes or browser sessions. Data is stored in the browser's memory.</p></li>
+</ul>
+<p><em>// Storing data</em></p>
+<p>localStorage.setItem('myKey', JSON.stringify(data));</p>
+<p><em>// Retrieving data</em></p>
+<pre><code>const data = JSON.parse(localStorage.getItem('myKey') || '{}');</code></pre>
+    </section>
+
+    <section class="topic" id="observable-promise">
+      <h2>Observable & Promise</h2>
+<p>Both Promises and Observables handle asynchronous operations in JavaScript, but they serve entirely different use cases. In short: <strong>Promises deliver a single future value, while Observables represent a stream of values over time.</strong> [<a href="https://www.geeksforgeeks.org/angular-js/what-is-the-difference-between-promises-and-observables-in-angular/">1</a>]</p>
+<p>Here is a quick breakdown of their core differences:</p>
+<table>
+<colgroup>
+<col style="width: 17%"/>
+<col style="width: 37%"/>
+<col style="width: 45%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Feature</strong></th>
+<th><strong>Promise</strong></th>
+<th><strong>Observable</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Value Count</strong></td>
+<td>Emits exactly <strong>one</strong> value (then completes).</td>
+<td>Emits <strong>multiple</strong> values over time (acts as a stream).</td>
+</tr>
+<tr class="even">
+<td><strong>Execution Timing</strong></td>
+<td><strong>Eager</strong>: Starts executing immediately upon creation.</td>
+<td><strong>Lazy</strong>: Only executes when someone subscribes to it.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cancellation</strong></td>
+<td>Cannot be canceled.</td>
+<td>Can be canceled by unsubscribing.</td>
+</tr>
+<tr class="even">
+<td><strong>Composition</strong></td>
+<td>Uses .then() and .catch().</td>
+<td>Provides RxJS operators like .pipe(), .map(), .filter().</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to Use Which?</strong></p>
+<ul>
+<li><p><strong>Use Promises for:</strong> One-time, standalone asynchronous operations like fetching app configuration or completing a basic HTTP POST request.</p></li>
+<li><p><strong>Use Observables for:</strong> Continuous, event-driven data—such as WebSockets, DOM events (clicks, keystrokes), or handling multiple HTTP responses over</p></li>
+</ul>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">Angular Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#angular-20-features">Angular 20 Features</a>
+    <a href="#exception-handling">Exception Handling</a>
+    <a href="#types-of-forms">Types of Forms</a>
+    <a href="#pipes">Pipes</a>
+    <a href="#custom-pipe" class="sub-link">Custom pipe?</a>
+    <a href="#interceptor">Interceptor</a>
+    <a href="#what-is-a-template">What is a template?</a>
+    <a href="#what-is-a-module">What is a module?</a>
+    <a href="#component-in-angular">Component in Angular</a>
+    <a href="#lifecycle-hooks-available">Lifecycle hooks available?</a>
+    <a href="#what-is-a-data-binding">What is a data binding?</a>
+    <a href="#what-is-a-service">What is a service?</a>
+    <a href="#lazy-loading">Lazy loading?</a>
+    <a href="#state-management">State management</a>
+    <a href="#authguards">AuthGuards</a>
+    <a href="#share-data-between-component">Share Data Between Component</a>
+    <a href="#c-to-c-data-sharing">C to C data sharing</a>
+    <a href="#other" class="sub-link">Other</a>
+    <a href="#observable-promise">Observable & Promise</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

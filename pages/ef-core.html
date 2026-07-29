@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EF Core Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #4a9b5e;
+    --accent-deep: #357245;
+    --accent-soft: #e9f6ec;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Data Access</span>
+      <h1>EF Core Interview Questions</h1>
+      <p>DbContext, tracking behavior, LINQ operators, and performance best practices.</p>
+    </header>
+
+    <section class="topic" id="dbcontext">
+      <h2>DBContext</h2>
+<p>The DbContext class in Entity Framework represents the session with the database and provides a set of APIs to perform CRUD (Create, Read, Update, Delete) operations on entities. It also manages the entity objects during their lifecycle.</p>
+    </section>
+
+    <section class="topic" id="db-set">
+      <h2>DB Set</h2>
+<p>A <strong>DbSet</strong> is a core class in Microsoft’s Entity Framework (EF) and EF Core that represents a collection of a specific entity type (like a table or view) in your database [<a href="https://stackoverflow.com/questions/13627829/about-dbset-and-dbcontext">1</a>, <a href="https://www.learnentityframeworkcore.com/dbset">2</a>, <a href="https://www.netmentor.es/entrada/en/dbcontext-dbset">3</a>]. It acts as a gateway for performing <strong>CRUD</strong> (Create, Read, Update, Delete) operations and querying that data using LINQ</p>
+    </section>
+
+    <section class="topic" id="data-annotation">
+      <h2>Data Annotation</h2>
+<p>Data annotations are broadly categorized into validation, display, and data modeling attributes. </p>
+<h3 id="validation-attributes">Validation Attributes</h3>
+<p>Common validation attributes include [Required], [StringLength], [Range], [RegularExpression], [EmailAddress], [Phone], [Url], and [Compare] for comparing property values. </p>
+<h3 id="display-and-formatting-attributes">Display and Formatting Attributes</h3>
+<p>Attributes like [Display] customize the property's name in the UI, [DataType] specifies the kind of data for appropriate rendering, and [DisplayFormat] controls how data is shown and formatted. </p>
+<h3 id="data-modeling-attributes-used-with-entity-framework">Data Modeling Attributes (used with Entity Framework)</h3>
+<p>Attributes for data modeling in Entity Framework include [Key] for primary keys, [Column] and [Table] to override default database naming conventions, [NotMapped] to exclude properties, and [ForeignKey] to define relationships. </p>
+<p>Example.</p>
+    </section>
+
+    <section class="topic" id="tracking-vs-no-trackinng">
+      <h2>Tracking Vs No Trackinng</h2>
+<p>In Entity Framework (EF), <strong>tracking queries</strong> attach returned entities to the DbContext's change tracker, enabling automatic updates to the database when SaveChanges() is called. <strong>No-tracking queries</strong>, using the AsNoTracking() method, skip this process, offering significant <strong>performance benefits for read-only scenarios</strong></p>
+<p>In C# Entity Framework, <strong>"no tracking"</strong> is a query mode where the DbContext does not monitor changes to the retrieved entities, resulting in improved performance and reduced memory usage for <strong>read-only scenarios.</strong></p>
+<p>using (var context = new EntityModelContext())</p>
+<p>{</p>
+<pre><code>var employees = context.Employees.AsNoTracking().ToList();
+// Entities in the 'employees' list are not tracked.
+}</code></pre>
+    </section>
+
+    <section class="topic" id="transaction">
+      <h2>Transaction</h2>
+<p>Entity Framework Core supports transactions through the SaveChanges method. Multiple changes within a single SaveChanges call are made within a transaction. Additionally, you can explicitly manage transactions using Database. BeginTransaction and Transaction.Commit/Transaction.Rollback methods.</p>
+    </section>
+
+    <section class="topic" id="commands">
+      <h2>Commands</h2>
+<p>Key EF Core CLI Commands</p>
+<p>The primary commands are grouped under migrations, database, and dbcontext. </p>
+<p>Migrations Commands</p>
+<p>These commands manage the lifecycle of database migrations. </p>
+<ul>
+<li><p>dotnet ef migrations add &lt;NAME&gt;: Adds a new migration. The &lt;NAME&gt; is an arbitrary name for the migration.</p></li>
+<li><p>dotnet ef migrations list: Lists all available migrations in the project.</p></li>
+<li><p>dotnet ef migrations remove: Removes the last migration. Use the --force (-f) option to remove the migration even if it has been applied to the database.</p></li>
+<li><p>dotnet ef migrations script [FROM] [TO]: Generates a SQL script from migrations, or from the start (0) to a specified migration. The -i or --idempotent option can generate a script that works on a database at any migration.</p></li>
+<li><p>dotnet ef migrations bundle: Creates a self-contained executable to apply migrations.</p></li>
+<li><p>dotnet ef migrations has-pending-model-changes: Checks if any changes have been made to the model since the last migration. </p></li>
+</ul>
+<p>Database Commands</p>
+<p>These commands interact directly with the database schema. </p>
+<ul>
+<li><p>dotnet ef database update [MIGRATION]: Updates the database to the last migration by default, or to a specific migration if &lt;MIGRATION&gt; is specified. Specifying '0' will revert all migrations.</p></li>
+<li><p>dotnet ef database drop: Drops the database. Use the --force (-f) option to avoid a confirmation prompt. </p></li>
+</ul>
+<p>DbContext Commands</p>
+<p>These commands manage the DbContext type and reverse engineer database schemas. </p>
+<ul>
+<li><p>dotnet ef dbcontext info: Gets information about a DbContext type.</p></li>
+<li><p>dotnet ef dbcontext list: Lists available DbContext types in the project.</p></li>
+<li><p>dotnet ef dbcontext scaffold &lt;CONNECTION&gt; &lt;PROVIDER&gt;: Generates a DbContext and entity type classes from an existing database schema.</p></li>
+<li><p>dotnet ef dbcontext optimize: Generates a compiled version of the model for performance optimization</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="linq">
+      <h2>LINQ</h2>
+
+    </section>
+
+    <section class="topic" id="essential-operators">
+      <h2>Essential Operators</h2>
+<h3 id="select-vs.-selectmany">Select vs. SelectMany:</h3>
+<pre><code>Select is used for simple projection (one-to-one), while SelectMany flattens sequences of sequences (one-to-many).</code></pre>
+<h3 id="first-vs.-firstordefault">First() vs. FirstOrDefault()</h3>
+<p>First() throws an exception if the collection is empty, while FirstOrDefault() returns a default value (like null).</p>
+<h3 id="any-vs.-count">Any() vs. Count()</h3>
+<p>For existence checks, Any() is more efficient because it stops at the first match, whereas Count() must enumerate the entire collection.</p>
+<h3 id="join-vs.-groupjoin">Join vs. GroupJoin</h3>
+<p>Join is used for inner joins (one-to-one), while GroupJoin is used for one-to-many relationships, producing hierarchical results.</p>
+    </section>
+
+    <section class="topic" id="performance-best-practices">
+      <h2>Performance & Best Practices</h2>
+<h3 id="asnotracking">AsNoTracking()</h3>
+<p>In Entity Framework, use this for read-only queries to skip change-tracking overhead and improve speed.</p>
+<h3 id="avoid-n1-problems">Avoid N+1 Problems</h3>
+<p>Use .Include() and .ThenInclude() to eager-load related data and prevent multiple unnecessary database trips.</p>
+    </section>
+
+    <section class="topic" id="project-early">
+      <h2>Project Early</h2>
+<p>Use .Select() to only fetch the specific fields you need instead of pulling entire database objects into memory.</p>
+    </section>
+
+    <section class="topic" id="practical-coding-tasks">
+      <h2>Practical Coding Tasks</h2>
+<h3 id="find-second-highest">Find Second Highest:</h3>
+<pre><code>var second = list.OrderByDescending(x =&gt; x).Skip(1).FirstOrDefault();.</code></pre>
+<h3 id="filter-and-sort">Filter and Sort:</h3>
+<p>Find employees with a salary &gt; 50k and name starting with "A", sorted by name.</p>
+<h3 id="find-duplicates">Find Duplicates:</h3>
+<p>Use .GroupBy(x =&gt; x).Where(g =&gt; g.Count() &gt; 1) to identify recurring items.</p>
+<h3 id="left-outer-join">Left Outer Join:</h3>
+<p>Implement this using the into keyword combined with .DefaultIfEmpty().</p>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">EF Core Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#dbcontext">DBContext</a>
+    <a href="#db-set">DB Set</a>
+    <a href="#data-annotation">Data Annotation</a>
+    <a href="#validation-attributes" class="sub-link">Validation Attributes</a>
+    <a href="#display-and-formatting-attributes" class="sub-link">Display and Formatting Attributes</a>
+    <a href="#data-modeling-attributes-used-with-entity-framework" class="sub-link">Data Modeling Attributes (used with Entity Framework)</a>
+    <a href="#tracking-vs-no-trackinng">Tracking Vs No Trackinng</a>
+    <a href="#transaction">Transaction</a>
+    <a href="#commands">Commands</a>
+    <a href="#linq">LINQ</a>
+    <a href="#essential-operators">Essential Operators</a>
+    <a href="#select-vs.-selectmany" class="sub-link">Select vs. SelectMany:</a>
+    <a href="#first-vs.-firstordefault" class="sub-link">First() vs. FirstOrDefault()</a>
+    <a href="#any-vs.-count" class="sub-link">Any() vs. Count()</a>
+    <a href="#join-vs.-groupjoin" class="sub-link">Join vs. GroupJoin</a>
+    <a href="#performance-best-practices">Performance & Best Practices</a>
+    <a href="#asnotracking" class="sub-link">AsNoTracking()</a>
+    <a href="#avoid-n1-problems" class="sub-link">Avoid N+1 Problems</a>
+    <a href="#project-early">Project Early</a>
+    <a href="#practical-coding-tasks">Practical Coding Tasks</a>
+    <a href="#find-second-highest" class="sub-link">Find Second Highest:</a>
+    <a href="#filter-and-sort" class="sub-link">Filter and Sort:</a>
+    <a href="#find-duplicates" class="sub-link">Find Duplicates:</a>
+    <a href="#left-outer-join" class="sub-link">Left Outer Join:</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

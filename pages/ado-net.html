@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADO.NET Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #2f7dd1;
+    --accent-deep: #1f5aa8;
+    --accent-soft: #e8f1fc;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Data Access</span>
+      <h1>ADO.NET Interview Questions</h1>
+      <p>Connections, DataSets, DataAdapters, and command execution patterns for classic ADO.NET data access.</p>
+    </header>
+
+    <section class="topic" id="what-is-ado.net">
+      <h2>1. What is ADO.NET?</h2>
+<ul>
+<li><p>ADO.NET stands for ActiveX Data Object, it is a part of the .NET Framework by Microsoft. ADO.NET framework provides a set of classes that are used to handle data communication with data sources such as XML files and databases (such as SQL, Oracle, MySQL, MS Access, etc.).</p></li>
+<li><p>ADO.NET can separate mechanisms for data connectivity, data access, and data manipulation.</p></li>
+<li><p>It has introduced the disconnected architecture, in which data can be stored in a DataSet. ADO.NET has providers for database connection, commands for execution, and result retrieval.</p></li>
+<li><p>The ADO.NET classes are stored in the DLL named System.Data.dll.</p></li>
+<li><p>Various applications like ASP.NET applications, console applications, windows applications, etc., will use ADO.NET for database connection, command execution, and retrieval of data.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-is-dataset-in-ado.net">
+      <h2>What is DataSet in ADO.NET?</h2>
+<ul>
+<li><p>The DataSet is a collection of database tables(row and column format) that contain the data. It is helpful for fetching the data without any need for Data Source interaction, that is why it is called a disconnected data access method.</p></li>
+<li><p>It is an in-memory data store that can contain multiple tables at the same time. DataRelation objects can be used to relate these tables.</p></li>
+<li><p>For creating a DataSet object, ADO.NET provides a DataSet class that consists of constructors and methods to carry out data-related operations.</p></li>
+<li><p>It can be used with various data sources, with XML data, or to manage the application’s local data. The DataSet will include related tables, data constraints, and relationships among the tables.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="give-the-differences-between-ado-and-ado.net.">
+      <h2>3. Give the differences between ADO and ADO.NET.</h2>
+<table>
+<colgroup>
+<col style="width: 48%"/>
+<col style="width: 51%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>ADO</strong></th>
+<th><strong>ADO.NET</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>It is Component Object Modelling(COM) based.</td>
+<td>It is Common Language Runtime(CLR) based.</td>
+</tr>
+<tr class="even">
+<td>It works in connected mode to access the data store.</td>
+<td>It does require an active connection, works in disconnected mode to access the data store.</td>
+</tr>
+<tr class="odd">
+<td>It uses the RecordSet object to access and store data from the data sources.</td>
+<td>It uses a DataSet object to access and store data from the data sources.</td>
+</tr>
+<tr class="even">
+<td>It provides a feature of locking.</td>
+<td>It does not provide a feature of locking.</td>
+</tr>
+<tr class="odd">
+<td>Data is stored in binary form.</td>
+<td>Data is stored in XML.</td>
+</tr>
+<tr class="even">
+<td>It does not support XML integration.</td>
+<td>It supports XML integration.</td>
+</tr>
+<tr class="odd">
+<td>Using a single connection instance, it is not possible to send multiple transactions.</td>
+<td>Using a single connection instance you can send multiple transactions.</td>
+</tr>
+<tr class="even">
+<td>We can create only client-side cursors.</td>
+<td>Both client-side and server-side cursors can be created</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="what-is-a-dataadapter-in-ado.net">
+      <h2>4. What is a DataAdapter in ADO.NET?</h2>
+<ul>
+<li><p>A DataAdapter is used to access data from a data source by functioning as a bridge between DataSet and a data source. DataAdapter class includes an SQL command set and a database connection. It is helpful to fill the DataSet and resolve changes to the data source.</p></li>
+<li><p>The DataAdapter will make use of the Connection object that belongs to the .NET Framework data provider for connecting with a data source. Along with that, it will also use Command objects to retrieve data from the data source as well as to resolve changes to the data source.</p></li>
+<li><p>DataAdapter properties that permit the user to control the database are the Select command, Update command, Insert command, and Delete command.</p></li>
+<li><p>Example code for the usage of DataAdapter:</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="explain-about-dataset-types-in-ado.net.">
+      <h2>6. Explain about DataSet types in ADO.NET.</h2>
+<p>DataSet can be said as a collection of database tables(row and column format) that holds the data. There are two types of DataSet in ADO.NET. They are:</p>
+<ol type="1">
+<li><p><strong>Typed DataSet:</strong> A typed DataSet is derived from the DataSet base class and can be created by selecting the DataSet option provided by Visual Studio. It will be created as an XML schema(.xsd file) that contains DataSet structure information such as rows, columns, and tables. Data from the database is moved into a dataset and from the dataset to another component in the XML format.</p></li>
+<li><p><strong>Untyped DataSet:</strong> Untyped DataSet does not have an associated XML schema with it. Users are supposed to add columns, tables, and other elements to it. Properties can be set during design time or can add them during run time.</p></li>
+</ol>
+    </section>
+
+    <section class="topic" id="explain-the-difference-between-datatable-and-dataset.">
+      <h2>7. Explain the difference between DataTable and DataSet.</h2>
+<table>
+<colgroup>
+<col style="width: 46%"/>
+<col style="width: 53%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>DataTable</strong></th>
+<th><strong>DataSet</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DataTable consists of a single database table that is placed within a memory.</td>
+<td>DataSet consists of a collection of multiple database tables which is placed within a memory.</td>
+</tr>
+<tr class="even">
+<td>It has a row and column collection.</td>
+<td>It has a database table collection.</td>
+</tr>
+<tr class="odd">
+<td>It allows fetching only a single TableRow at a time.</td>
+<td>It allows fetching multiple TableRows at a time.</td>
+</tr>
+<tr class="even">
+<td>It is a single database table, so there will not be any relation with other tables.</td>
+<td>It represents a collection of DataTable objects, so there might be a relation between them to obtain a particular result.</td>
+</tr>
+<tr class="odd">
+<td>In this, DataSource objects are not serialized.</td>
+<td>In this, DataSource objects are serialized.</td>
+</tr>
+<tr class="even">
+<td>UniqueConstraint and ForeignKeyConstraint objects are not available enforcing data integrity.</td>
+<td>UniqueConstraint and ForeignKeyConstraint objects are available for enforcing data integrity</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="what-are-the-different-execute-methods-available-in-ado.net">
+      <h2>11. What are the different execute() methods available in ADO.NET?</h2>
+<p>Different execute() methods supported by SqlCommandObject in ADO.NET is given below:</p>
+<ul>
+<li><p><strong>ExecuteScalar():</strong> This method returns only a single value from the first row and first column of the ResultSet after the execution of the query. Even if ResultSet is having more than one row or column, all those rows and columns will be ignored. If the ResultSet is empty, it will return NULL.</p></li>
+<li><p><strong>ExecuteNonQuery()</strong>: This method returns the number of rows affected by the execution of a query. This method is not useful to return the ResultSet.</p></li>
+<li><p><strong>ExecuteReader()</strong>: This method returns an object of DataReader which is a read-only and forward-only ResultSet. It needs a live connection with the Data Source. We cannot directly instantiate the DataReader object. A valid DataReader object can be created with the help of the ExecuteReader() method.</p></li>
+<li><p><strong>ExecuteXmlReader()</strong>: This method builds an object of the XmlReader class and will return the ResultSet in the form of an XML document. This method is made available in SQL Server 2000 or later</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-is-connection-pooling">
+      <h2>15. What is Connection pooling?</h2>
+<p>The task of grouping database connections in the cache memory is to make them available whenever there is a requirement of connection. Opening a new database connection every time is a time-consuming process. Connection pooling allows you to reuse existing and active database connections, whenever there is a need, and thus increases the application performance.<br/>
+By setting the pooling property into true or false in the connection string, we can enable or disable the connection pooling in the application. It is enabled by default in every application.</p>
+    </section>
+
+    <section class="topic" id="why-stored-procedure-is-used-in-ado.net">
+      <h2>Why Stored Procedure is used in ADO.NET?</h2>
+<p>The reasons for using Stored Procedures in ADO.NET are given below:</p>
+<ul>
+<li><p>For improved performance</p></li>
+<li><p>For security reasons</p></li>
+<li><p>Easier to use and maintain</p></li>
+<li><p>Lesser Network Traffic</p></li>
+<li><p>Execution time is less</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="explain-about-executescalar-in-ado.net.">
+      <h2>23. Explain about ExecuteScalar() in ADO.NET.</h2>
+<ul>
+<li><p>A single value from the first row and first column of the ResultSet will be returned by ExecuteScalar() method on query execution.</p></li>
+<li><p>If the ResultSet is having multiple rows or columns, all those rows and columns will be ignored except the first row and first column. If the ResultSet is empty, this function will return NULL.</p></li>
+<li><p>The best situation to use ExecuteScalar() method is when we are using functions such as COUNT(), SUM(), etc., as it uses only a few resources compared to the ExecuteReader() method.</p></li>
+<li><p>Example:</p></li>
+</ul>
+<pre><code>public void ExecuteScalarExample()
+{
+SqlConnection con = new SqlConnection();
+con.ConnectionString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+try
+{
+SqlCommand cd = new SqlCommand();
+cd.Connection = con;
+cd.CommandText = "SELECT SUM(SALARY) FROM EMPLOYEE";
+cd.CommandType = CommandType.Text;
+con.Open();
+Int32 SalaryTotal = Convert.ToInt32(cd.ExecuteScalar());
+MessageBox.Show("Total Salary of the employee is : " + SalaryTotal.ToString());
+cd.Dispose();
+con.Dispose();
+}
+catch (Exception ex)
+{
+MessageBox.Show(ex.Message);
+}
+}</code></pre>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">ADO.NET Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#what-is-ado.net">1. What is ADO.NET?</a>
+    <a href="#what-is-dataset-in-ado.net">What is DataSet in ADO.NET?</a>
+    <a href="#give-the-differences-between-ado-and-ado.net.">3. Give the differences between ADO and ADO.NET.</a>
+    <a href="#what-is-a-dataadapter-in-ado.net">4. What is a DataAdapter in ADO.NET?</a>
+    <a href="#explain-about-dataset-types-in-ado.net.">6. Explain about DataSet types in ADO.NET.</a>
+    <a href="#explain-the-difference-between-datatable-and-dataset.">7. Explain the difference between DataTable and DataSet.</a>
+    <a href="#what-are-the-different-execute-methods-available-in-ado.net">11. What are the different execute() methods available in ADO.NET?</a>
+    <a href="#what-is-connection-pooling">15. What is Connection pooling?</a>
+    <a href="#why-stored-procedure-is-used-in-ado.net">Why Stored Procedure is used in ADO.NET?</a>
+    <a href="#explain-about-executescalar-in-ado.net.">23. Explain about ExecuteScalar() in ADO.NET.</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

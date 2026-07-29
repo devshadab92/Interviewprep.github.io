@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASP.NET Core Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #2ea39a;
+    --accent-deep: #1f7a73;
+    --accent-soft: #e6f6f4;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Web Framework</span>
+      <h1>ASP.NET Core Interview Questions</h1>
+      <p>Middleware, dependency injection, routing, and the ASP.NET Core request pipeline.</p>
+    </header>
+
+    <section class="topic" id="feature-of-.net-core-8">
+      <h2>Feature of .Net Core 8</h2>
+<p>NET 8 is a Long-Term Support (LTS) release of the cross-platform, open-source framework, focusing heavily on performance, cloud-native development, and full-stack web UI. </p>
+<p>Key features include:</p>
+<p><strong>Performance &amp; Cloud-Native </strong></p>
+<ul>
+<li><p><strong>Performance Enhancements:</strong> Thousands of improvements in performance, stability, and security, including up to 20% performance gains from Dynamic Profile-Guided Optimization (PGO).</p></li>
+<li><p><strong>.NET Aspire:</strong> An opinionated stack of NuGet packages for building resilient, observable, and configurable cloud-native applications, which simplifies orchestration, components, and tooling.</p></li>
+<li><p><strong>Native Ahead-of-Time (AOT) Compilation:</strong> Enhanced support for AOT, which compiles apps into native code, resulting in smaller deployment sizes, faster startup times, and reduced memory usage.</p></li>
+<li><p><strong>Garbage Collection Improvements:</strong> The garbage collector now features dynamic adaptation to application sizes (DATAS) for more efficient memory management, especially in containerized environments. </p></li>
+</ul>
+<p><strong>C# 12 &amp; AI</strong></p>
+<ul>
+<li><p><strong>C# 12 Integration:</strong> Includes new language features such as primary constructors for any class or struct, default values for parameters in lambda expressions, and enhanced using directives for aliasing any type.</p></li>
+<li><p><strong>AI &amp; Machine Learning Support:</strong> Seamless integration with large language models (LLMs) like OpenAI's GPT and enhanced System.Numeric libraries to facilitate AI-infused .NET applications. </p></li>
+</ul>
+<p><strong>Web &amp; Client Development (ASP.NET Core &amp; Blazor) </strong></p>
+<ul>
+<li><p><strong>Unified Blazor:</strong> Blazor is now a full-stack web UI framework, allowing components to run on both the server and client (WebAssembly) in the same app. This includes support for static server-side rendering (SSR), streaming rendering, and enhanced navigation/form handling.</p></li>
+<li><p><strong>.NET MAUI Enhancements:</strong> Improved performance, reliability, and developer experience for cross-platform mobile and desktop applications, including a new Visual Studio Code extension.</p></li>
+<li><p><strong>Minimal API Improvements:</strong> Enhanced support for form binding and API authoring capabilities, including the use of .http files in project templates for easier API testing. </p></li>
+</ul>
+<p><strong>Data Access &amp; Tools</strong></p>
+<ul>
+<li><p><strong>Entity Framework (EF) Core 8:</strong> Support for complex types as value objects, lazy loading of no-tracking queries, and enhanced JSON column mapping for relational databases.</p></li>
+<li><p><strong>System.Text.Json Improvements:</strong> Performance boosts and support for new naming policies like snake_case and kebab-case, with better handling of serialization from interface hierarchies.</p></li>
+<li><p><strong>DevOps and Observability:</strong> Better integration with CI/CD tools, built-in support for OpenTelemetry for distributed tracing, and advanced metrics collection. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="net-framewor-.net-core">
+      <h2>.Net Framewor & .Net Core</h2>
+<p>The primary difference is that <strong>.NET Framework</strong> is a legacy, Windows-only platform, while <strong>.NET</strong> (formerly .NET Core) is a modern, cross-platform, open-source framework designed for high performance and cloud-based applications. </p>
+<p>Microsoft has ceased feature development on the .NET Framework (the final version is 4.8) and recommends using the unified .NET platform for all new development. </p>
+<p><strong>Key Differences: .NET Framework vs. .NET (Core)</strong></p>
+<table>
+<colgroup>
+<col style="width: 13%"/>
+<col style="width: 38%"/>
+<col style="width: 47%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect </strong></th>
+<th><strong>.NET Framework</strong></th>
+<th><strong>.NET (Core)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Platform</strong></td>
+<td>Windows only</td>
+<td>Cross-platform (Windows, macOS, Linux)</td>
+</tr>
+<tr class="even">
+<td><strong>Source</strong></td>
+<td>Mostly closed source (proprietary)</td>
+<td>Open source with community contributions</td>
+</tr>
+<tr class="odd">
+<td><strong>Performance</strong></td>
+<td>Slower performance and scalability</td>
+<td>High performance and scalable, optimized for modern apps</td>
+</tr>
+<tr class="even">
+<td><strong>Architecture</strong></td>
+<td>Monolithic architecture, single installation per machine</td>
+<td>Modular (uses NuGet packages), supports side-by-side versions</td>
+</tr>
+<tr class="odd">
+<td><strong>Deployment</strong></td>
+<td>Requires specific Windows server setup (IIS)</td>
+<td>Flexible, supports self-contained, Docker containers, and cloud deployment</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="what-is-the-asp.net-core">
+      <h2>What is the ASP.NET Core?</h2>
+<p><a href="https://www.dotnettricks.com/training/masters-program/aspnet-core">ASP.NET Core</a> is not an upgraded version of ASP.NET. ASP.NET Core is completely rewriting that work with the .net Core framework. It is much faster, configurable, modular, scalable, extensible, and has cross-platform support. It can work with both .NET Core and .net framework via the .NET standard framework. It is best suitable for developing cloud-based such as web applications, mobile applications, and IoT applications.</p>
+<p>ASP.NET Core was primarily designed to make the most important part of the ASP.NET components under the concept learn and the compose framework where the previous ASP.NET  components were released under a variety of different licenses periodically, The ASP.NET Core framework is a completely open-sourced framework.</p>
+    </section>
+
+    <section class="topic" id="what-are-the-features-provided-by-asp.net-core.">
+      <h2>What are the features provided by ASP.NET Core?.</h2>
+<p>Following are the core features that are provided by the ASP.NET Core</p>
+<ul>
+<li><blockquote>
+<p>Built-in supports for<a href="https://www.dotnettricks.com/learn/dependencyinjection">Dependency Injection</a></p>
+</blockquote></li>
+<li><blockquote>
+<p>Built-in supports for the logging framework and it can be extensible</p>
+</blockquote></li>
+<li><blockquote>
+<p>Introduced a new, fast and cross-platform web server - Kestrel. So, a web application can run without IIS, Apache, and Nginx.</p>
+</blockquote></li>
+<li><blockquote>
+<p>Multiple hosting ways are supported</p>
+</blockquote></li>
+<li><blockquote>
+<p>It supports modularity, so the developer needs to include the module required by the application. However, the <a href="https://www.dotnettricks.com/learn/netcore">.NET Core framework is also providing the meta package that includes the libraries</a></p>
+</blockquote></li>
+<li><blockquote>
+<p>Command-line supports to creating, building, and running of the application</p>
+</blockquote></li>
+<li><blockquote>
+<p>There is no web.config file. We can store the custom configuration into an appsettings.json file</p>
+</blockquote></li>
+<li><blockquote>
+<p>There is no Global.asax file. We can now register and use the services in the startup class</p>
+</blockquote></li>
+<li><blockquote>
+<p>It has good support for asynchronous programming</p>
+</blockquote></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-are-the-advantages-of-asp.net-core-over-asp.net">
+      <h2>What are the advantages of ASP.NET Core over ASP.NET?</h2>
+<p>There are the following advantages of ASP.NET Core over ASP.NET :</p>
+<ul>
+<li><blockquote>
+<p>It is cross-platform, so it can be run on Windows, Linux, and Mac.</p>
+</blockquote></li>
+<li><blockquote>
+<p>There is no dependency on framework installation because all the required dependencies are shipped with our application</p>
+</blockquote></li>
+<li><blockquote>
+<p>ASP.NET Core can handle more requests than the ASP.NET</p>
+</blockquote></li>
+<li><blockquote>
+<p>Multiple deployment options available withASP.NET Core</p>
+</blockquote></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-are-metapackages">
+      <h2>What are Metapackages?</h2>
+<p>The framework .NET Core 2.0 introduced Metapackage which includes all the supported packages by ASP.NET code with their dependencies into one package. It helps us to do fast development as we don't require to include the individual ASP.NET Core packages. The assembly Microsoft.AspNetCore.All is a meta package provided by ASP.NET core.</p>
+    </section>
+
+    <section class="topic" id="can-asp.net-core-application-work-with-full-.net-4.x-framework">
+      <h2>Can ASP.NET Core application work with full .NET 4.x Framework?</h2>
+<p>Yes. ASP.NET core application works with full .NET framework via the .NET standard library.</p>
+    </section>
+
+    <section class="topic" id="what-is-the-startup-class-in-asp.net-core">
+      <h2>What is the startup class in ASP.NET core?</h2>
+<p>The startup class is the entry point of the ASP.NET Core application. Every .NET Core application must have this class. This class contains the application configuration related items. It is not necessary that the class name must be "Startup", it can be anything, we can configure the startup class in the Program class.</p>
+<pre><code>public class Program
+{
+public static void Main(string[] args)
+{
+CreateWebHostBuilder(args).Build().Run();
+}
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =&gt;
+WebHost.CreateDefaultBuilder(args)
+.UseStartup&lt;TestClass&gt;();
+}</code></pre>
+    </section>
+
+    <section class="topic" id="configureservices-method">
+      <h2>ConfigureServices method?</h2>
+<p>This is an optional method of startup class. It can be used to configure the services that are used by the application. This method calls first when the application is requested for the first time. Using this method, we can add the services to the DI container, so services are available as a dependency in the controller constructor.</p>
+    </section>
+
+    <section class="topic" id="configure-method">
+      <h2>Configure method?</h2>
+<p>It defines how the application will respond to each HTTP request. We can configure the request pipeline by configuring the middleware. It accepts IApplicationBuilder as a parameter and also it has two optional parameters: IHostingEnvironment and ILoggerFactory. Using this method, we can configure built-in <a href="https://www.dotnettricks.com/learn/aspnetcore/middleware-custom-pipeline">middleware</a> such as routing, authentication, session, etc. as well as third-party middleware.</p>
+    </section>
+
+    <section class="topic" id="what-is-middleware">
+      <h2>What is middleware?</h2>
+<p>It is software that is injected into the application pipeline to handle requests and responses. They are just like chained to each other and form as a pipeline. The incoming requests are passed through this pipeline where all middleware is configured, and middleware can perform some action on the request before passing it to the next middleware. Same as for the responses, they are also passing through the middleware but in reverse order.</p>
+<h3 id="custom-middleware">Custom Middleware</h3>
+<p>Custom middleware is a component you insert into the application's request pipeline to handle specific functionalities like logging, authentication, or error handling. Each middleware component can perform tasks before and after the rest of the pipeline executes or short-circuit the pipeline entirely</p>
+<pre><code>public class CustomLoggingMiddleware
+{
+private readonly RequestDelegate _next;
+public CustomLoggingMiddleware(RequestDelegate next)
+{
+_next = next;
+}
+public async Task InvokeAsync(HttpContext context)
+{
+// Logic to execute BEFORE the next middleware
+Console.WriteLine($"Incoming request: {context.Request.Path}");
+// Call the next middleware in the pipeline
+await _next(context);</code></pre>
+<p><em>// Logic to execute AFTER the next middleware has finished and the response is being sent back</em></p>
+<p>Console.WriteLine($"Outgoing response: {context.Response.StatusCode}");</p>
+<p>}</p>
+<p>}</p>
+<p>Add an extension method</p>
+<pre><code>public static class CustomMiddlewareExtensions
+{
+public static IApplicationBuilder UseCustomLoggingMiddleware(this IApplicationBuilder builder)
+{
+return builder.UseMiddleware&lt;CustomLoggingMiddleware&gt;();
+}
+}
+Then call the middleware in program.cs file
+app.UseCustomLoggingMiddleware();</code></pre>
+    </section>
+
+    <section class="topic" id="iapplicationbuilder.use-and-iapplicationbuilder.run">
+      <h2>IApplicationBuilder.Use() and IApplicationBuilder.Run()?</h2>
+<p>We can use both the methods in Configure methods of the startup class. Both are used to add middleware delegates to the application request pipeline. The middleware adds using IApplicationBuilder.Use may call the next middleware in the pipeline whereas the middleware adds using IApplicationBuilder.The run method never calls the subsequent middleware. After IApplicationBuilder.Run method, system stop adding middleware in the request pipeline.</p>
+    </section>
+
+    <section class="topic" id="map-extension-middleware">
+      <h2>"Map" extension middleware?</h2>
+<p>It is used for branching the pipeline. It branches the ASP.NET Core pipeline based on request path matching. If the request path starts with the given path, middleware on to that branch will execute.</p>
+<pre><code>public void Configure(IApplicationBuilder app)
+{
+app.Map("/path1", Middleware1);
+app.Map("/path2", Middleware2);
+}</code></pre>
+    </section>
+
+    <section class="topic" id="what-is-routing-in-asp.net-core">
+      <h2>What is routing in ASP.NET Core?</h2>
+<p>Routing is functionality that map incoming request to the route handler. The route can have values (extract them from the URL) that are used to process the request. Using the route, routing can find a route handler based on the URL. All the routes are registered when the application is started. There are two types of <a href="https://www.dotnettricks.com/learn/aspnetcore/routing">routing</a> supported by ASP.NET Core</p>
+<ul>
+<li><blockquote>
+<p>The conventional routing</p>
+</blockquote></li>
+<li><blockquote>
+<p>Attribute routing</p>
+</blockquote></li>
+</ul>
+<p>The Routing uses routes to map incoming requests with the route handler and Generates URL that is used in response. Mostly, the application has a single collection of routes and this collection is used for the process of the request. The RouteAsync method is used to map incoming requests (that match the URL) with available in route collection.</p>
+    </section>
+
+    <section class="topic" id="how-to-enable-session-in-asp.net-core">
+      <h2>How to enable Session in ASP.NET Core?</h2>
+<p>The middleware for the session is provided by the package Microsoft.AspNetCore.Session. To use the session in the ASP.NET Core application, we need to add this package to the csproj file and add the Session middleware to the ASP.NET Core request pipeline.</p>
+<pre><code>public class Startup
+{
+public void ConfigureServices(IServiceCollection services)
+{
+….
+….
+services.AddSession();
+services.AddMvc();
+}
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+….
+….
+app.UseSession();
+….
+….
+}
+}</code></pre>
+    </section>
+
+    <section class="topic" id="json-files-in-asp.net-core">
+      <h2>JSON files in ASP.NET Core?</h2>
+<p>There are the following JSON files in ASP.NET Core :</p>
+<ul>
+<li><blockquote>
+<p>global.json</p>
+</blockquote></li>
+<li><blockquote>
+<p>launchsettings.json</p>
+</blockquote></li>
+<li><blockquote>
+<p>appsettings.json</p>
+</blockquote></li>
+<li><blockquote>
+<p>bundleconfig.json</p>
+</blockquote></li>
+<li><blockquote>
+<p>bower.json</p>
+</blockquote></li>
+<li><blockquote>
+<p>package.json</p>
+</blockquote></li>
+</ul>
+    </section>
+
+    <section class="topic" id="what-is-tag-helper-in-asp.net-core">
+      <h2>What is tag helper in ASP.NET Core?</h2>
+<p>It is a feature provided by the Razor view engine that enables us to write server-side code to create and render the HTML element in view (Razor). The tag-helper is a C# class that is used to generate the view by adding the HTML element. The functionality of the tag helper is very similar to the HTML helper of ASP.NET MVC.</p>
+<p>Example:</p>
+<p>//HTML Helper</p>
+<p>@Html.TextBoxFor(model =&gt; model.FirstName, new { @class = "form-control", placeholder = "Enter Your First Name" })</p>
+<p>//content with tag helper</p>
+<pre><code>&lt;input asp-for="FirstName" placeholder="Enter Your First Name" class="form-control" /&gt;
+//Equivalent HTML
+&lt;input placeholder="Enter Your First Name" class="form-control" id="FirstName" name="FirstName" value="" type="text"&gt;</code></pre>
+    </section>
+
+    <section class="topic" id="dependency-injection">
+      <h2>Dependency Injection</h2>
+<p>Dependency Injection (DI) is a software design pattern where a class receives its required objects (dependencies) from an external source rather than creating them itself. In C#, it is the standard way to achieve <strong>Loose Coupling</strong> and <strong>Inversion of Control (IoC)</strong>, making your code easier to maintain, test, and scale. </p>
+<p>Think of it this way: instead of a Car class being responsible for building its own Engine, the Engine is "injected" into the Car from the outside.</p>
+<p><strong>1. Why use Dependency Injection?</strong></p>
+<pre><code>Using the new keyword inside a class to create dependencies creates "tight coupling." DI helps solve several problems.</code></pre>
+<ul>
+<li><p><strong>Easier Testing:</strong> You can easily swap real services (like a database) with "mock" versions for unit testing.</p></li>
+<li><p><strong>Maintainability:</strong> If you need to change how a service is implemented, you only change it in one place (the registration) rather than every class that uses it.</p></li>
+<li><p><strong>Flexibility:</strong> It allows you to program to an <strong>interface</strong> rather than a concrete implementation. </p></li>
+</ul>
+<p><strong>2. Types of Dependency Injection</strong></p>
+<p>There are three main ways to "inject" dependencies into a C# class:</p>
+<ul>
+<li><p><strong>Constructor Injection (Most Common):</strong> The dependency is passed through the class constructor. This is the preferred method in .NET.</p></li>
+</ul>
+<p>csharp</p>
+<pre><code>public class ProductService {
+private readonly IRepository _repository;
+// The dependency is injected here
+public ProductService(IRepository repository) {
+_repository = repository;
+}
+}</code></pre>
+<ul>
+<li><p><strong>Property (Setter) Injection:</strong> The dependency is assigned to a public property. This is useful for <a href="https://www.codeguru.com/csharp/dependency-injection-c-sharp/">optional dependencies</a>.</p></li>
+<li><p><strong>Method Injection:</strong> The dependency is passed directly into a specific method as a parameter. </p></li>
+</ul>
+<p><strong>3. Service Lifetimes in .NET </strong></p>
+<p>When you register a service in the built-in .NET DI container, you must decide its "lifetime." According to <a href="https://www.geeksforgeeks.org/system-design/dependency-injectiondi-design-pattern/">GeeksforGeeks' guide on DI</a>, there are three primary scopes: </p>
+<table>
+<colgroup>
+<col style="width: 13%"/>
+<col style="width: 86%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Lifetime </strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Transient</strong></td>
+<td>Created every time they are requested from the service container.</td>
+</tr>
+<tr class="even">
+<td><strong>Scoped</strong></td>
+<td>Created once per client request (e.g., once per HTTP request in ASP.NET Core).</td>
+</tr>
+<tr class="odd">
+<td><strong>Singleton</strong></td>
+<td>Created once the first time they are requested; every subsequent request uses the same instance.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Implementation Steps</strong></p>
+<p>To implement DI in a modern .NET application (like ASP.NET Core), you typically follow these steps:</p>
+<ol type="1">
+<li><p><strong>Define an Interface:</strong> Create an interface (e.g., IMessageService) for your dependency.</p></li>
+<li><p><strong>Create an Implementation:</strong> Write the concrete class that implements that interface.</p></li>
+<li><p><strong>Register the Service:</strong> In your Program.cs file, register the interface and the implementation with the IServiceCollection.</p></li>
+<li><p><strong>Inject the Service:</strong> Add the interface as a parameter to the constructor of the class where you want to use it. </p></li>
+</ol>
+    </section>
+
+    <section class="topic" id="singleton-transient-scopped">
+      <h2>Singleton Transient Scopped</h2>
+<p>In .NET Core Dependency Injection, the difference between <strong>Singleton</strong>, <strong>Transient</strong>, and <strong>Scoped</strong> lies in how long the service instance lives and how it is shared across different parts of the application. </p>
+<table>
+<colgroup>
+<col style="width: 12%"/>
+<col style="width: 54%"/>
+<col style="width: 33%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Lifetime </strong></th>
+<th><strong>Instance Creation</strong></th>
+<th><strong>Shared Across</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Singleton</strong></td>
+<td>Created once when first requested, and the same instance is reused for the entire application lifetime.</td>
+<td>The entire application, all requests, and all components.</td>
+</tr>
+<tr class="even">
+<td><strong>Scoped</strong></td>
+<td><p>Created once per client request (e.g., an HTTP request in a web application), and that same instance is shared within that specific request's scope.</p>
+<p>Within the same HTTP request, every component that asks for the service will receive the <strong>same shared instance</strong>. A completely new instance is created for the next request.</p></td>
+<td>The current HTTP request or manually created scope only. Different requests get different instances.</td>
+</tr>
+<tr class="odd">
+<td><strong>Transient</strong></td>
+<td>A new instance is created every single time the service is requested from the dependency injection container, even within the same HTTP request.</td>
+<td>Not shared; each dependent object gets its own fresh instance.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>When to Use Which</strong></p>
+<ul>
+<li><p><strong>Singleton:</strong> Use for services that are expensive to create, need to maintain a global or application-wide state, or manage shared, static resources (like configuration settings or a memory cache).</p></li>
+<li><p><strong>Scoped:</strong> This is the most common lifetime for web applications and is ideal for services that need to maintain state during a single request but not across multiple requests. A prime example is the DbContext in Entity Framework Core, which should have one instance per request to manage data operations consistently.</p></li>
+<li><p><strong>Transient:</strong> Use for lightweight, stateless services where each use needs an independent instance to avoid concurrency issues or side effects. Simple utility or notification services are good candidates for transient lifetime.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="async-await-task">
+      <h2>Async Await Task</h2>
+<p>async and await keywords and the Task type simplify asynchronous programming by allowing non-blocking operations to be written in a way that reads like synchronous code. This improves application responsiveness, especially for I/O-bound tasks like network requests, database queries, or file access. </p>
+<p><strong>Key Concepts</strong></p>
+<ul>
+<li><p><strong>Task and Task&lt;T&gt;</strong>: <mark>The objects represent an ongoing asynchronous operation.</mark> A Task is used for methods that do not return a value (similar to void), while Task&lt;T&gt; is used for methods that return a result of type T.</p></li>
+<li><p><strong>async Keyword</strong>: <mark>async modifier is used in a method signature to indicate that the method can contain await expressions</mark>. It tells the compiler to generate a state machine to manage the asynchronous execution.</p></li>
+<li><p><strong>await Keyword</strong>: <mark>When the await operator is applied to a Task within an async method, the method suspends its execution and returns control to its caller</mark>. This frees up the current thread to perform other work. When the awaited task completes, the remainder of the method is scheduled to resume. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="service-integration">
+      <h2>Service Integration</h2>
+<p>builder.Services.AddHttpClient&lt;IThirdPartyApiClient, ThirdPartyApiClient&gt;(client =&gt;</p>
+<p>{</p>
+<p>client.BaseAddress = new Uri("https://api.example.com/");</p>
+<p>});</p>
+<pre><code>public class ThirdPartyApiClient : IThirdPartyApiClient
+{
+private readonly HttpClient _httpClient;
+public ThirdPartyApiClient(HttpClient httpClient)
+{
+_httpClient = httpClient; // HttpClient instance is provided by IHttpClientFactory
+}
+public async Task&lt;Product&gt; GetProductAsync(int id)
+{
+var response = await _httpClient.GetAsync($"products/{id}");
+response.EnsureSuccessStatusCode();
+return await response.Content.ReadFromJsonAsync&lt;Product&gt;();
+}
+}</code></pre>
+    </section>
+
+    <section class="topic" id="routing">
+      <h2>Routing</h2>
+<p><strong>Types of Routing</strong></p>
+<ul>
+<li><p><strong>Attribute Routing</strong>: Routes are defined directly on controllers or actions using attributes like [Route], [HttpGet], or [HttpPost]. This is the preferred method for <strong>REST APIs</strong> because it offers fine-grained control.</p></li>
+<li><p><strong>Conventional Routing</strong>: Routes are defined globally in a centralized location (usually Program.cs) using a template. The default pattern is typically {controller=Home}/{action=Index}/{id?}</p></li>
+</ul>
+<p><strong>Conventional Routing (in Program.cs):</strong></p>
+<ul>
+<li><p>app.MapControllerRoute(</p></li>
+<li><p>name: "default",</p></li>
+<li><p>pattern: "{controller=Home}/{action=Index}/{id?}");</p></li>
+</ul>
+<p><strong>Attribute Routing:</strong></p>
+<ul>
+<li><p>csharp</p></li>
+<li><p>[Route("api/[controller]")]</p></li>
+<li><p>public class ProductsController : ControllerBase {</p></li>
+<li><p>[HttpGet("{id:int}")] <em>// Matches: GET /api/products/5</em></p></li>
+<li><p>public IActionResult GetById(int id) { ... }</p></li>
+<li><p>}</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="exception-handling">
+      <h2>Exception Handling</h2>
+<h3 id="iexceptionhandler">1. IExceptionHandler</h3>
+<p>The IExceptionHandler interface requires implementing a single method, TryHandleAsync. It allows you to create focused handlers for specific error types, return customized responses like standardized <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-10.0">Problem Details (RFC 7807)</a>, and short-circuit the pipeline. [<a href="https://www.youtube.com/watch?v=rXdsm9R5TR0&amp;t=15">1</a>, <a href="https://www.youtube.com/watch?v=HTCb1zXQ6E4">2</a>, <a href="https://www.milanjovanovic.tech/blog/global-error-handling-in-aspnetcore-from-middleware-to-modern-handlers">3</a>]</p>
+<p><strong>Step 1: Create the Handler Class [<a href="https://timdeschryver.dev/blog/translating-exceptions-into-problem-details-responses">1</a>, <a href="https://medium.com/@quentinsims89/c-exception-design-patterns-part-5-modern-exception-handling-with-net-8-d296aa08356a">2</a>]</strong></p>
+<p>csharp</p>
+<p>using</p>
+<p>Use code with caution.</p>
+<p>csharp</p>
+<p>Microsoft.AspNetCore.Diagnostics</p>
+<p>Use code with caution.</p>
+<p>csharp</p>
+<p>;</p>
+<pre><code>using Microsoft.AspNetCore.Mvc;
+public class GlobalExceptionHandler : IExceptionHandler
+{
+private readonly ILogger&lt;GlobalExceptionHandler&gt; _logger;
+public GlobalExceptionHandler(ILogger&lt;GlobalExceptionHandler&gt; logger)
+{
+_logger = logger;
+}
+public async ValueTask&lt;bool&gt; TryHandleAsync(
+HttpContext httpContext,
+Exception exception,
+CancellationToken cancellationToken)
+{
+_logger.LogError(exception, "An unhandled exception occurred: {Message}", exception.Message);
+// Map specific exceptions to distinct status codes
+var (statusCode, title) = exception switch
+{
+ArgumentException =&gt; (StatusCodes.Status400BadRequest, "Bad Request"),
+KeyNotFoundException =&gt; (StatusCodes.Status404NotFound, "Resource Not Found"),
+_ =&gt; (StatusCodes.Status500InternalServerError, "Internal Server Error")
+};
+var problemDetails = new ProblemDetails
+{
+Status = statusCode,
+Title = title,
+Detail = exception.Message,
+Instance = httpContext.Request.Path
+};
+httpContext.Response.StatusCode = statusCode;
+// Write the RFC-compliant JSON response
+await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+// Return true to signal that this exception is handled
+return true;
+}
+}
+Use code with caution.
+[1, 2, 3, 4]
+Step 2: Register Services in Program.cs</code></pre>
+<p>You must register the implementation in your dependency injection container alongside built-in services: [<a href="https://codewithmukesh.com/blog/global-exception-handling-in-aspnet-core/">1</a>, <a href="https://www.milanjovanovic.tech/blog/global-error-handling-in-aspnetcore-from-middleware-to-modern-handlers">2</a>]</p>
+<p>csharp</p>
+<p>builder.Services.AddExceptionHandler&lt;GlobalExceptionHandler&gt;();</p>
+<p>builder.Services.AddProblemDetails(); // Generates standardized error metadata</p>
+<p>Use code with caution.</p>
+<p><strong>Step 3: Insert the Middleware [<a href="https://www.infoworld.com/article/2267138/how-to-use-response-caching-middleware-in-aspnet-core.html">1</a>]</strong></p>
+<p>Enable the pipeline interceptor. Place it early in the file so it wraps all subsequent operations: [<a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-10.0">1</a>, <a href="https://www.c-sharpcorner.com/article/how-to-implement-global-exception-handling-in-asp-net-core/">2</a>, <a href="https://codewithmukesh.com/blog/global-exception-handling-in-aspnet-core/">3</a>, <a href="https://www.milanjovanovic.tech/blog/global-error-handling-in-aspnetcore-from-middleware-to-modern-handlers">4</a>]</p>
+<p>csharp</p>
+<pre><code>var app = builder.Build();
+// Must be placed before routing or endpoints
+app.UseExceptionHandler();
+app.MapControllers();
+app.Run();
+Use code with caution.</code></pre>
+<h3 id="built-in-environment-specific-behavior">2. Built-in Environment-Specific Behavior</h3>
+<p>ASP.NET Core templates provide built-in middleware to structure responses differently based on your host environment. [<a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-10.0">1</a>, <a href="https://www.c-sharpcorner.com/article/exception-handling-3-in-asp-net-core-mvc/">2</a>]</p>
+<ul>
+<li><p><strong>Development (UseDeveloperExceptionPage)</strong>: Automatically mapped in local environments, this renders an HTML/JSON payload containing stack traces, database queries, and query string fragments. [<a href="https://www.tutorialsteacher.com/core/aspnet-core-exception-handling">1</a>, <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling-api?view=aspnetcore-10.0">2</a>]</p></li>
+<li><p><strong>Production (UseExceptionHandler("/error"))</strong>: Hides system internals to prevent data leaks. It can re-route the internal pipeline execution to a separate endpoint (like a Minimal API route or MVC Controller) to render generic customer messages. [<a href="https://www.linkedin.com/pulse/exception-handling-best-practices-aspnet-core-c-mohammed-rehan-javed-lolyf">1</a>, <a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-10.0">2</a>, <a href="https://codewithmukesh.com/blog/global-exception-handling-in-aspnet-core/">3</a>, <a href="https://www.c-sharpcorner.com/article/exception-handling-3-in-asp-net-core-mvc/">4</a>]</p></li>
+</ul>
+<p>csharp</p>
+<pre><code>if (app.Environment.IsDevelopment())
+{
+app.UseDeveloperExceptionPage();
+}
+else
+{
+app.UseExceptionHandler("/error"); // Reroutes internal execution path safely
+}
+Use code with caution.</code></pre>
+<h3 id="alternative-approaches-legacy-specialized">3. Alternative Approaches (Legacy & Specialized)</h3>
+<p>While IExceptionHandler is preferred for modern projects, alternative options exist based on structural constraints: [<a href="https://codewithmukesh.com/blog/global-exception-handling-in-aspnet-core/">1</a>]</p>
+<table>
+<colgroup>
+<col style="width: 17%"/>
+<col style="width: 32%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Method</strong></th>
+<th><strong>Best For</strong></th>
+<th><strong>Trade-offs</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Custom Middleware</strong></td>
+<td>Legacy .NET 7 or older architectures</td>
+<td>Requires manual try/catch and direct stream modification.</td>
+</tr>
+<tr class="even">
+<td><strong>Exception Filters</strong></td>
+<td>MVC/Controller-specific context actions</td>
+<td>Runs only inside MVC context; ignores errors in Minimal APIs or preceding middleware.</td>
+</tr>
+<tr class="odd">
+<td><strong>Try-Catch Blocks</strong></td>
+<td>Localized error recovery or alternative workflows</td>
+<td>Overusing causes messy code; never use for global architecture fallback.</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">ASP.NET Core Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#feature-of-.net-core-8">Feature of .Net Core 8</a>
+    <a href="#net-framewor-.net-core">.Net Framewor & .Net Core</a>
+    <a href="#what-is-the-asp.net-core">What is the ASP.NET Core?</a>
+    <a href="#what-are-the-features-provided-by-asp.net-core.">What are the features provided by ASP.NET Core?.</a>
+    <a href="#what-are-the-advantages-of-asp.net-core-over-asp.net">What are the advantages of ASP.NET Core over ASP.NET?</a>
+    <a href="#what-are-metapackages">What are Metapackages?</a>
+    <a href="#can-asp.net-core-application-work-with-full-.net-4.x-framework">Can ASP.NET Core application work with full .NET 4.x Framework?</a>
+    <a href="#what-is-the-startup-class-in-asp.net-core">What is the startup class in ASP.NET core?</a>
+    <a href="#configureservices-method">ConfigureServices method?</a>
+    <a href="#configure-method">Configure method?</a>
+    <a href="#what-is-middleware">What is middleware?</a>
+    <a href="#custom-middleware" class="sub-link">Custom Middleware</a>
+    <a href="#iapplicationbuilder.use-and-iapplicationbuilder.run">IApplicationBuilder.Use() and IApplicationBuilder.Run()?</a>
+    <a href="#map-extension-middleware">"Map" extension middleware?</a>
+    <a href="#what-is-routing-in-asp.net-core">What is routing in ASP.NET Core?</a>
+    <a href="#how-to-enable-session-in-asp.net-core">How to enable Session in ASP.NET Core?</a>
+    <a href="#json-files-in-asp.net-core">JSON files in ASP.NET Core?</a>
+    <a href="#what-is-tag-helper-in-asp.net-core">What is tag helper in ASP.NET Core?</a>
+    <a href="#dependency-injection">Dependency Injection</a>
+    <a href="#singleton-transient-scopped">Singleton Transient Scopped</a>
+    <a href="#async-await-task">Async Await Task</a>
+    <a href="#service-integration">Service Integration</a>
+    <a href="#routing">Routing</a>
+    <a href="#exception-handling">Exception Handling</a>
+    <a href="#iexceptionhandler" class="sub-link">1. IExceptionHandler</a>
+    <a href="#built-in-environment-specific-behavior" class="sub-link">2. Built-in Environment-Specific Behavior</a>
+    <a href="#alternative-approaches-legacy-specialized" class="sub-link">3. Alternative Approaches (Legacy & Specialized)</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

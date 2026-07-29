@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASP.NET MVC Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #5b5fc7;
+    --accent-deep: #40439c;
+    --accent-soft: #ecebfa;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Web Framework</span>
+      <h1>ASP.NET MVC Interview Questions</h1>
+      <p>MVC lifecycle, filters, routing, and view/session handling.</p>
+    </header>
+
+    <section class="topic" id="mvc-life-cycle">
+      <h2>MVC Life Cycle?</h2>
+<p>The steps for the execution of an MVC project includes</p>
+<ul>
+<li><p>Receive first request for the application</p></li>
+<li><p>Performs routing</p></li>
+<li><p>Creates MVC request handler</p></li>
+<li><p>Create Controller</p></li>
+<li><p>Execute Controller</p></li>
+<li><p>Invoke action</p></li>
+<li><p>Execute Result</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="return-types-of-a-controller-action-method">
+      <h2>Return types of a controller action method?</h2>
+<ul>
+<li><p>View Result</p></li>
+<li><p>Javascript Result</p></li>
+<li><p>Redirect Result</p></li>
+<li><p>Json Result</p></li>
+<li><p>Content Result</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="session-in-mvc">
+      <h2>Session in MVC?</h2>
+<ul>
+<li><p>Session can be maintained in MVC by three ways tempdata, viewdata, and viewbag.</p></li>
+</ul>
+<p><strong>Temp data, View, and View Bag?</strong></p>
+<ul>
+<li><p>Temp data: It helps to maintain data when you shift from one controller to other controller.</p></li>
+<li><p>View data: It helps to maintain data when you move from controller to view</p></li>
+<li><p>View Bag: It's a dynamic wrapper around view data.</p></li>
+</ul>
+<p><strong>Explain how you can send the result back in JSON format in MVC?</strong></p>
+<ul>
+<li><p>In order to send the result back in JSON format in MVC, you can use "JSONRESULT" class.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="filters-are-implemented">
+      <h2>Filters are implemented?</h2>
+<p>The filter order would be like</p>
+<ul>
+<li><p>Authorization filters</p></li>
+<li><p>Action filters</p></li>
+<li><p>Response filters</p></li>
+<li><p>Exception filters</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="view-and-partial-view">
+      <h2>View And Partial View</h2>
+<table>
+<colgroup>
+<col style="width: 49%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>View</strong></th>
+<th><strong>Partial View</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><ul>
+<li><p>It contains the layout page</p></li>
+<li><p>Before any view is rendered, viewstart page is rendered</p></li>
+<li><p>View might have markup tags like body, html, head, title, meta etc.</p></li>
+<li><p>View is not lightweight as compare to Partial View</p></li>
+</ul></td>
+<td><ul>
+<li><p>It does not contain the layout page</p></li>
+<li><p>Partial view does not verify for a viewstart.cshtml. We cannot put common code for a partial view within the viewStart.cshtml.page</p></li>
+<li><p>Partial view is designed specially to render within the view and just because of that it does not consist any mark up</p></li>
+<li><p>We can pass a regular view to the RenderPartial method</p></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mention what is the difference between "ActionResult" and "ViewResult"</strong></p>
+<p>"ActionResult" is an abstract class while "ViewResult" is derived from "AbstractResult" class. "ActionResult" has a number of derived classes like "JsonResult", "FileStreamResult" and "ViewResult" .</p>
+    </section>
+
+    <section class="topic" id="constraints-to-a-route">
+      <h2>Constraints to a route?</h2>
+<p>The two methods to add constraints to a route is</p>
+<ul>
+<li><p>Use regular expressions</p></li>
+<li><p>Use an object that implements IRouteConstraint Interface.</p></li>
+</ul>
+<p>What is Token Based Authentication in Web API?</p>
+<p> </p>
+<p>Token-based authentication is a process where the client application first sends a request to Authentication server with a valid credentials. The Authentication server sends an Access token to the client as a response. This token contains enough data to identify a particular user and it has an expiry time. The client application then uses the token to access the restricted resources in the next requests until the token is valid. If the Access token is expired, then the client application can request for a new access token by using Refresh token.</p>
+<p><img alt="https://csharpcorner.azureedge.net/article/web-ap/Images/TokenBasedAuthorization_1.png" src="media/image1.png" style="width:7.3677in;height:2.375in"/></p>
+<p><strong>Advantages of Token Based Authentication</strong></p>
+<ul>
+<li><p>Scalability of Servers</p></li>
+<li><p>Loosely Coupling</p></li>
+<li><p>Mobile-Friendly</p></li>
+</ul>
+<p><strong>Different Types of HTML Helpers in ASP.NET MVC</strong></p>
+<h3 id="standard-html-helper">1. Standard HTML Helper</h3>
+<p>The HTML helpers that are mainly used to render HTML elements like text boxes, checkboxes, Radio Buttons, and Dropdown lists, etc. are called Standard HTML helpers. </p>
+<p>@Html.ActionLink() - Used to create link on html page</p>
+<p>@Html.TextBox() - Used to create text box</p>
+<p>@Html.CheckBox() - Used to create check box</p>
+<p>@Html.RadioButton() - Used to create Radio Button</p>
+<p>@Html.BeginFrom() - Used to start a form</p>
+<p>@Html.EndFrom() - Used to end a form</p>
+    </section>
+
+    <section class="topic" id="route">
+      <h2>Route</h2>
+<p>Routing is a mechanism to process the incoming url that is more descriptive and give desired response. In this case, URL is not mapped to specific files or folder as was the case of earlier days web sites.</p>
+<p>There are two types of routing (after the introduction of ASP.NET MVC 5).</p>
+<ol type="1">
+<li><p><strong>Convention based routing</strong> - to define this type of routing, we call MapRoute method and set its unique name, url pattern and specify some default values.</p></li>
+<li><p><strong>Attribute based routing</strong> - to define this type of routing, we specify the Route attribute in the action method of the controller.</p></li>
+</ol>
+    </section>
+
+    <section class="topic" id="custom-route-constraints">
+      <h2>Custom Route Constraints</h2>
+<p>To create a custom route constraint, we have implemented our class from an IRouteConstraint interface. It is a very simple interface and contains the single method: Match. This method returns a Boolean value. If we return false from this method then the route associated with the constraint would not match the request.<br/>
+<br/>
+<strong>Definition of IRouteConstraint interface</strong></p>
+<ol type="1">
+<li><p><strong>public</strong> <strong>interface</strong> IRouteConstraint  </p></li>
+<li><p>{  </p></li>
+<li><p>    <strong>bool</strong> Match(HttpContextBase httpContext, Route route, <strong>string</strong> parameterName, RouteValueDictionary values, RouteDirection routeDirection);  </p></li>
+<li><p>} </p></li>
+</ol>
+<p>Exception Handling in MVC</p>
+<p> </p>
+<p>In ASP.NET MVC we have a larger list of ways to handle exception such as:</p>
+<ul>
+<li><p>Try-catch-finally</p></li>
+<li><p>Overriding OnException method</p></li>
+<li><p>Using the [HandleError] attribute on actions and controllers</p></li>
+<li><p>Setting a global exception handling filter</p></li>
+<li><p>Handling Application_Error event</p></li>
+<li><p>Extending HandleErrorAttribute</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="overriding-onexception-method">
+      <h2>Overriding OnException method</h2>
+<p><strong>OnException</strong> is a void method that takes an argument as an object of <strong>ExceptionContext</strong> that has all the information about the exception that can be used to log. We need to set ExceptionHandled = true for the ExceptionContext object. We can handle the exception generated from all the actions from a specific controller. We can get the action name from ExceptionContext as in:</p>
+<pre><code>Using HandleError Attribute</code></pre>
+<p> </p>
+<p>This is a simple way to handle exceptions in MVC. Remove the OnException implementation from the previous code. Use the following procedure to do that.</p>
+<p> </p>
+<p><strong>Step 1</strong></p>
+<p> </p>
+<p>Add &lt;customErrors mode="On" &gt;&lt;/customErrors&gt; in web.config under &lt;system.web&gt;.</p>
+<p> </p>
+<p><strong>Step 2</strong></p>
+<p> </p>
+<p>Decorate the action with [HandleError] as:</p>
+<ol type="1">
+<li><p>[HandleError]  </p></li>
+<li><p><strong>public</strong> ActionResult Index()  </p></li>
+<li><p>{  </p></li>
+<li><p><strong>   int</strong> a = 1;  </p></li>
+<li><p><strong>   int</strong> b = 0;  </p></li>
+<li><p><strong>   int</strong> c = 0;  </p></li>
+<li><p>   c = a / b; //it would cause exception.   </p></li>
+<li><p><strong>   return</strong> View();  </p></li>
+<li><p>}  </p></li>
+</ol>
+<p>We can handle a different exception with a different view with [HandleError] as in the following:</p>
+<ol type="1">
+<li><p>[HandleError]  </p></li>
+<li><p>[HandleError(ExceptionType = <strong>typeof</strong>(DivideByZeroException), View = "Error1")]  </p></li>
+<li><p>[HandleError(ExceptionType = <strong>typeof</strong>(ArgumentOutOfRangeException), View = "Error2")]  </p></li>
+<li><p><strong>public</strong> ActionResult Index()  </p></li>
+<li><p> {  </p></li>
+<li><p>     <strong>int</strong> a = 1;  </p></li>
+<li><p>     <strong>int</strong> b = 0;  </p></li>
+<li><p>     <strong>int</strong> c = 0;  </p></li>
+<li><p>     c = a / b; //it would cause exception.             </p></li>
+<li><p>     <strong>return</strong> View();  </p></li>
+<li><p> }  </p></li>
+</ol>
+<p>Extending HandleErrorAttribute</p>
+<p> </p>
+<p>We can also create our own Exception Handler by inheriting from HandleErrorAttribute as in the following:</p>
+<ol type="1">
+<li><p><strong>public</strong> <strong>class</strong> MyExceptionHandler : HandleErrorAttribute  </p></li>
+<li><p>{  </p></li>
+<li><p>     <strong>public</strong> <strong>override</strong> <strong>void</strong> OnException(ExceptionContext filterContext)  </p></li>
+<li><p>     {  </p></li>
+<li><p>          <strong>if</strong> (filterContext.ExceptionHandled ||filterContext.HttpContext.IsCustomErrorEnabled)  </p></li>
+<li><p>           {  </p></li>
+<li><p>               <strong>return</strong>;  </p></li>
+<li><p>           }  </p></li>
+<li><p>           Exception e = filterContext.Exception;  </p></li>
+<li><p>           filterContext.ExceptionHandled = <strong>true</strong>;  </p></li>
+<li><p>           filterContext.Result = <strong>new</strong> ViewResult()  </p></li>
+<li><p>           {  </p></li>
+<li><p>               ViewName = "Error2"  </p></li>
+<li><p>           };  </p></li>
+<li><p>    }  </p></li>
+<li><p>}  </p></li>
+</ol>
+<p>We need to set ExceptionHandled = true for the ExceptionContext object. We can handle the exception generated from all the actions from a specific controller. We can also get the action name form ExceptionContext as in the following:</p>
+<ol type="1">
+<li><p><strong>string</strong> action = filterContext.RouteData.Values["action"].ToString(); </p></li>
+</ol>
+    </section>
+
+    <section class="topic" id="state-and-session">
+      <h2>State and Session</h2>
+<p>ASP.NET MVC also provides state management techniques that can help us to maintain the data when redirecting from one page to other page or in the same page after reloading. There are several ways to do this in ASP.NET MVC -</p>
+<ol type="1">
+<li><p>Hidden Field</p></li>
+<li><p>Cookies</p></li>
+<li><p>Query String</p></li>
+<li><p>ViewData</p></li>
+<li><p>ViewBag</p></li>
+<li><p>TempData</p></li>
+</ol>
+<p><strong>Bundling<br/>
+<br/>
+</strong>The bundle is a logical group of physical files, which loads in a single HTTP request. We have separate CSS files, which can be loaded in a single request with the help of bundling. The bundling also can create for JavaScript files separately. A bundle can’t contain both CSS and JavaScript files. We need to create a separate bundle for CSS and JavaScript files. We create a bundle, based on the use of CSS or JS files in the Application. For example, an Application uses both the bootstrap and site CSS for UI design, due to which we create a common bundle for them, such as a core bundle. The following figure shows a logical grouping of a file to create a bundle.</p>
+<p><strong>Minification</strong><br/>
+<br/>
+The Minification is a technique for removing unnecessary characters (white space, newline, tab), comments and short variable names from the text based files such as JavaScript and CSS files without expecting alter functionality to reduce the size, which causes improved load times of a Webpage. There are some tools available to minify JS and CSS files. We can download Visual Studio extension from <a href="https://visualstudiogallery.msdn.microsoft.com/56633663-6799-41d7-9df7-0f2a504ca361">link</a> for minifying JS and CSS files.</p>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">ASP.NET MVC Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#mvc-life-cycle">MVC Life Cycle?</a>
+    <a href="#return-types-of-a-controller-action-method">Return types of a controller action method?</a>
+    <a href="#session-in-mvc">Session in MVC?</a>
+    <a href="#filters-are-implemented">Filters are implemented?</a>
+    <a href="#view-and-partial-view">View And Partial View</a>
+    <a href="#constraints-to-a-route">Constraints to a route?</a>
+    <a href="#standard-html-helper" class="sub-link">1. Standard HTML Helper</a>
+    <a href="#route">Route</a>
+    <a href="#custom-route-constraints">Custom Route Constraints</a>
+    <a href="#overriding-onexception-method">Overriding OnException method</a>
+    <a href="#state-and-session">State and Session</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

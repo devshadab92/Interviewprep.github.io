@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #c14f7a;
+    --accent-deep: #953c5e;
+    --accent-soft: #f8e9ef;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Databases</span>
+      <h1>SQL Interview Questions</h1>
+      <p>Joins, keys, indexes, window functions, and query performance tuning.</p>
+    </header>
+
+    <section class="topic" id="acid">
+      <h2>ACID</h2>
+<p>In SQL, <strong>ACID</strong> (an acronym for <strong>A</strong>tomicity, <strong>C</strong>onsistency, <strong>I</strong>solation, and <strong>D</strong>urability) is a set of four core properties that guarantee database transactions are processed reliably. These properties are fundamental to relational database management systems (RDBMS) like SQL Server, MySQL, and <a href="https://www.oracle.com/">Oracle</a> to ensure data integrity during complex operations. </p>
+<p>Here is a detailed breakdown of the ACID properties:</p>
+<ul>
+<li><p><strong>A - Atomicity ("All or Nothing")</strong>: Ensures that all operations within a transaction are completed successfully; if any single statement fails, the entire transaction is aborted and rolled back to its previous state.</p>
+<ul>
+<li><p><mark><em>Example:</em> In a bank transfer, if money is debited from Account A but a system crash prevents it from being credited to Account B, Atomicity rolls back the debit so money isn't lost.</mark></p></li>
+</ul></li>
+<li><p><strong>C - Consistency (Validity Rules)</strong>: Guarantees that a transaction transforms the database from one valid state to another, maintaining all predefined rules, constraints, triggers, and cascades.</p>
+<ul>
+<li><p><em>Example:</em> If a column is defined as NOT NULL or a total balance must equal the sum of its parts, a transaction violating these rules will fail and rollback.</p></li>
+</ul></li>
+<li><p><strong>I - Isolation (Independent Execution)</strong>: Ensures that concurrent transactions do not interfere with each other. Intermediate, uncommitted states of a transaction are not visible to other transactions.</p>
+<ul>
+<li><p><em>Example:</em> If two people try to buy the last seat on a flight simultaneously, Isolation ensures only one transaction succeeds, preventing double-booking.</p></li>
+</ul></li>
+<li><p><strong>D - Durability (Permanent Commit)</strong>: Guarantees that once a transaction has been committed, it will remain in the database, even in the event of a power failure or system crash.</p>
+<ul>
+<li><p><em>Example:</em> Once the system confirms your order is placed, that data is written to non-volatile storage (disk) and will not disappear if the server immediately restarts. </p></li>
+</ul></li>
+</ul>
+<p><strong>Why is ACID Important?</strong></p>
+<p>ACID-compliant databases are crucial for applications where data reliability is non-negotiable, such as: </p>
+<ul>
+<li><p><strong>Financial Transactions:</strong> Money transfer systems.</p></li>
+<li><p><strong>Inventory Management:</strong> Preventing overselling.</p></li>
+<li><p><strong>Order Processing:</strong> Ensuring payment and stock updates match</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="ddl-dql-dml-dcl-and-tcl">
+      <h2>DDL, DQL, DML, DCL and TCL</h2>
+<ol type="1">
+<li><blockquote>
+<p>DDL – Data Definition Language</p>
+</blockquote></li>
+<li><blockquote>
+<p>DQl – Data Query Language</p>
+</blockquote></li>
+<li><blockquote>
+<p>DML – Data Manipulation Language</p>
+</blockquote></li>
+<li><blockquote>
+<p>DCL – Data Control Language</p>
+</blockquote></li>
+</ol>
+<p><strong>DDL</strong></p>
+<ul>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-create/"><u>CREATE</u></a> – is used to create the database or its objects (like table, index, function, views, store procedure and triggers).</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-drop-truncate/"><u>DROP</u></a> – is used to delete objects from the database.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-alter-add-drop-modify/"><u>ALTER</u></a>-is used to alter the structure of the database.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-drop-truncate/"><u>TRUNCATE</u></a>–is used to remove all records from a table, including all spaces allocated for the records are removed.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-comments/"><u>COMMENT</u></a> –is used to add comments to the data dictionary.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-alter-rename/"><u>RENAME </u></a>–is used to rename an object existing in the database.</p>
+</blockquote></li>
+</ul>
+<p><strong>Examples of DML:</strong></p>
+<ul>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-insert-statement/"><u>INSERT</u></a> – is used to insert data into a table.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-update-statement/"><u>UPDATE</u></a> – is used to update existing data within a table.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-delete-statement/"><u>DELETE</u></a> – is used to delete records from a database table.</p>
+</blockquote></li>
+</ul>
+<p><strong>Examples of DCL commands:</strong></p>
+<ul>
+<li><blockquote>
+<p><strong>GRANT</strong>-gives user’s access privileges to database.</p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>REVOKE</strong>-withdraw user’s access privileges given by using the GRANT command.</p>
+</blockquote></li>
+</ul>
+<p><strong>Examples of TCL commands:</strong></p>
+<ul>
+<li><blockquote>
+<p><strong>COMMIT</strong>– commits a Transaction.</p>
+</blockquote></li>
+<li><blockquote>
+<p><a href="https://www.geeksforgeeks.org/sql-transactions/"><u>ROLLBACK</u></a>– rollbacks a transaction in case of any error occurs.</p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>SAVEPOINT</strong>–sets a savepoint within a transaction.</p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>SET TRANSACTION</strong>–specify characteristics for the transaction.</p>
+</blockquote></li>
+</ul>
+<p>SQL FOREIGN KEY</p>
+<p>In the relational databases, a foreign key is a field or a column that is used to establish a link between two tables.</p>
+<p>In simple words you can say that, a foreign key in one table used to point primary key in another table.</p>
+    </section>
+
+    <section class="topic" id="unique-key-in-sql">
+      <h2>Unique Key in SQL</h2>
+<p>A unique key is a set of one or more than one fields/columns of a table that uniquely identify a record in a database table.</p>
+<p>You can say that it is little like primary key but it can accept only one null value and it cannot have duplicate values.</p>
+<p>The unique key and primary key both provide a guarantee for uniqueness for a column or a set of columns.</p>
+    </section>
+
+    <section class="topic" id="alernate-key-in-sql">
+      <h2>Alernate Key in SQL</h2>
+<p>In simple words, you can say that any of the candidate key which is not part of primary key is called an alternate key. So when we talk about alternate key, the column may not be primary key but still it is a unique key in the column.</p>
+    </section>
+
+    <section class="topic" id="joins">
+      <h2>JOINs</h2>
+<p>Here are the different types of the JOINs in SQL:</p>
+<ul>
+<li><p>(INNER) JOIN: Returns records that have matching values in both tables</p></li>
+<li><p>LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table</p></li>
+<li><p>RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table</p></li>
+<li><p>FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table</p></li>
+<li><p>Self Join</p></li>
+</ul>
+<blockquote>
+<p>SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City<br/>
+FROM Customers A, Customers B<br/>
+WHERE A.CustomerID &lt;&gt; B.CustomerID<br/>
+AND A.City = B.City<br/>
+ORDER BY A.City;</p>
+</blockquote>
+<p><img alt="SQL INNER JOIN" src="media/image1.gif" style="width:2.08333in;height:1.50694in"/>  <img alt="SQL LEFT JOIN" src="media/image2.gif" style="width:2.08333in;height:1.50694in"/>  <img alt="SQL RIGHT JOIN" src="media/image3.gif" style="width:2.08333in;height:1.50694in"/>  <img alt="SQL FULL OUTER JOIN" src="media/image4.gif" style="width:2.08333in;height:1.50694in"/></p>
+    </section>
+
+    <section class="topic" id="sql-composite-key">
+      <h2>SQL Composite Key</h2>
+<p>A composite key is a combination of two or more columns in a table that can be used to uniquely identify each row in the table when the columns are combined uniqueness is guaranteed, but when it taken individually it does not guarantee uniqueness.</p>
+<p>Sometimes more than one attributes are needed to uniquely identify an entity. A primary key that is made by the combination of more than one attribute is known as a composite key.</p>
+    </section>
+
+    <section class="topic" id="cte-in-sql.">
+      <h2>CTE in SQL.</h2>
+<p>The common table expression (CTE) is a temporary named result set that you can reference within a SELECT, INSERT, UPDATE, or DELETE statement. You can also use a CTE in a CREATE a view, as part of the view’s SELECT query. In addition, as of SQL Server 2008, you can add a CTE to the new MERGE statement.</p>
+    </section>
+
+    <section class="topic" id="view-in-sql">
+      <h2>View In SQL</h2>
+<p>A SQL View is a virtual table created from the result of a SELECT query. It does not store data physically but displays data stored in underlying tables. Views help simplify complex queries, enhance security, and present data in a cleaner, customized format.</p>
+<p><strong>Example:</strong> First, we will <a href="https://www.geeksforgeeks.org/sql/sql-create-table/">create</a> a demo SQL database and table, on which we will use the TRUNCATE TABLE command.</p>
+<p><img alt="student_details" src="media/image5.png" style="width:7.29097in;height:1.21944in"/></p>
+<p><strong>Query:</strong></p>
+<pre><code>CREATE VIEW StudentView AS
+SELECT NAME, ADDRESS
+FROM StudentDetails;
+SELECT * FROM StudentView;</code></pre>
+    </section>
+
+    <section class="topic" id="temp-table">
+      <h2>Temp Table</h2>
+<p>A temporary table in SQL Server, as the name suggests, is a database table that exists temporarily on the database server. A temporary table stores a subset of data from a normal table for a certain period of time.</p>
+    </section>
+
+    <section class="topic" id="magic-table">
+      <h2>Magic Table</h2>
+<p>"Magic tables" in SQL Server are special, <strong>virtual, temporary tables</strong> that are automatically created and managed by the database engine during data modification (DML) operations (INSERT, UPDATE, or DELETE)</p>
+<h3 id="types-of-magic-tables">Types of Magic Tables</h3>
+<p>There are two primary types of magic tables in SQL Server: </p>
+<ul>
+<li><p><strong>INSERTED table</strong>: This table holds the <strong>new data</strong> values of the rows that are being inserted or updated.</p></li>
+<li><p><strong>DELETED table</strong>: This table holds the <strong>old data</strong> values (the state before the change) of the rows that are being deleted or updated. </p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="prformance-improvement">
+      <h2>Prformance Improvement</h2>
+<p><strong>1. Analyze the Execution Plan</strong></p>
+<p>Before changing your code, identify the exact bottleneck. Use the EXPLAIN (MySQL/PostgreSQL) or Include Actual Execution Plan (SQL Server) command. Look out for:</p>
+<ul>
+<li><p><strong>Table Scans / Sequential Scans</strong>: The database is reading the entire table row-by-row.</p></li>
+<li><p><strong>Costly Joins</strong>: Hash matches or nested loops processing too many rows.</p></li>
+<li><p><strong>High-Cost Steps</strong>: Operations taking up a massive percentage of total execution time.</p></li>
+</ul>
+<p><strong>2. Optimize Indexes</strong></p>
+<p>Indexes act like a book's index, letting the database skip straight to the relevant data. [<a href="https://www.thoughtspot.com/data-trends/data-modeling/optimizing-sql-queries">1</a>]</p>
+<ul>
+<li><p><strong>Index Filter Columns</strong>: Add indexes to fields heavily utilized in WHERE, JOIN, ORDER BY, and GROUP BY clauses.</p></li>
+<li><p><strong>Use Composite Indexes</strong>: If you routinely filter by multiple columns (e.g., country and status), build a single index covering both fields. Ensure you order the index columns from most selective to least selective.</p></li>
+<li><p><strong>Avoid Over-Indexing</strong>: Too many indexes slow down write operations (INSERT, UPDATE, DELETE) because every index must update simultaneously.</p></li>
+</ul>
+<p><strong>3. Refactor Your SQL Code</strong></p>
+<p>Small changes in syntax can produce massive speed improvements:</p>
+<ul>
+<li><p><strong>Stop Using SELECT *</strong>: Explicitly name only the columns you actually need. This minimizes memory usage, reduces network traffic, and respects indexing limits.</p></li>
+<li><p><strong>Make Queries "Sargable"</strong>: Avoid wrapping indexed columns inside functions or calculations in your WHERE clause. This breaks the index and forces a full table scan.</p>
+<ul>
+<li><p><em>Inefficient</em>: WHERE YEAR(joining_date) = 2026</p></li>
+<li><p><em>Optimized</em>: WHERE joining_date &gt;= '2026-01-01' AND joining_date &lt; '2027-01-01'</p></li>
+</ul></li>
+<li><p><strong>Filter Early with WHERE</strong>: Use WHERE to drop unneeded data before grouping, rather than using HAVING to filter aggregated totals.</p></li>
+<li><p><strong>Prefer UNION ALL over UNION</strong>: Regular UNION forces a hidden sort operation to eliminate duplicates. If duplicates do not matter, or you know the datasets are distinct, use UNION ALL for instant speed.</p></li>
+<li><p><strong>Avoid Leading Wildcards</strong>: Using LIKE '%keyword' forces a full table scan. Try to structure your searches as LIKE 'keyword%' so the engine can utilize database indexes.</p></li>
+</ul>
+<p><strong>4. Optimize Joins and Subqueries</strong></p>
+<ul>
+<li><p><strong>Prefer EXISTS over IN</strong>: When verifying if a record exists in a subquery, EXISTS halts processing the exact moment it identifies a single match, whereas IN evaluates the entire dataset. [<a href="https://www.youtube.com/watch?v=7atNyDISwlI&amp;t=61">1</a>]</p></li>
+<li><p><strong>Leverage CTEs</strong>: Use Common Table Expressions (the WITH clause) to break up sprawling logic. You can isolate a specific operation, apply filters or deduplication early on, and pass a smaller dataset downstream.</p></li>
+</ul>
+<p><strong>5. Architectural &amp; Schema Updates</strong></p>
+<ul>
+<li><p><strong>Table Partitioning</strong>: For multi-million row tables, break the database down into logical partitions (e.g., partitioning a ledger by year) to sharply cut scan sizes.</p></li>
+<li><p><strong>Keep Statistics Updated</strong>: Cost-based optimizers depend on accurate table data statistics to determine the fastest query path. Run your engine’s native statistics update routine regularly.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="query-to-find-the-highest-salary">
+      <h2>Query to find the highest salary</h2>
+<ol type="1">
+<li><p>SELECT*FROM  [DBO].[EMPLOYEE] ORDER BY SALARY DESC  </p></li>
+<li><p>  </p></li>
+<li><p>SELECT MAX(SALARY) FROM EMPLOYEE </p></li>
+</ol>
+<h3 id="rd-number-of-highest-salary-using-dense_rank-function">3rd number of highest salary using DENSE_RANK function</h3>
+<ol type="1">
+<li><p>SELECT SALARY,  </p></li>
+<li><p>           DENSE_RANK() OVER (ORDER BY SALARY DESC) AS SALARY_RANK  </p></li>
+</ol>
+<blockquote>
+<p>FROM EMPLOYEE </p>
+</blockquote>
+<h3 id="nd-highest-salary">2nd Highest Salary</h3>
+<pre><code>WITH T AS
+(
+SELECT *
+DENSE_RANK() OVER (ORDER BY Salary Desc) AS Rnk
+FROM Employees
+)
+SELECT Name
+FROM T
+WHERE Rnk=2;</code></pre>
+<h3 id="average-salary">Average Salary</h3>
+<pre><code>SELECT first_name, last_name, salary FROM employees WHERE salary &gt; (SELECT AVG(salary) FROM employees);</code></pre>
+    </section>
+
+    <section class="topic" id="function-vs-sp">
+      <h2>Function VS SP</h2>
+<table>
+<colgroup>
+<col style="width: 53%"/>
+<col style="width: 46%"/>
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Functions</strong></th>
+<th><strong>Procedures</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A function has a return type and returns a value.</td>
+<td>A procedure does not have a return type. But it returns values using the OUT parameters.</td>
+</tr>
+<tr class="even">
+<td>You cannot use a function with Data Manipulation queries. Only Select queries are allowed in functions.</td>
+<td>You can use DML queries such as insert, update, select etc… with procedures.</td>
+</tr>
+<tr class="odd">
+<td>A function does not allow output parameters</td>
+<td>A procedure allows both input and output parameters.</td>
+</tr>
+<tr class="even">
+<td>You cannot manage transactions inside a function.</td>
+<td>You can manage transactions inside a procedure.</td>
+</tr>
+<tr class="odd">
+<td>You cannot call stored procedures from a function</td>
+<td>You can call a function from a stored procedure.</td>
+</tr>
+<tr class="even">
+<td>You can call a function using a select statement.</td>
+<td>You cannot call a procedure using select statements.</td>
+</tr>
+</tbody>
+</table>
+    </section>
+
+    <section class="topic" id="trigger">
+      <h2>Trigger</h2>
+<p>A<strong> </strong>trigger is a special stored procedure in a database that automatically executes when specific events (like INSERT, UPDATE, or DELETE) occur on a table. Triggers help automate tasks, maintain data consistency, and record database activities. Each trigger is tied to a particular table and runs without manual execution.</p>
+    </section>
+
+    <section class="topic" id="view-in-sql-1">
+      <h2>View In Sql</h2>
+<blockquote>
+<p>Views in SQL are kind of virtual tables. A view also has rows and columns as they are in a real table in the database. We can create a view by selecting fields from one or more tables present in the database. A View can either have all the rows of a table or specific rows based on certain condition.</p>
+</blockquote>
+<p><strong>Syntax</strong>:</p>
+<pre><code>CREATE VIEW view_name AS
+SELECT column1, column2.....
+FROM table_name
+WHERE condition;</code></pre>
+    </section>
+
+    <section class="topic" id="indexes">
+      <h2>Indexes</h2>
+<h3 id="clustered-index">Clustered Index</h3>
+<p>A B-Tree (computed) clustered index is the index that will arrange the rows physically in the memory in sorted order.<br/>
+<br/>
+An advantage of a clustered index is that searching for a range of values will be fast. A clustered index is internally maintained using a B-Tree data structure leaf node of btree of clustered index will contain the table data; you can create only one clustered index for a table.</p>
+<h3 id="non-clustered-index">Non-clustered Index</h3>
+<ul>
+<li><blockquote>
+<p>A non-clustered index is an index that will not arrange the rows physically in the memory in sorted order.</p>
+</blockquote></li>
+<li><blockquote>
+<p>An advantage of a non-clustered index is searching for the values that are in a range will be fast.</p>
+</blockquote></li>
+<li><blockquote>
+<p>You can create a maximum of 999 non-clustered indexes on a table, which is 254 up to SQL Server 2005.</p>
+</blockquote></li>
+<li><blockquote>
+<p>A non-clustered index is also maintained in a B-Tree data structure but leaf nodes of a B-Tree of non-clustered index contains the pointers to the pages that contain the table data and not the table data directly.</p>
+</blockquote></li>
+</ul>
+    </section>
+
+    <section class="topic" id="union-and-union-all">
+      <h2>Union And Union All</h2>
+<p><strong><br/>
+</strong>A union is used for extracting rows using the conditions specified in the query while Union All is used for extracting all the rows from a set of two tables.</p>
+<ul>
+<li><p><strong>Syntax –</strong></p></li>
+<li><p>query1 UNION ALL query2</p></li>
+<li><p>The same conditions are applicable to Union All. The only difference between Union and Union All is that Union extracts the rows that are being specified in the query while Union All extracts all the rows including the duplicates (repeated values) from both the queries.</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="linq-second-highest-salary">
+      <h2>Linq Second Highest Salary</h2>
+<pre><code>var employeesWithSecondHighestSalary = employees
+.GroupBy(e =&gt; e.Salary) // Group employees by their salary
+.OrderByDescending(g =&gt; g.Key) // Order the groups by the salary (key) descending
+.Skip(1) // Skip the highest salary group
+.FirstOrDefault()? // Get the second highest group or null
+.ToList();</code></pre>
+    </section>
+
+    <section class="topic" id="delete-record">
+      <h2>Delete record</h2>
+<pre><code>WITH CTE_Duplicates AS (
+SELECT
+*,
+ROW_NUMBER() OVER (
+PARTITION BY Column1, Column2, Column3 -- List all columns that define a unique row
+ORDER BY (SELECT NULL) -- Order by an arbitrary value if order doesn't matter
+) AS RowNum
+FROM
+YourTableName
+)
+DELETE FROM CTE_Duplicates
+WHERE RowNum &gt; 1;</code></pre>
+    </section>
+
+    <section class="topic" id="rank-function">
+      <h2>RANK() Function</h2>
+<p>The <a href="https://www.geeksforgeeks.org/sql/rank-function-in-sql-server/">RANK() function</a> in SQL Server is a tool used to<strong> </strong>assign a position or rank to each row in a result set based on specific criteria. If two or more rows share the same values according to the specified criteria, they will receive the same rank. In this scenario, the rank of the next row is incremented by the number of tied rows.</p>
+<h3 id="dense_rank-function">DENSE_RANK() Function</h3>
+<p>The DENSE_RANK() function assigns ranks to rows based on specified criteria, similar to RANK(). Unlike RANK(), it avoids gaps by giving tied rows consecutive ranks, ensuring a continuous sequence. It is especially useful when a clear, uninterrupted ranking is needed for accurate analysis and reporting.</p>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">SQL Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#acid">ACID</a>
+    <a href="#ddl-dql-dml-dcl-and-tcl">DDL, DQL, DML, DCL and TCL</a>
+    <a href="#unique-key-in-sql">Unique Key in SQL</a>
+    <a href="#alernate-key-in-sql">Alernate Key in SQL</a>
+    <a href="#joins">JOINs</a>
+    <a href="#sql-composite-key">SQL Composite Key</a>
+    <a href="#cte-in-sql.">CTE in SQL.</a>
+    <a href="#view-in-sql">View In SQL</a>
+    <a href="#temp-table">Temp Table</a>
+    <a href="#magic-table">Magic Table</a>
+    <a href="#types-of-magic-tables" class="sub-link">Types of Magic Tables</a>
+    <a href="#prformance-improvement">Prformance Improvement</a>
+    <a href="#query-to-find-the-highest-salary">Query to find the highest salary</a>
+    <a href="#rd-number-of-highest-salary-using-dense_rank-function" class="sub-link">3rd number of highest salary using DENSE_RANK function</a>
+    <a href="#nd-highest-salary" class="sub-link">2nd Highest Salary</a>
+    <a href="#average-salary" class="sub-link">Average Salary</a>
+    <a href="#function-vs-sp">Function VS SP</a>
+    <a href="#trigger">Trigger</a>
+    <a href="#view-in-sql-1">View In Sql</a>
+    <a href="#indexes">Indexes</a>
+    <a href="#clustered-index" class="sub-link">Clustered Index</a>
+    <a href="#non-clustered-index" class="sub-link">Non-clustered Index</a>
+    <a href="#union-and-union-all">Union And Union All</a>
+    <a href="#linq-second-highest-salary">Linq Second Highest Salary</a>
+    <a href="#delete-record">Delete record</a>
+    <a href="#rank-function">RANK() Function</a>
+    <a href="#dense_rank-function" class="sub-link">DENSE_RANK() Function</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

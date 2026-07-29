@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Patterns Interview Questions — Interview Prep</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {
+    --accent: #c98a2b;
+    --accent-deep: #9c6a1e;
+    --accent-soft: #faf1e3;
+  }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// Architecture</span>
+      <h1>Design Patterns Interview Questions</h1>
+      <p>Creational, structural, and behavioural patterns, plus SOLID design principles.</p>
+    </header>
+
+    <section class="topic" id="q1.-what-is-pattern-designs-and-explain-its-significance">
+      <h2>Q1. What is Pattern Designs and explain its significance?</h2>
+<p>Answer:</p>
+<p>Design Patterns are efficient solutions to the General Software Design problems. The common problems are resolved by applying these Design Patterns which are the best practices to obtain efficient solutions for the complex known and common problems in the design challenges of the software design and development processes. These design solutions for the common problems were obtained after performing several trial and error methods by many developers for a long time in many designs to obtain these effective solutions to the commonly known problems. There are different types of Design patterns. They are Behavioural Patterns, Creational Patterns, and Structural Patterns.</p>
+    </section>
+
+    <section class="topic" id="q2.-what-are-the-different-uses-of-design-patterns">
+      <h2>Q2. What are the different uses of Design Patterns?</h2>
+<p>Answer:</p>
+<p>1. Speeds up the development process</p>
+<p>2. Ensures effective and efficient software designs</p>
+<p>3. More reusability for the common problems across the design model</p>
+<p>4. Enables code readability</p>
+<p>5. Good documentation and easier to maintain for other developers</p>
+<p>6. Robust applications can be developed</p>
+<p>7. Ensures customer retention for delivering efficient and robust solutions</p>
+    </section>
+
+    <section class="topic" id="what-are-the-different-types-of-design-patterns-and-explain">
+      <h2>What are the different types of Design Patterns and explain?</h2>
+<p>Answer:</p>
+<p>The different types of Design patterns are Behavioural Patterns, Creational Patterns, and Structural Patterns. They are explained as below.</p>
+<h3 id="behavioural-pattern">Behavioural Pattern:</h3>
+<p>The Behavioural Pattern is all about the communication between the several objects of the classes. It mainly concentrates on the communication and invocation between the objects.</p>
+<h3 id="creational-pattern">Creational Pattern:</h3>
+<p>The Creational Pattern is about the instantiation of the class and also further extends to the object creation. This category can be further divided into Class creational patterns and object creational patterns. The main theme used in this pattern is a delegation to get the work done. It mainly depends on the delegation model.</p>
+<h3 id="structural-pattern">Structural Pattern:</h3>
+<p>The Structural Pattern is about the composition of the classes and objects while interacting with several other classes. This ensures the application is more loosely coupled than getting complex.</p>
+    </section>
+
+    <section class="topic" id="singleton-pattern-and-how-can-it-be-implemented-in-c">
+      <h2>Singleton Pattern and how can it be implemented in C#?</h2>
+<p>Answer:</p>
+<p>A Singleton Pattern is a design pattern that comes under the Creational design pattern which is used to instantiate only a single object from that class. Finally, that class will be confined only to a single object in its entire life cycle. The Singleton design pattern is very important in hiding the class instantiation functionality to be hidden from the other classes in order to maintain the object instantiation limitations for the purpose of application or design requirements to be fulfilled. Always only a single instance can be created from the Singleton Design pattern. In C# this can be implemented using the single constructor which is given with access keyword private and without any parameters i.e., default no-args constructor. This method does not provide any thread-safety. For any thread safety, pre-checks like null checks can be evaluated before proceeding with the next flow of execution in order to prevent the instantiation of other objects once a single object is created out of that class.</p>
+    </section>
+
+    <section class="topic" id="what-is-the-prototype-design-pattern">
+      <h2>What is the prototype Design Pattern?</h2>
+<p><strong>Answer:</strong></p>
+<p>The Prototype Design Pattern comes under the Creational Design Pattern which is used to clone the objects in the form of the prototypal instance. This can be implemented in C# programming language by declaring a base abstract class by using the clone() method.</p>
+    </section>
+
+    <section class="topic" id="factory-design-pattern">
+      <h2>Factory Design Pattern?</h2>
+<p>Answer:</p>
+<p>The <strong>Factory Pattern</strong> is a creational design pattern in C# that provides an interface for creating objects in a superclass but allows subclasses (or a dedicated factory class) to decide which concrete class to instantiate. This approach decouples the client code from the specific object creation logic, promoting flexibility, maintainability, and adherence to principles like the Open/Closed Principle</p>
+<p><em>This Pattern provides the best way to create the Objects</em>. <em>In Factory patterns we create the object of the Class without Exposing the Creation/Instantiation Logic to the User who wants to create the Object and then return the newly Created object using the Common Interface which is inherited  by the Class</em></p>
+    </section>
+
+    <section class="topic" id="c-q-r-s">
+      <h2>C Q R S</h2>
+<p>Command and Query Responsibility Segregation (CQRS) pattern states that we must separate the operations for reading the data from the operations for writing or updating the data. This means that functions for reading and writing data are not kept in the same interface or class. The main advantages of doing this include:</p>
+<ol type="1">
+<li><blockquote>
+<p>Separate teams can work on these operations</p>
+</blockquote></li>
+<li><blockquote>
+<p>Each can be made to scale according to their own needs. Write operations are mostly used much less than read operations</p>
+</blockquote></li>
+<li><blockquote>
+<p>Each can have their own security as per requirements</p>
+</blockquote></li>
+<li><blockquote>
+<p>Read operations can have a different architecture to support caching, conversions to data transformation objects as required by clients</p>
+</blockquote></li>
+<li><blockquote>
+<p>Write operations can include data validation. lookups etc.</p>
+</blockquote></li>
+</ol>
+    </section>
+
+    <section class="topic" id="clean-architecture">
+      <h2>Clean Architecture</h2>
+<p>Clean Architecture in C# is a software design pattern, popularized by Robert C. Martin ("Uncle Bob"), that focuses on separating an application into distinct, independent layers to create systems that are <strong>scalable, maintainable, and testable</strong>. Its core principle, the <strong>Dependency Rule</strong>, dictates that all dependencies must point inward toward the core business logic.</p>
+<p><strong>The Four Core Layers</strong></p>
+<p>A typical C# implementation of Clean Architecture is divided into four main projects (or folders within a single project for smaller applications): </p>
+<ul>
+<li><p><strong>Domain Layer</strong> (Innermost): Contains the core business entities, value objects, and enterprise-wide business rules. This layer is pure C# and has no dependencies on any other project.</p></li>
+<li><p><strong>Application Layer</strong>: Contains the application-specific business logic and use cases (e.g., CQRS commands/queries and handlers). It defines interfaces for external services (like repositories or email services). This layer depends only on the Domain layer.</p></li>
+<li><p><strong>Infrastructure Layer</strong>: Implements the interfaces defined in the Application layer. It handles all external concerns such as database access (using Entity Framework Core), file systems, or third-party APIs. This layer depends on the Application and Domain layers.</p></li>
+<li><p><strong>Presentation Layer</strong> (Outermost): The entry point of the application, such as an ASP.NET Core Web API, MVC, or Blazor project. It handles user interactions, delegates work to the Application layer, and configures dependency injection. This layer depends on the Application and Infrastructure layers. </p></li>
+</ul>
+<p><strong>Benefits</strong></p>
+<ul>
+<li><p><strong>Maintainability and Scalability</strong>: The loosely coupled, modular structure makes the codebase easier to manage as the application grows.</p></li>
+<li><p><strong>Flexibility</strong>: External technologies can be changed or updated without affecting the core business logic.</p></li>
+<li><p><strong>Team Collaboration</strong>: Clear boundaries allow different development teams to work on different layers in parallel with minimal dependencies on each other</p></li>
+</ul>
+    </section>
+
+    <section class="topic" id="solid-design-principles">
+      <h2>SOLID design principles?</h2>
+<p><strong>Answer:</strong></p>
+<p>The SOLID Design Principles are the best-known principles in the area of Object-Oriented Software Design and Development. The five SOLID design principles are listed below:</p>
+<p>1. Single Responsibility Principle (SRP)</p>
+<p>2. Open/Closed Principle (OCP)</p>
+<p>3. Liskov Substitution Principle (LSP)</p>
+<p>4. Interface Segregation Principle (ISP)</p>
+<p>5. Dependency Inversion Principle (DIP)</p>
+<h3 id="single-responsibility-principle-srp">Single Responsibility Principle (SRP)</h3>
+<p>SRP says "Every software module should have only one reason to change".</p>
+<p>This means that every class, or similar structure, in your code should have only one job to do. Everything in that class should be related to a single purpose. Our class should not be like a Swiss knife wherein if one of them needs to be changed then the entire tool needs to be altered. It does not mean that your classes should only contain one method or property. There may be many members as long as they relate to single responsibility.</p>
+<h3 id="openclosed-principle">Open/Closed Principle</h3>
+<p>The Open/closed Principle says "A software module/class is open for extension and closed for modification".</p>
+<p>Here "Open for extension" means, we need to design our module/class in such a way that the new functionality can be added only when new requirements are generated. "Closed for modification" means we have already developed a class and it has gone through unit testing. We should then not alter it until we find bugs. As it says, a class should be open for extensions, we can use inheritance to do this. Okay, let's dive into an example.</p>
+<h3 id="liskov-substitution-principle">Liskov Substitution Principle</h3>
+<p>The Liskov Substitution Principle (LSP) states that "you should be able to use any derived class instead of a parent class and have it behave in the same manner without modification". It ensures that a derived class does not affect the behavior of the parent class, in other words,, that a derived class must be substitutable for its base class.</p>
+<p> </p>
+<p>This principle is just an extension of the Open Closed Principle and it means that we must ensure that new derived classes extend the base classes without changing their behavior. I will explain this with a real-world example that violates LSP.</p>
+<h3 id="interface-segregation-principle-isp">Interface Segregation Principle (ISP)</h3>
+<p> </p>
+<p>The Interface Segregation Principle states "that clients should not be forced to implement interfaces they don't use. Instead of one fat interface, many small interfaces are preferred based on groups of methods, each one serving one submodule."</p>
+<p>We can define it in another way. An interface should be more closely related to the code that uses it than code that implements it. So the methods on the interface are defined by which methods the client code needs rather than which methods the class implements. So clients should not be forced to depend upon interfaces that they don't use.</p>
+<h3 id="dependency-inversion-principle">Dependency Inversion Principle</h3>
+<p> </p>
+<p>The Dependency Inversion Principle (DIP) states that high-level modules/classes should not depend on low-level modules/classes. Both should depend upon abstractions. Secondly, abstractions should not depend upon details. Details should depend upon abstractions.</p>
+<p>High-level modules/classes implement business rules or logic in a system (application). Low-level modules/classes deal with more detailed operations; in other words they may deal with writing information to databases or passing messages to the operating system or services.</p>
+    </section>
+
+    <section class="topic" id="what-is-solid">
+      <h2>What is SOLID?</h2>
+<p>SOLID is an acronym for five principles of architecture.</p>
+<p>S – Single Responsibility Principle</p>
+<p>O – Open Close Principle</p>
+<p>L – Liskov Substitution Principle</p>
+<p>I –Interface Segregation Principle</p>
+<p>D – Dependency Inversion Principle </p>
+<h3 id="single-responsibility-principle-srp-1">Single Responsibility Principle (SRP)</h3>
+<p>It says that every class should have single responsibility. A class should not have more than one reason to change.</p>
+<p><strong>Example<br/>
+</strong><br/>
+Suppose, you have created a class XmlValidator for XML validation, which has the responsibility to validate XML.</p>
+<p>If there is a need to update XML, then a separate class should be created for the same. XmlValidator class should not be used for updating XML. </p>
+<ol type="1">
+<li><blockquote>
+<p>public class XmlValidator   </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        public void Validate()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>              </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>         </p>
+</blockquote></li>
+<li><blockquote>
+<p>    } </p>
+</blockquote></li>
+</ol>
+<p><strong>Open Close Principle (OCP)</strong></p>
+<p>A class should be open for an extension and closed for the modification.</p>
+<p><strong>Example<br/>
+</strong><br/>
+Suppose, we have a class name Customer, which has a property InvoiceNumber, which has an integer type </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>class</strong> Customer  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>int</strong> InvoiceNumber  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            get;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            set;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }   </p>
+</blockquote></li>
+</ol>
+<p>In the future, if the requirement changes now, InvoiceNumber should be alphanumeric rather than only an integer. Hence, in this case, you should create a subclass CustomerNew with a same property but different datatype rather than modifying the previous one. </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>class</strong> CustomerNew : Customer  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>new</strong> String InvoiceNumber  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            get;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            set;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }</p>
+</blockquote></li>
+</ol>
+<p>Liskov Substitution Principle (LSP)</p>
+<p>A parent object should be able to replace its child during runtime polymorphism.</p>
+<p><strong>Example<br/>
+</strong><br/>
+Suppose, you have two classes, Cooler and Fan, both are inherited from a common interface named ISwitch, which has three methods- On, Off and Regulate. </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>interface</strong> ISwitch  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>void</strong> On();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>void</strong> Off();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>public</strong> <strong>class</strong> Cooler : ISwitch  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> On()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>              </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> Off()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> Regulate()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>public</strong> <strong>class</strong> Fan : ISwitch  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> On()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> Off()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> Regulate()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>public</strong> <strong>class</strong> MainClass  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> AddObject()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            List&lt;ISwitch&gt; Switch = <strong>new</strong> List&lt;ISwitch&gt;();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            Switch.Add(<strong>new</strong> Cooler());  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            Switch.Add(<strong>new</strong> Fan());  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            </p>
+</blockquote></li>
+<li><blockquote>
+<p>            foreach (<strong>var</strong> o <strong>in</strong> Switch)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>                o.Regulate();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }   </p>
+</blockquote></li>
+</ol>
+<p>Everything was fine until a new class introduced for same interface named Bulb, which has only two methods On and Off. It does not have Regulate method. Thus Bulb class is given below. </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>class</strong> Bulb : ISwitch  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> On()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> Off()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>public</strong> <strong>void</strong> Regulate()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            <strong>throw</strong> <strong>new</strong> NotImplementedException();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }   </p>
+</blockquote></li>
+</ol>
+<p>Now, AddObject method will be updated, as shown below. </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>void</strong> AddObject()  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            List&lt;ISwitch&gt; Switch = <strong>new</strong> List&lt;ISwitch&gt;();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            Switch.Add(<strong>new</strong> Cooler());  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            Switch.Add(<strong>new</strong> Fan());  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            Switch.Add(<strong>new</strong> Bulb());            </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            foreach (<strong>var</strong> o <strong>in</strong> Switch)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>                o.Regulate();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }   </p>
+</blockquote></li>
+</ol>
+<p>In this case, Regulate method will throw an error.</p>
+<p>One horrible solution to this problem is to put an if condition. </p>
+<ol type="1">
+<li><blockquote>
+<p>foreach (<strong>var</strong> o <strong>in</strong> Switch)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>if</strong>(o is Bulb)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>continue</strong>;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>                o.Regulate();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            }   </p>
+</blockquote></li>
+</ol>
+<p>This is an example of bad design, if above condition is used somewhere, it clearly means that there is a violation of LSK principle. </p>
+<p>Interface Segregation Principle (ISP)</p>
+<p>Client specific interfaces are better than general purpose interfaces.</p>
+<p>Suppose, we have one interface for clicking.</p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>interface</strong> IClick{   </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+</ol>
+<p>As time passes, new requirement comes for adding one more function onLongClick. You need to add this method in already created interface.</p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>interface</strong> IClick{   </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onLongClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+</ol>
+<p>After some time, one new requirement comes for adding function for touch also and you need to add the method in the same interface</p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>interface</strong> IClick{   </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onLongClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onTouch(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+</ol>
+<p>At this point, you need to decide to change the name of interface too because touch is different than click.</p>
+<p>In this way, this interface becomes a problem—generic and polluted. At this stage, ISP comes into play. </p>
+<p>Why Generic Interface creates problem?</p>
+<p>Suppose, some clients need only onClick function and some need only onTouch function, then one will be useless for both. Hence ISP gives the solution, which splits the interface into two interfaces.</p>
+<p>ITouch and IClick. The client which has required onClick can implement IClick, which needs onTouch. It can implement ITouch and when it needs both, it can implement both.</p>
+<ol type="1">
+<li><blockquote>
+<p><strong>public</strong> <strong>interface</strong> IClick{   </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onLongClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p><strong>public</strong> <strong>interface</strong> ITouch{   </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onClick(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>void</strong> onTouch(Object obj);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}</p>
+</blockquote></li>
+</ol>
+<p>Dependency Inversion Principle (ISP)</p>
+<p>It states two points, where the first point is a higher level module, which should not depend on a low level module. Both should depend on abstraction. The second point is abstraction, which should not depend on detail. </p>
+<p>Detail should depend on abstraction.</p>
+<p>In other words, no object should be created inside a class. They should be passed or injected from outside. When it  is received, it will be an interface rather than a class.</p>
+<p>Here is a bad design without using Dependency Injection. </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>class</strong> Student  </p>
+</blockquote></li>
+<li><blockquote>
+<p>{  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    // Handle to EventLog writer to write to the logs  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    LogWriter writer = <strong>null</strong>;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    // This function will be called when the student has problem  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>public</strong> <strong>void</strong> Notify(string message)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        <strong>if</strong> (writer == <strong>null</strong>)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>            writer = <strong>new</strong> LogWriter();  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        writer.Write(message);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}   </p>
+</blockquote></li>
+</ol>
+<p>This is also a bad design. </p>
+<ol type="1">
+<li><blockquote>
+<p><strong>class</strong> Student  </p>
+</blockquote></li>
+<li><blockquote>
+<p>{  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    // Handle to EventLog writer to write to the logs  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    LogWriter writer = <strong>null</strong>;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>Public Student(LogWriter writer)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>     This.writer = writer;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    // This function will be called when the student has problem  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>public</strong> <strong>void</strong> Notify(string message)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        writer.Write(message);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}   </p>
+</blockquote></li>
+</ol>
+<p>The written classes given above are bad designs because in the case of a change in LogWrite, you have to disturb Student class. We should use an interface inside Student instead of a class.</p>
+<pre><code>With Dependency Injection, the code is given, as shown below.</code></pre>
+<ol type="1">
+<li><blockquote>
+<p><strong>class</strong> Student  </p>
+</blockquote></li>
+<li><blockquote>
+<p>{  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    // Handle to EventLog writer to write to the logs  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    ILogWriter writer = <strong>null</strong>;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>Public Student(ILogWriter writer)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>  </p>
+</blockquote></li>
+<li><blockquote>
+<p>      This.writer = writer;  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    // This function will be called when the student has problem  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    <strong>public</strong> <strong>void</strong> Notify(string message)  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    {  </p>
+</blockquote></li>
+<li><blockquote>
+<p>        writer.Write(message);  </p>
+</blockquote></li>
+<li><blockquote>
+<p>    }  </p>
+</blockquote></li>
+<li><blockquote>
+<p>}  </p>
+</blockquote></li>
+</ol>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">Design Patterns Interview Questions</div>
+    <div class="sub">Study Guide</div>
+    <a href="#q1.-what-is-pattern-designs-and-explain-its-significance">Q1. What is Pattern Designs and explain its significance?</a>
+    <a href="#q2.-what-are-the-different-uses-of-design-patterns">Q2. What are the different uses of Design Patterns?</a>
+    <a href="#what-are-the-different-types-of-design-patterns-and-explain">What are the different types of Design Patterns and explain?</a>
+    <a href="#behavioural-pattern" class="sub-link">Behavioural Pattern:</a>
+    <a href="#creational-pattern" class="sub-link">Creational Pattern:</a>
+    <a href="#structural-pattern" class="sub-link">Structural Pattern:</a>
+    <a href="#singleton-pattern-and-how-can-it-be-implemented-in-c">Singleton Pattern and how can it be implemented in C#?</a>
+    <a href="#what-is-the-prototype-design-pattern">What is the prototype Design Pattern?</a>
+    <a href="#factory-design-pattern">Factory Design Pattern?</a>
+    <a href="#c-q-r-s">C Q R S</a>
+    <a href="#clean-architecture">Clean Architecture</a>
+    <a href="#solid-design-principles">SOLID design principles?</a>
+    <a href="#single-responsibility-principle-srp" class="sub-link">Single Responsibility Principle (SRP)</a>
+    <a href="#openclosed-principle" class="sub-link">Open/Closed Principle</a>
+    <a href="#liskov-substitution-principle" class="sub-link">Liskov Substitution Principle</a>
+    <a href="#interface-segregation-principle-isp" class="sub-link">Interface Segregation Principle (ISP)</a>
+    <a href="#dependency-inversion-principle" class="sub-link">Dependency Inversion Principle</a>
+    <a href="#what-is-solid">What is SOLID?</a>
+    <a href="#single-responsibility-principle-srp-1" class="sub-link">Single Responsibility Principle (SRP)</a>
+    <div class="count">Study Guide</div>
+  </nav>
+</div>
+<script src="../assets/toc.js"></script>
+</body>
+</html>

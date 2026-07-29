@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C# Interview Questions — Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fbfaf8;
+    --panel: #14131f;
+    --panel-soft: #1d1c2c;
+    --ink: #201f2b;
+    --ink-soft: #55536b;
+    --rule: #e6e2da;
+    --accent: #6c4fd6;
+    --accent-soft: #efe9ff;
+    --accent-deep: #4b34a8;
+    --code-bg: #14131f;
+    --code-ink: #d9d6ee;
+    --code-key: #b79bff;
+    --code-str: #8fd48a;
+    --code-com: #767293;
+    --tag: #f2ede0;
+    --tag-ink: #7a6a2e;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.65;
+  }
+  /* Layout */
+  .shell{ display:flex; min-height:100vh; }
+  nav.toc{
+    width:290px; flex-shrink:0;
+    background:var(--panel);
+    color:#cfcbe6;
+    position:sticky; top:0; height:100vh; overflow-y:auto;
+    padding:32px 22px 40px;
+    transition:width .25s ease, padding .25s ease, opacity .2s ease;
+  }
+  nav.toc.collapsed{
+    width:0;
+    padding:0;
+    opacity:0;
+    overflow:hidden;
+  }
+  nav.toc .brand{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.28rem;
+    color:#fff;
+    letter-spacing:.2px;
+    margin-bottom:4px;
+  }
+  nav.toc .brand span{ color: var(--code-key); }
+  nav.toc .sub{
+    font-size:.78rem;
+    color:#8b87ab;
+    margin-bottom:28px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  nav.toc a{
+    display:block;
+    color:#b8b4d6;
+    text-decoration:none;
+    font-size:.89rem;
+    padding:7px 10px;
+    border-radius:7px;
+    margin-bottom:1px;
+    transition:background .15s, color .15s;
+    border-right:2px solid transparent;
+  }
+  nav.toc a.sub-link{
+    font-size:.8rem;
+    color:#8b87ab;
+    padding:5px 10px 5px 20px;
+    position:relative;
+  }
+  nav.toc a.sub-link::before{
+    content:"";
+    position:absolute;
+    left:9px; top:50%;
+    width:5px; height:1px;
+    background:#5a5780;
+  }
+  nav.toc a:hover{ background:var(--panel-soft); color:#fff; }
+  nav.toc a.active{ background:var(--panel-soft); color:#fff; border-right:2px solid var(--code-key); }
+  nav.toc .count{
+    display:inline-block; margin-top:26px; padding-top:18px;
+    border-top:1px solid #2a2940;
+    font-size:.75rem; color:#75729a;
+  }
+  nav.toc .back{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:.78rem; color:#8b87ab;
+    text-decoration:none;
+    margin-bottom:22px;
+    padding:6px 10px 6px 0;
+  }
+  nav.toc .back:hover{ color:#fff; }
+
+  main{
+    flex:1;
+    max-width:860px;
+    padding:56px 64px 120px;
+  }
+  header.hero{ margin-bottom:56px; }
+  header.hero .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.8rem;
+    color:var(--accent-deep);
+    background:var(--accent-soft);
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:5px;
+    margin-bottom:18px;
+  }
+  header.hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:2.7rem;
+    line-height:1.08;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  header.hero p{
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    max-width:56ch;
+    margin:0;
+  }
+
+  section.topic{
+    margin-bottom:64px;
+    scroll-margin-top:24px;
+  }
+  section.topic h2{
+    font-family:'Fraunces', serif;
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--ink);
+    margin:0 0 6px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--rule);
+  }
+  section.topic h3{
+    font-family:'Fraunces', serif;
+    font-size:1.2rem;
+    font-weight:600;
+    color:var(--accent-deep);
+    margin:34px 0 10px;
+  }
+  section.topic .idx{
+    font-family:'JetBrains Mono', monospace;
+    color:#b8b0e0;
+    font-size:.85rem;
+    margin-right:8px;
+  }
+  section.topic p{ margin:0 0 14px; color:var(--ink); }
+  section.topic ul, section.topic ol{ margin:0 0 16px; padding-left:22px; }
+  section.topic li{ margin-bottom:8px; }
+  section.topic strong{ color:var(--ink); }
+
+  .answer{
+    background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    padding:14px 18px;
+    border-radius:0 8px 8px 0;
+    margin:0 0 18px;
+  }
+  .answer .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--accent-deep);
+    display:block;
+    margin-bottom:6px;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:0 0 22px;
+    font-size:.93rem;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  table th{
+    background:var(--panel);
+    color:#e7e4f7;
+    text-align:left;
+    padding:10px 14px;
+    font-weight:600;
+    font-size:.82rem;
+    letter-spacing:.02em;
+  }
+  table td{
+    padding:10px 14px;
+    border-top:1px solid var(--rule);
+    vertical-align:top;
+  }
+  table tr:nth-child(even) td{ background:#faf9f6; }
+
+  pre{
+    background:var(--code-bg);
+    color:var(--code-ink);
+    padding:18px 20px;
+    border-radius:10px;
+    overflow-x:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.86rem;
+    line-height:1.55;
+    margin:0 0 18px;
+  }
+  code{
+    font-family:'JetBrains Mono', monospace;
+    background:var(--tag);
+    color:var(--tag-ink);
+    padding:1px 6px;
+    border-radius:4px;
+    font-size:.88em;
+  }
+  pre code{ background:none; padding:0; color:inherit; font-size:1em; }
+
+  .kw{ color:var(--code-key); }
+  .str{ color:var(--code-str); }
+  .com{ color:var(--code-com); }
+
+  .divider{
+    height:1px;
+    background:linear-gradient(to right, var(--accent), transparent);
+    margin:40px 0;
+  }
+
+  footer{
+    color:var(--ink-soft);
+    font-size:.85rem;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+  }
+
+  @media (max-width: 900px){
+    nav.toc{ display:none; }
+    .nav-toggle{ display:none; }
+    main{ padding:36px 22px 100px; }
+    header.hero h1{ font-size:2.1rem; }
+  }
+
+  .nav-toggle{
+    position:fixed;
+    top:24px;
+    right:314px;
+    z-index:100;
+    width:40px; height:40px;
+    border-radius:10px;
+    background:var(--panel);
+    color:#e7e4f7;
+    border:none;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.15rem;
+    line-height:1;
+    box-shadow:0 4px 14px rgba(20,19,31,.22);
+    transition:right .25s ease, background .15s ease;
+  }
+  .nav-toggle:hover{ background:var(--panel-soft); }
+  body.nav-collapsed .nav-toggle{ right:24px; }
+</style>
+</head>
+<body>
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" title="Toggle navigation">&#9776;</button>
+<div class="shell">
+
+  <main>
+    <header class="hero">
+      <span class="eyebrow">// C# Interview Prep</span>
+      <h1>C# Interview Questions</h1>
+      <p>A reference sheet covering .NET fundamentals, OOP concepts, collections, delegates, and core language keywords — organized for quick review before an interview.</p>
+    </header>
+
+    <section class="topic" id="dotnet">
+      <h2>What is .NET?</h2>
+      <div class="answer">
+        <span class="lbl">Ans.</span>
+        .NET is a software framework from Microsoft for developing applications on Windows. It is similar to other software development frameworks like Java Platform, Enterprise Edition (J2EE), and comprises ASP.NET, languages such as C#, VB.NET, COBOL, Perl, etc.
+      </div>
+
+      <h3 id="clr">What is CLR?</h3>
+      <div class="answer">
+        <span class="lbl">Ans.</span>
+        CLR refers to Common Language Run-time. It is an essential component of the .NET framework and can be used as a building block of various applications. An essential feature of CLR is that it ensures a secure execution environment for applications.
+      </div>
+
+      <h3 id="cls">What is CLS?</h3>
+      <div class="answer">
+        <span class="lbl">Ans.</span>
+        CLS refers to Common Language Specification. It allows users to use inter-language compatible components and helps to reuse the code in other .NET compatible languages.
+      </div>
+    </section>
+
+    <section class="topic" id="ienumerable">
+      <h2>IEnumerable</h2>
+      <ol>
+        <li>IEnumerable exists in the <code>System.Collections</code> namespace.</li>
+        <li>IEnumerable is suitable for querying data from in-memory collections like List, Array, and so on.</li>
+        <li>While querying data from the database, IEnumerable executes a "select query" on the server-side, loads data in-memory on the client-side, and then filters the data.</li>
+      </ol>
+    </section>
+
+    <section class="topic" id="iqueryable">
+      <h2>IQueryable</h2>
+      <ol>
+        <li>IQueryable exists in the <code>System.Linq</code> namespace.</li>
+        <li>IQueryable is suitable for querying data from out-of-memory (like remote database, service) collections.</li>
+        <li>While querying data from a database, IQueryable executes a "select query" on the server-side with all filters applied.</li>
+      </ol>
+    </section>
+
+    <section class="topic" id="task-thread">
+      <h2>Task &amp; Thread</h2>
+      <p>In C#, the core difference is that a <strong>Thread represents an actual operating system-level execution thread</strong>, while a <strong>Task is a high-level abstraction representing an asynchronous operation</strong>.</p>
+    </section>
+
+    <section class="topic" id="interface-abstract">
+      <h2>Interface and Abstract Class</h2>
+      <p>Interfaces have all the methods having only declaration but no definition. In an abstract class, we can have some concrete methods. In an interface, all the methods are public. An abstract class may have private methods.</p>
+
+      <h3 id="abstract-class">Abstract Class</h3>
+      <p>A class with the <code>abstract</code> modifier indicates that the class is an abstract class. An abstract class cannot be instantiated. The purpose of an abstract class is to provide a common definition of a base class that multiple derived classes can share.</p>
+
+      <h3 id="abstract-class-char">Characteristics of Abstract Class</h3>
+      <ol>
+        <li>An abstract class cannot be instantiated.</li>
+        <li>An abstract class can have a constructor, but you cannot create an object directly from the abstract class; the constructor is called automatically by the subclass's constructor (using <code>super()</code>) to initialize the inherited state.</li>
+        <li>An abstract class can implement an interface.</li>
+        <li>An abstract class can contain abstract methods and properties.</li>
+        <li>It is not possible to modify an abstract class with the <code>sealed</code> modifier because the two modifiers have opposite meanings. The <code>sealed</code> modifier prevents a class from being inherited, and the <code>abstract</code> modifier requires a class to be inherited.</li>
+        <li>A non-abstract class derived from an abstract class must include actual implementations of all inherited abstract methods and accessors.</li>
+      </ol>
+
+      <h3 id="interface">Interface</h3>
+      <p>An interface is an abstract class which has only public abstract methods, and the methods only have the declaration, not the definition. These abstract methods must be implemented in the inherited classes.</p>
+    </section>
+
+    <section class="topic" id="partial">
+      <h2>Partial Class</h2>
+      <p>The <code>partial</code> keyword indicates that other parts of the class, struct, or interface can be defined in the namespace. All the parts must use the <code>partial</code> keyword. All the parts must be available at compile time to form the final type. All the parts must have the same accessibility, such as public, private, and so on.</p>
+
+      <h3 id="partial-char">Characteristics of Partial Class</h3>
+      <ol>
+        <li>All the partial class definitions must be in the same assembly and namespace.</li>
+        <li>All the parts must have the same accessibility, like public or private, etc.</li>
+        <li>If any part is declared abstract, sealed, or a base type, then the whole class is declared of the same type.</li>
+        <li>Different parts can have different base types, and so the final class will inherit all the base types.</li>
+        <li>The partial modifier can only appear immediately before the keywords <code>class</code>, <code>struct</code>, or <code>interface</code>.</li>
+        <li>Nested partial types are allowed.</li>
+      </ol>
+    </section>
+
+    <section class="topic" id="static">
+      <h2>Static Class</h2>
+      <p>A class with the <code>static</code> keyword that contains only static members is defined as a static class. A static class cannot be instantiated.</p>
+
+      <h3 id="static-char">Characteristics of Static Class</h3>
+      <ol>
+        <li>A static class cannot be instantiated using a <code>new</code> keyword.</li>
+        <li>Static items can only access other static items. For example, a static class can only contain static members, e.g., variables, methods, etc.</li>
+        <li>A static method can only contain static variables and can only access other static items.</li>
+        <li>Static items share resources between multiple users.</li>
+        <li>Static cannot be used with indexers, destructors, or types other than classes.</li>
+        <li>A static constructor in a non-static class runs only once, when the class is instantiated for the first time.</li>
+        <li>A static constructor in a static class runs only once, when any of its static members are accessed for the first time.</li>
+        <li>Static members are allocated in a high frequency heap area of the memory.</li>
+      </ol>
+    </section>
+
+    <section class="topic" id="sealed">
+      <h2>Sealed Class</h2>
+      <p>A sealed class is a class that cannot be inherited and is used to restrict the properties.</p>
+      <p>Key points:</p>
+      <ul>
+        <li>A sealed class is created using the <code>sealed</code> keyword.</li>
+        <li>Access modifiers are not applied to a sealed class.</li>
+        <li>To access the sealed members, we must create an object of the class.</li>
+      </ul>
+    </section>
+
+    <section class="topic" id="constructor">
+      <h2>Constructor in C#</h2>
+      <p>A special method of the class that is automatically invoked when an instance of the class is created is called a constructor. The main use of constructors is to initialize the private fields of the class while creating an instance for the class. When you have not created a constructor in the class, the compiler will automatically create a default constructor for the class. The default constructor initializes all numeric fields in the class to zero, and all string and object fields to null.</p>
+
+      <h3 id="constructor-keypoints">Key Points Regarding Constructors</h3>
+      <ul>
+        <li>A class can have any number of constructors.</li>
+        <li>A constructor doesn't have any return type, not even <code>void</code>.</li>
+        <li>A static constructor cannot be a parameterized constructor.</li>
+        <li>Within a class, you can create only one static constructor.</li>
+      </ul>
+
+      <h3 id="constructor-types">Types of Constructors</h3>
+      <p><strong>1. Default Constructor</strong></p>
+      <ul>
+        <li><strong>Definition:</strong> A parameterless constructor provided by the compiler if no explicit constructor is defined.</li>
+        <li><strong>Function:</strong> Initializes fields to their default values (e.g., 0 for numeric types, null for reference types).</li>
+      </ul>
+      <p><strong>2. Parameterized Constructor</strong></p>
+      <ul>
+        <li><strong>Definition:</strong> A constructor that takes one or more arguments.</li>
+        <li><strong>Function:</strong> Allows you to initialize an object with specific, custom values during creation.</li>
+      </ul>
+      <p><strong>3. Static Constructor</strong></p>
+      <ul>
+        <li><strong>Definition:</strong> Defined with the <code>static</code> keyword; it takes no access modifiers or parameters.</li>
+        <li><strong>Behavior:</strong> Automatically called only once by the runtime, before any static members are accessed or the first instance is created.</li>
+      </ul>
+      <p><strong>4. Private Constructor</strong></p>
+      <ul>
+        <li><strong>Definition:</strong> Uses the private access modifier to prevent external instantiation of the class.</li>
+        <li><strong>Use Case:</strong> Commonly used in the Singleton Design Pattern or for utility classes containing only static members.</li>
+      </ul>
+      <p><strong>5. Copy Constructor</strong></p>
+      <ul>
+        <li><strong>Definition:</strong> A parameterized constructor that takes an object of the same class as a parameter.</li>
+        <li><strong>Function:</strong> Creates a new object by copying the data members of an existing instance.</li>
+      </ul>
+    </section>
+
+    <section class="topic" id="var-dynamic">
+      <h2>var and dynamic Keyword</h2>
+      <table>
+        <thead><tr><th>var</th><th>dynamic</th></tr></thead>
+        <tbody>
+          <tr><td>Introduced in C# 3.0.</td><td>Introduced in C# 4.0.</td></tr>
+          <tr><td>Variables declared using the <code>var</code> keyword are statically typed.</td><td>Variables declared using the <code>dynamic</code> keyword are dynamically typed.</td></tr>
+          <tr><td>The type of the variable is decided by the compiler at compile time.</td><td>The type of the variable is decided by the compiler at run time.</td></tr>
+          <tr><td>A variable of this type should be initialized at the time of declaration, so the compiler can decide its type from the initializing value.</td><td>A variable of this type need not be initialized at the time of declaration, because the compiler does not know its type at compile time.</td></tr>
+          <tr><td>If the variable is not initialized, it throws an error.</td><td>If the variable is not initialized, it will not throw an error.</td></tr>
+          <tr><td>Supports IntelliSense in Visual Studio.</td><td>Does not support IntelliSense in Visual Studio.</td></tr>
+          <tr><td>
+            <pre style="margin:0;padding:10px 12px;font-size:.8rem;"><code><span class="kw">var</span> myvalue = 10; <span class="com">// statement 1</span>
+myvalue = <span class="str">"GeeksforGeeks"</span>; <span class="com">// statement 2 — error</span></code></pre>
+            The compiler throws an error because it already decided <code>myvalue</code> is an integer from statement 1; assigning a string violates type safety.
+          </td>
+          <td>
+            <pre style="margin:0;padding:10px 12px;font-size:.8rem;"><code><span class="kw">dynamic</span> myvalue = 10; <span class="com">// statement 1</span>
+myvalue = <span class="str">"GeeksforGeeks"</span>; <span class="com">// statement 2 — OK</span></code></pre>
+            No error is thrown even though <code>myvalue</code> was an integer — assigning a string recreates its type and accepts it.
+          </td></tr>
+          <tr><td>Cannot be used for properties or returning values from a function.</td><td>Can be used for properties or returning values from a function.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="topic" id="gc">
+      <h2>Garbage Collection</h2>
+      <p>Automatic memory management is made possible by garbage collection in the .NET Framework. When a class object is created at runtime, a certain memory space is allocated to it in the heap memory. However, once all the actions related to the object are completed in the program, the memory space allocated to it becomes waste, as it cannot be used. Garbage collection is very useful here, as it automatically releases the memory space once it is no longer required.</p>
+    </section>
+
+    <section class="topic" id="dispose">
+      <h2>Dispose</h2>
+      <ul>
+        <li>In C#, the <code>IDisposable</code> interface includes the <code>Dispose()</code> method — a method for releasing unmanaged resources, like file handles, database connections, or network connections.</li>
+        <li>When an object is no longer needed, or the developer desires to release the resources associated with it, it is their responsibility to explicitly call the <code>Dispose()</code> method.</li>
+        <li>The <code>using</code> statement and the <code>Dispose()</code> method are usually used together to guarantee that resources are released on time.</li>
+      </ul>
+    </section>
+
+    <section class="topic" id="finalize">
+      <h2>Finalize</h2>
+      <ul>
+        <li>The garbage collector calls the <code>Finalize()</code> method, a member of the <code>Object</code> class, prior to recovering memory that an object that is no longer accessible had taken up.</li>
+        <li>During the garbage collection process, it is used to clean up mismanaged resources.</li>
+        <li>Because garbage collection is not deterministic, relying solely on the <code>Finalize()</code> method for resource cleanup may cause resources to be released later than intended.</li>
+      </ul>
+    </section>
+
+    <section class="topic" id="out-ref">
+      <h2>out &amp; ref</h2>
+      <p>The <code>out</code> keyword in C# is used for passing arguments to methods as a reference type. It is generally used when a method returns multiple values. The <code>out</code> parameter does not pass the property.</p>
+      <p>The <code>ref</code> keyword in C# is used for passing arguments by reference. In other words, any changes made to the argument inside the method will reflect in that variable when control returns to the calling method. The <code>ref</code> parameter also does not pass the property.</p>
+    </section>
+
+    <section class="topic" id="readonly-const">
+      <h2>readonly and const</h2>
+      <table>
+        <thead><tr><th>#</th><th>Key</th><th>readonly keyword</th><th>const keyword</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Purpose</td><td>Used to create readonly fields.</td><td>Used to create constant fields.</td></tr>
+          <tr><td>2</td><td>Type</td><td>A constant defined at runtime.</td><td>Used to create a constant at compile time.</td></tr>
+          <tr><td>3</td><td>Change</td><td>Field value can be changed after declaration.</td><td>Field value cannot be changed after declaration.</td></tr>
+          <tr><td>4</td><td>Method</td><td>Fields cannot be defined within a method.</td><td>Fields can be declared within a method.</td></tr>
+          <tr><td>5</td><td>Value assignment</td><td>Declared as an instance variable and assigned values in the constructor.</td><td>Assigned at the time of declaration.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="topic" id="extension">
+      <h2>Extension Method</h2>
+      <p>In C#, the extension method concept allows you to add new methods to an existing class or structure without modifying the source code of the original type. No special permission is needed from the original type, and there is no need to re-compile it. Extension methods were introduced in <em>C# 3.0</em>.</p>
+      <ol>
+        <li>It is a static method.</li>
+        <li>It must be located in a static class.</li>
+        <li>It uses the <code>this</code> keyword as the first parameter with a type in .NET, and this method is called by a given type instance on the client side.</li>
+        <li>It is shown by Visual Studio IntelliSense — when you press the dot (<code>.</code>) after a type instance, it appears in IntelliSense.</li>
+        <li>An extension method should be in the same namespace as it is used, or you need to import the namespace of the class with a <code>using</code> statement.</li>
+        <li>You can give any name to the class that has an extension method, but the class must be static.</li>
+        <li>If you want to add new methods to a type and don't have its source code, the solution is to implement extension methods for that type.</li>
+        <li>If you create an extension method with the same signature as a method on the type you're extending, the extension method will never be called.</li>
+      </ol>
+      <pre><code><span class="kw">public static class</span> XX
+{
+    <span class="kw">public static void</span> ToStringOrNULL(<span class="kw">this</span> <span class="kw">String</span> ob)
+    {
+        Console.WriteLine(<span class="str">"Hello I m extended method"</span>);
+    }
+}</code></pre>
+    </section>
+
+    <section class="topic" id="generic-class">
+      <h2>Generic Class &amp; Method</h2>
+      <p>Generics allow you to design classes and methods that work with any data type while providing type safety, code reusability, and performance benefits. A type parameter, conventionally named <code>T</code>, acts as a placeholder for the actual data type, which is specified at compile time.</p>
+
+      <h3 id="generic-class-sub">Generic Class</h3>
+      <p>A generic class defines a template where one or more types are specified as parameters when an instance of the class is created. This is widely used in built-in collections like <code>List&lt;T&gt;</code> and <code>Dictionary&lt;TKey, TValue&gt;</code>.</p>
+      <pre><code><span class="kw">public class</span> GenericClass&lt;T&gt;
+{
+    <span class="kw">public</span> T Data { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+    <span class="kw">public</span> GenericClass(T data)
+    {
+        Data = data;
+    }
+
+    <span class="kw">public void</span> DisplayData()
+    {
+        Console.WriteLine($<span class="str">"The value is: {Data}"</span>);
+    }
+}</code></pre>
+    </section>
+
+    <section class="topic" id="oops">
+      <h2>OOPS</h2>
+
+      <h3 id="abstraction">Abstraction</h3>
+      <p>Abstraction is "to represent the essential feature without representing the background details." Abstraction lets you focus on what the object does instead of how it does it. It involves designing classes that represent essential features while hiding the complex underlying logic, achieved using abstract classes or interfaces.</p>
+
+      <h3 id="encapsulation">Encapsulation</h3>
+      <p>Wrapping up a data member and a method together into a single unit (i.e., a class) is called encapsulation. It is achieved using access modifiers (like private, public, protected) and properties, to protect the internal data of an object from unauthorized external access. This allows for data hiding and ensures data integrity through controlled access.</p>
+
+      <h3 id="polymorphism">Polymorphism</h3>
+      <p>The word polymorphism means having many forms. In the object-oriented programming paradigm, polymorphism is often expressed as "one interface, multiple functions." Polymorphism can be static or dynamic. In static polymorphism, the response to a function is determined at compile time. In dynamic polymorphism, it is decided at run time.</p>
+
+      <h3 id="static-polymorphism">Static Polymorphism</h3>
+      <p>The mechanism of linking a function with an object during compile time is called early binding, also called static binding. C# provides two techniques to implement static polymorphism:</p>
+      <ul>
+        <li>Function overloading</li>
+        <li>Operator overloading</li>
+      </ul>
+
+      <h3 id="dynamic-polymorphism">Dynamic Polymorphism</h3>
+      <p>C# allows you to create abstract classes that provide partial class implementation of an interface. Implementation is completed when a derived class inherits from it. Abstract classes contain abstract methods, which are implemented by the derived class, and the derived classes have more specialized functionality.</p>
+      <p>Rules about abstract classes:</p>
+      <ul>
+        <li>You cannot create an instance of an abstract class.</li>
+        <li>You cannot declare an abstract method outside an abstract class.</li>
+        <li>When a class is declared <code>sealed</code>, it cannot be inherited; abstract classes cannot be declared sealed.</li>
+      </ul>
+
+      <h3 id="function-overloading">Function Overloading</h3>
+      <p>You can have multiple definitions for the same function name in the same scope. The definitions must differ from each other by the types and/or the number of arguments in the argument list. You cannot overload function declarations that differ only by return type.</p>
+
+      <h3 id="overriding">Overriding</h3>
+      <p>Overriding is a feature that allows a subclass or child class to provide a specific implementation of a method already provided by one of its super-classes or parent classes. When a method in a subclass has the same name, parameters (signature), and return type (or sub-type) as a method in its super-class, the method in the subclass is said to override the method in the super-class. Method overriding is one of the ways C# achieves run-time polymorphism (dynamic polymorphism).</p>
+    </section>
+
+    <section class="topic" id="delegates">
+      <h2>Delegates</h2>
+      <p>A delegate in C# is a type-safe function pointer — an object that holds a reference to a method. This allows methods to be treated as variables, passed as parameters to other methods, and executed at runtime without the calling code needing to know the specific method being invoked. Delegates are the foundation of events and callbacks in C#.</p>
+      <ul>
+        <li><strong>Singlecast delegate:</strong> Points to a single method at a time. The delegate is assigned to a single method at a time. Derived from the <code>System.Delegate</code> class.</li>
+        <li><strong>Multicast delegate:</strong> When a delegate is wrapped with more than one method, that is known as a multicast delegate.</li>
+      </ul>
+      <pre><code><span class="kw">using</span> System;
+<span class="kw">using</span> System.Collections.Generic;
+
+<span class="kw">public delegate bool</span> IsEligibleForPromotion(Employee emp);
+
+<span class="kw">public class</span> Employee
+{
+    <span class="kw">public int</span> ID { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public string</span> Name { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public decimal</span> Salary { <span class="kw">get</span>; <span class="kw">set</span>; }
+    <span class="kw">public float</span> Experience { <span class="kw">get</span>; <span class="kw">set</span>; }
+
+    <span class="kw">public static void</span> PromoteEmployees(List&lt;Employee&gt; employeeList,
+        IsEligibleForPromotion criteria)
+    {
+        Console.WriteLine($<span class="str">"\n--- Checking promotions based on custom criteria ---"</span>);
+        <span class="kw">foreach</span> (Employee emp <span class="kw">in</span> employeeList)
+        {
+            <span class="kw">if</span> (criteria(emp))
+            {
+                Console.WriteLine($<span class="str">"{emp.Name} has been promoted!"</span>);
+            }
+        }
+    }
+}
+
+<span class="kw">class</span> Program
+{
+    <span class="kw">static void</span> Main()
+    {
+        List&lt;Employee&gt; employees = <span class="kw">new</span> List&lt;Employee&gt;
+        {
+            <span class="kw">new</span> Employee { ID = 101, Name = <span class="str">"Ravi"</span>, Salary = 20000, Experience = 3 },
+            <span class="kw">new</span> Employee { ID = 102, Name = <span class="str">"John"</span>, Salary = 30000, Experience = 5 },
+            <span class="kw">new</span> Employee { ID = 103, Name = <span class="str">"Mary"</span>, Salary = 50000, Experience = 8 },
+            <span class="kw">new</span> Employee { ID = 104, Name = <span class="str">"Mike"</span>, Salary = 10000, Experience = 2 }
+        };
+
+        <span class="kw">bool</span> PromoteByExperience(Employee emp) =&gt; emp.Experience &gt;= 5;
+        <span class="kw">bool</span> PromoteBySalary(Employee emp) =&gt; emp.Salary &gt;= 30000;
+
+        IsEligibleForPromotion experienceCriteria = PromoteByExperience;
+        Employee.PromoteEmployees(employees, experienceCriteria);
+
+        IsEligibleForPromotion salaryCriteria = PromoteBySalary;
+        Employee.PromoteEmployees(employees, salaryCriteria);
+    }
+}</code></pre>
+    </section>
+
+    <section class="topic" id="collections">
+      <h2>Collections</h2>
+      <p>Collection classes are specialized classes for data storage and retrieval. These classes provide support for stacks, queues, lists, and hash tables. Most collection classes implement the same interfaces.</p>
+      <p>Collection classes serve various purposes, such as allocating memory dynamically to elements and accessing a list of items on the basis of an index, etc. These classes create collections of objects of the <code>Object</code> class, which is the base class for all data types in C#.</p>
+    </section>
+
+    <section class="topic" id="generics">
+      <h2>Generics</h2>
+      <p>Generics is a technique that enriches your programs in the following ways:</p>
+      <ul>
+        <li>It helps you maximize code reuse, type safety, and performance.</li>
+        <li>You can create generic collection classes. The .NET Framework class library contains several generic collection classes in the <code>System.Collections.Generic</code> namespace. You may use these instead of the collection classes in the <code>System.Collections</code> namespace.</li>
+        <li>You can create your own generic interfaces, classes, methods, events, and delegates.</li>
+        <li>You may create generic classes constrained to enable access to methods on particular data types.</li>
+      </ul>
+    </section>
+
+    <section class="topic" id="boxing">
+      <h2>Boxing and Unboxing</h2>
+      <p>Boxing and unboxing is an important concept in C#. The C# type system contains three data types: value types (int, char, etc.), reference types (object), and pointer types. Boxing and unboxing convert a value type to a reference type, and vice versa, enabling a unified view of the type system in which a value of any type can be treated as an object.</p>
+      <ul>
+        <li>The process of converting a value type (char, int, etc.) to a reference type (object) is called <strong>boxing</strong>.</li>
+        <li>Boxing is an implicit conversion process in which the object type (super type) is used.</li>
+        <li>The value type is always stored on the stack. The referenced type is stored on the heap.</li>
+      </ul>
+      <pre><code><span class="kw">int</span> num = 23;      <span class="com">// 23 is assigned to num</span>
+<span class="kw">object</span> Obj = num;  <span class="com">// Boxing</span></code></pre>
+    </section>
+
+    <section class="topic" id="generic-collection">
+      <h2>Generic Collection</h2>
+      <p>Generic collections are significantly faster than non-generic collections in C#, primarily because they avoid the performance-intensive processes of boxing and unboxing value types.</p>
+
+      <h3 id="why-generics-faster">Why Generics Are Faster</h3>
+      <ul>
+        <li><strong>Elimination of boxing/unboxing:</strong> Non-generic collections (like <code>ArrayList</code> or <code>Hashtable</code>) store all elements as the <code>object</code> type. Adding a value type (like <code>int</code> or a struct) requires it to be "boxed" (converted to an object and stored on the heap); retrieving it requires "unboxing" it back to its original value type. These operations add significant overhead in both execution time and memory allocation.</li>
+        <li><strong>Memory efficiency:</strong> Generic collections (like <code>List&lt;int&gt;</code>) use a strongly-typed internal array (e.g., <code>int[]</code>). Value types are stored contiguously in memory without the extra overhead of individual object headers and references, leading to better cache performance and less pressure on the garbage collector.</li>
+        <li><strong>No runtime type checking for value types:</strong> For generic collections, the compiler knows the exact type of elements at compile time, eliminating the need for runtime type checks and explicit casting when retrieving items.</li>
+        <li><strong>Optimized implementation:</strong> The generic collection classes in the .NET Framework were designed with modern performance optimizations that were not applied to the older, non-generic counterparts.</li>
+      </ul>
+
+      <table>
+        <thead><tr><th>Generic Collection</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>List&lt;T&gt;</code></td><td>Contains elements of a specified type. Grows automatically as you add elements to it.</td></tr>
+          <tr><td><code>Dictionary&lt;TKey,TValue&gt;</code></td><td>Contains key-value pairs.</td></tr>
+          <tr><td><code>SortedList&lt;TKey,TValue&gt;</code></td><td>Stores key and value pairs. Automatically adds elements in ascending order of key by default.</td></tr>
+          <tr><td><code>Queue&lt;T&gt;</code></td><td>Stores values in FIFO order (First In First Out). Provides <code>Enqueue()</code> to add and <code>Dequeue()</code> to retrieve values.</td></tr>
+          <tr><td><code>Stack&lt;T&gt;</code></td><td>Stores values in LIFO order (Last In First Out). Provides <code>Push()</code> to add, and <code>Pop()</code> / <code>Peek()</code> to retrieve values.</td></tr>
+          <tr><td><code>Hashset&lt;T&gt;</code></td><td>Contains non-duplicate elements; eliminates duplicates.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="topic" id="non-generic-collection">
+      <h2>Non-Generic Collection</h2>
+      <table>
+        <thead><tr><th>Non-Generic Collection</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td><code>ArrayList</code></td><td>Stores objects of any type, like an array — but there is no need to specify a size, as it grows automatically.</td></tr>
+          <tr><td><code>SortedList</code></td><td>Stores key and value pairs, automatically arranged in ascending order of key by default. C# includes both generic and non-generic versions.</td></tr>
+          <tr><td><code>Stack</code></td><td>Stores values in LIFO order. Provides <code>Push()</code> to add, and <code>Pop()</code> / <code>Peek()</code> to retrieve values. C# includes both generic and non-generic versions.</td></tr>
+          <tr><td><code>Queue</code></td><td>Stores values in FIFO order, keeping insertion order. Provides <code>Enqueue()</code> and <code>Dequeue()</code>. C# includes both generic and non-generic versions.</td></tr>
+          <tr><td><code>Hashtable</code></td><td>Stores key and value pairs, retrieving values by comparing the hash value of the keys.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="topic" id="access-modifiers">
+      <h2>Access Modifier</h2>
+      <p>The <code>public</code> keyword is an access modifier, used to set the access level / visibility for classes, fields, methods, and properties.</p>
+      <p>C# has the following access modifiers:</p>
+      <ul>
+        <li><strong>public:</strong> Accessible from anywhere in the program, within the same assembly or another assembly. It is the most permissive access level.</li>
+        <li><strong>private:</strong> Accessible only within the same class or struct where it is declared. This is the default access modifier for class members if none is specified.</li>
+        <li><strong>protected:</strong> Accessible within the class where it is declared and by any class that derives from it (child classes), even if the derived class is in a different assembly.</li>
+        <li><strong>internal:</strong> Accessible only within the same assembly (project), but not from other assemblies. This is the default access modifier for top-level classes and structs.</li>
+        <li><strong>protected internal:</strong> Accessible within the same assembly, or by any class derived from the containing class, even in another assembly. A combination of protected and internal access.</li>
+        <li><strong>private protected:</strong> Accessible only within the containing class or derived classes within the same assembly. Available from C# 7.2 onward.</li>
+      </ul>
+    </section>
+
+    <footer>
+      Reference guide compiled from interview preparation notes — C# / .NET fundamentals.
+      <br><a href="../index.html">&larr; Back to all guides</a>
+    </footer>
+  </main>
+
+  <nav class="toc" id="toc">
+    <a href="../index.html" class="back">&larr; All guides</a>
+    <div class="brand">C# <span>{ }</span> Interview</div>
+    <div class="sub">Study Guide</div>
+    <a href="#dotnet">What is .NET?</a>
+    <a href="#clr" class="sub-link">What is CLR?</a>
+    <a href="#cls" class="sub-link">What is CLS?</a>
+
+    <a href="#ienumerable">IEnumerable</a>
+    <a href="#iqueryable">IQueryable</a>
+    <a href="#task-thread">Task &amp; Thread</a>
+
+    <a href="#interface-abstract">Interface vs Abstract Class</a>
+    <a href="#abstract-class" class="sub-link">Abstract Class</a>
+    <a href="#abstract-class-char" class="sub-link">Characteristics of Abstract Class</a>
+    <a href="#interface" class="sub-link">Interface</a>
+
+    <a href="#partial">Partial Class</a>
+    <a href="#partial-char" class="sub-link">Characteristics of Partial Class</a>
+
+    <a href="#static">Static Class</a>
+    <a href="#static-char" class="sub-link">Characteristics of Static Class</a>
+
+    <a href="#sealed">Sealed Class</a>
+
+    <a href="#constructor">Constructors</a>
+    <a href="#constructor-keypoints" class="sub-link">Key Points Regarding Constructors</a>
+    <a href="#constructor-types" class="sub-link">Types of Constructors</a>
+
+    <a href="#var-dynamic">var vs dynamic</a>
+    <a href="#gc">Garbage Collection</a>
+    <a href="#dispose">Dispose</a>
+    <a href="#finalize">Finalize</a>
+    <a href="#out-ref">out &amp; ref</a>
+    <a href="#readonly-const">readonly vs const</a>
+    <a href="#extension">Extension Methods</a>
+
+    <a href="#generic-class">Generic Class &amp; Method</a>
+    <a href="#generic-class-sub" class="sub-link">Generic Class</a>
+
+    <a href="#oops">OOPS</a>
+    <a href="#abstraction" class="sub-link">Abstraction</a>
+    <a href="#encapsulation" class="sub-link">Encapsulation</a>
+    <a href="#polymorphism" class="sub-link">Polymorphism</a>
+    <a href="#static-polymorphism" class="sub-link">Static Polymorphism</a>
+    <a href="#dynamic-polymorphism" class="sub-link">Dynamic Polymorphism</a>
+    <a href="#function-overloading" class="sub-link">Function Overloading</a>
+    <a href="#overriding" class="sub-link">Overriding</a>
+
+    <a href="#delegates">Delegates</a>
+    <a href="#collections">Collections</a>
+    <a href="#generics">Generics</a>
+    <a href="#boxing">Boxing &amp; Unboxing</a>
+
+    <a href="#generic-collection">Generic Collections</a>
+    <a href="#why-generics-faster" class="sub-link">Why Generics Are Faster</a>
+
+    <a href="#non-generic-collection">Non-Generic Collections</a>
+    <a href="#access-modifiers">Access Modifiers</a>
+    <div class="count">25 topics</div>
+  </nav>
+</div>
+
+<script>
+  // Highlight active TOC link based on scroll position
+  const sections = document.querySelectorAll('section.topic');
+  const links = document.querySelectorAll('nav.toc a');
+  const map = {};
+  links.forEach(l => map[l.getAttribute('href').slice(1)] = l);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = map[entry.target.id];
+      if (!link) return;
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Sidebar collapse / expand toggle
+  const toggleBtn = document.getElementById('navToggle');
+  const navEl = document.querySelector('nav.toc');
+  if (toggleBtn && navEl) {
+    toggleBtn.addEventListener('click', function () {
+      navEl.classList.toggle('collapsed');
+      document.body.classList.toggle('nav-collapsed');
+    });
+  }
+</script>
+</body>
+</html>
